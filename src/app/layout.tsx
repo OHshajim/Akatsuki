@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import Nav  from "../Shared/Nav";
-import Footer  from "../Shared/Footer";
+
 import "./globals.css";
+import Nav from "@/Shared/Nav";
+import Footer from "@/Shared/Footer";
 
 export const metadata: Metadata = {
   title: "Akatsuki",
