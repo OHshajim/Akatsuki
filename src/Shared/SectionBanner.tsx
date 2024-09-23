@@ -6,7 +6,7 @@ const SectionBanner = () => {
       <Image
         width={3000}
         height={1000}
-        src="https://i.ibb.co.com/TkfLWJn/banner1.jpg"
+        src="https://i.ibb.co.com/CQRdzPz/header-bg-copyright.jpg"
         alt=""
         className="w-full h-auto object-cover"
       />

@@ -1,3 +1,4 @@
+import { transform } from "next/dist/build/swc";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -10,12 +11,17 @@ const config: Config = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    // extend: {
-    //   colors: {
-    //     background: "var(--background)",
-    //     foreground: "var(--foreground)",
-    //   },
-    // },
+    extend:{
+      animation:{
+        "loop-scroll":"loop-scroll 20s linear infinite"
+      },
+      keyframes:{
+        "loop-scroll":{
+          from:{transform:"translateX(0)"},
+          to:{transform:"translateX(-100%)"}
+        }
+      }
+    }
   },
   plugins: [require('daisyui'),],
 };
