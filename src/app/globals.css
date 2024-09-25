@@ -2,3 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+.rr--box {
+    --rr--fill-on-color: #ffd207 !important;
+    --rr--fill-off-color: #ffffff !important;
+    --rr--stroke-on-color: #ffb81e !important;
+}

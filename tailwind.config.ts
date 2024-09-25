@@ -1,4 +1,3 @@
-import { transform } from "next/dist/build/swc";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -13,7 +12,7 @@ const config: Config = {
   theme: {
     extend:{
       animation:{
-        "loop-scroll":"loop-scroll 20s linear infinite"
+        "loop-scroll":"loop-scroll 40s linear infinite"
       },
       keyframes:{
         "loop-scroll":{
