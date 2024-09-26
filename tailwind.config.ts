@@ -12,7 +12,7 @@ const config: Config = {
   theme: {
     extend:{
       animation:{
-        "loop-scroll":"loop-scroll 40s linear infinite"
+        "loop-scroll":"loop-scroll 30s linear infinite"
       },
       keyframes:{
         "loop-scroll":{

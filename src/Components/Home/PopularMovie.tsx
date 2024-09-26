@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 import "swiper/css";
 import { popular } from "../../../Public/Popular";
-import Card from "@/Shared/Card";
 import { Rating } from "@smastrom/react-rating";
 import Image from "next/image";
 const PopularMovie = () => {
@@ -59,6 +58,52 @@ const PopularMovie = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+      </div>
+      <div className="flex overflow-hidden space-x-0 text-nowrap text-xl xl:text-2xl font-bold uppercase pb-5 text-[#E3962B]">
+        <div className="flex animate-loop-scroll gap-2 ">
+          <p> / One Piece</p>
+          <p> / Naruto</p>
+          <p> / Demon Slayer: Kimetsu no Yaiba</p>
+          <p> / Attack on Titan</p>
+          <p> / My Hero Academia</p>
+          <p> / Death Note</p>
+          <p> / Fullmetal Alchemist: Brotherhood</p>
+          <p> / Sword Art Online</p>
+          <p> / Hunter x Hunter </p>
+          <p> / Tokyo Ghoul</p>
+          <p> / Jujutsu Kaisen</p>
+          <p> / Your Name</p>
+          <p> / Suzume</p>
+          <p> / One Punch Man</p>
+          <p> / Re:Zero - Starting Life in Another World</p>
+          <p> / Fairy Tail</p>
+          <p> / Mob Psycho 100</p>
+          <p> / Code Geass</p>
+          <p> / Spirited Away</p>
+          <p> / Neon Genesis Evangelion</p>
+        </div>
+        <div className="flex animate-loop-scroll gap-2 " aria-hidden="true">
+          <p> / One Piece</p>
+          <p> / Naruto</p>
+          <p> / Demon Slayer: Kimetsu no Yaiba</p>
+          <p> / Attack on Titan</p>
+          <p> / My Hero Academia</p>
+          <p> / Death Note</p>
+          <p> / Fullmetal Alchemist: Brotherhood</p>
+          <p> / Sword Art Online</p>
+          <p> / Hunter x Hunter </p>
+          <p> / Tokyo Ghoul</p>
+          <p> / Jujutsu Kaisen</p>
+          <p> / Your Name</p>
+          <p> / Suzume</p>
+          <p> / One Punch Man</p>
+          <p> / Re:Zero - Starting Life in Another World</p>
+          <p> / Fairy Tail</p>
+          <p> / Mob Psycho 100</p>
+          <p> / Code Geass</p>
+          <p> / Spirited Away</p>
+          <p> / Neon Genesis Evangelion</p>
+        </div>
       </div>
     </div>
   );
