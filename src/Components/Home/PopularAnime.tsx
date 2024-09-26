@@ -3,7 +3,7 @@ import SectionTitle from "@/Shared/SectionTitle";
 import { popular } from "../../../Public/Popular";
 const PopularAnime = () => {
   return (
-    <div className="container mx-auto my-10">
+    <div className="container mx-auto py-10">
       <SectionTitle
         heading={"Top Anime"}
         subHeading={"Popular anime this week"}

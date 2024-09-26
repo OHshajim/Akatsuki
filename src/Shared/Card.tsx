@@ -13,15 +13,15 @@ const Card = ({ item }) => {
           alt="Shoes"
           className="w-full group"
         />
-        <div className="absolute bottom-0 border w-full group-hover:flex hidden bg-white group-hover:duration-200 group-hover:delay-100">
+        <div className="absolute bottom-0 w-full group-hover:flex hidden bg-white group-hover:duration-200 group-hover:delay-100">
           <button className="btn bg-white w-1/2 border-none hover:bg-gray-100 text-black font-bold">Quick View</button>
           <button className="btn bg-white w-1/2 border-none hover:bg-gray-100 text-black font-bold">Add to Card</button>
         </div>
       </figure>
-      <div className="card-body">
+      <div className="card-body py-2 px-1">
         <h2 className="card-title">{item.name}</h2>
         <div className="flex justify-between">
-          <h3>{item.price} $</h3>
+          <h3 className="font-semibold text-zinc-500">{item.price} $</h3>
           <Rating
             style={{ maxWidth: 110, color: "#fff" }}
             value={item.rating}
