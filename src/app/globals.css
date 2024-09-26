@@ -7,3 +7,24 @@
     --rr--fill-off-color: #ffffff !important;
     --rr--stroke-on-color: #ffb81e !important;
 }
+
+@keyframes sakura-petals {
+    0% { transform: translateY(-10px); }
+    100% { transform: translateY(10px); }
+  }
+  .anime-header {
+    font-family: 'Comic Sans MS', cursive;
+    letter-spacing: 0.1em;
+  }
+
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  

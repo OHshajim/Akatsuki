@@ -4,6 +4,7 @@ import PopularMovie from "@/Components/Home/PopularMovie";
 import RecentAnime from "@/Components/Home/RecentAnime";
 import Tickets from "@/Components/Home/Tickets";
 import WatchOnline from "@/Components/Home/WatchOnline";
+import Testimonials from "@/Shared/Testimonials";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <WatchOnline />
       <PopularMovie />
       <Tickets/>
+      <Testimonials/>
     </div>
   );
 }
