@@ -21,7 +21,7 @@ const Testimonials = () => {
   return (
     <div className="sticky py-32 w-full">
     {/* Sticky full-width "Testimonials" header within this section */}
-    <h2 className="text-6xl text-center text-black font-bold uppercase tracking-wide sticky top-0 w-full anime-header z-10 py-4">
+    <h2 className="text-6xl text-center text-black font-bold uppercase tracking-wide  top-0 w-full anime-header z-10 py-4">
       Testimonials
     </h2>
 
@@ -41,7 +41,7 @@ const Testimonials = () => {
                   <p className="text-xl font-semibold text-black italic">
                     "{testimonial.text}"
                   </p>
-                  <h4 className="mt-4 text-2xl text-yellow-300 font-bold">
+                  <h4 className="mt-4 text-2xl text-yellow-500 font-bold">
                     {testimonial.name}
                   </h4>
                 </div>

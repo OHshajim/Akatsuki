@@ -12,7 +12,7 @@ const Footer = () => {
     <div className="bg-black py-5">
       <footer className="footer bg-black container mx-auto py-20 lg:px-10 px-5">
         <aside>
-          <h1 className="text-3xl font-bold text-white">Akatsuki</h1>
+          <h1 className="text-3xl font-bold text-white peralta-regular">Akatsuki</h1>
         </aside>
         <aside className="flex justify-between w-full flex-col md:flex-row gap-5">
           <nav>

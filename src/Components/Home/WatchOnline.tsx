@@ -21,11 +21,9 @@ const WatchOnline = () => {
               <h3 className="text-sm md:text-xl lg:text-3xl xl:text-5xl my-5">
                 We offer the largest anime movies database.
               </h3>
-              <div>
-                <button className="btn bg-white border-none rounded-none text-black font-semibold uppercase hover:bg-zinc-300 hover:scale-110 mt-5">
-                  View Details <BsArrowRight className="text-xl" />
-                </button>
-              </div>
+              <button className="btn bg-white border-none rounded-none text-black font-semibold uppercase hover:bg-zinc-300 hover:scale-110 mt-5 px-10">
+                View Details <BsArrowRight className="text-xl" />
+              </button>
             </div>
           </div>
         </div>

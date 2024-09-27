@@ -1,4 +1,6 @@
+import Article from "@/Components/Home/Article";
 import Banner from "@/Components/Home/Banner";
+import BestSelling from "@/Components/Home/BestSelling";
 import PopularAnime from "@/Components/Home/PopularAnime";
 import PopularMovie from "@/Components/Home/PopularMovie";
 import RecentAnime from "@/Components/Home/RecentAnime";
@@ -11,11 +13,13 @@ export default function Home() {
     <div className="bg-white">
       <Banner />
       <RecentAnime />
+      <BestSelling/>
       <PopularAnime />
       <WatchOnline />
       <PopularMovie />
       <Tickets/>
       <Testimonials/>
+      <Article/>
     </div>
   );
 }

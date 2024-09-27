@@ -1,0 +1,58 @@
+export const blogs = [
+  {
+    id: 1,
+    title: "Why Slice of Life Anime is Underrated",
+    publish_date: "2024-08-20",
+    likes: 1200,
+    image: "https://i.ibb.co.com/VC7Pn6w/product12-copyright-600x700.jpg",
+  },
+  {
+    id: 2,
+    title: "Anime Expo 2024: Key Highlights",
+    publish_date: "2024-07-15",
+    likes: 5400,
+    image: "https://i.ibb.co.com/jHXP4W4/product13-copyright-600x700.jpg",
+  },
+  {
+    id: 3,
+    title: "Interview with Attack on Titan's Director",
+    publish_date: "2024-06-30",
+    likes: 4200,
+    image: "https://i.ibb.co.com/wRWjs0w/product14-copyright-600x700.jpg",
+  },
+  {
+    id: 4,
+    title: "10 Must-Watch Anime This Fall",
+    publish_date: "2024-09-10",
+    likes: 2900,
+    image: "https://i.ibb.co.com/S5bRwNs/product15-copyright-600x700.jpg",
+  },
+  {
+    id: 5,
+    title: "Best Romance Anime of All Time",
+    publish_date: "2024-08-05",
+    likes: 1800,
+    image: "https://i.ibb.co.com/kGfJBKx/product16-copyright-600x700.jpg",
+  },
+  {
+    id: 6,
+    title: "Why I Love Anime Music",
+    publish_date: "2024-07-25",
+    likes: 1500,
+    image: "https://i.ibb.co.com/vXdQX2z/product17-copyright-600x700.jpg",
+  },
+  {
+    id: 7,
+    title: "Spring 2024 Anime Season Preview",
+    publish_date: "2024-03-20",
+    likes: 3700,
+    image: "https://i.ibb.co.com/jHXP4W4/product13-copyright-600x700.jpg",
+  },
+  {
+    id: 8,
+    title: "The Best Shonen Anime Ranked",
+    publish_date: "2024-09-01",
+    likes: 3200,
+    image: "https://i.ibb.co.com/wRWjs0w/product14-copyright-600x700.jpg",
+  },
+];

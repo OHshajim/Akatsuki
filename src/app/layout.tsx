@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-
 import "./globals.css";
 import Nav from "@/Shared/Nav";
 import Footer from "@/Shared/Footer";
 
 export const metadata: Metadata = {
-  title: "Akatsuki",
+  title: "AKATSUKI",
   description: "Be prepare for Manga",
 };
 
@@ -16,12 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      
       <body>
-        <Nav/>
+        <Nav />
         {children}
-        <Footer/>
-        </body>
+        <Footer />
+      </body>
     </html>
   );
 }

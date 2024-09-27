@@ -1,13 +1,12 @@
-// import { NavLink } from "react-router-dom";
+"use client"
+import {  NavLink } from "react-router-dom";
+
 const Nav = () => {
-  //   const [openNav, setOpenNav] = useState(false);
 
   const navList = (
-    <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 text-base">
+    <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 text-xl">
       <li className="">
-        {/* <NavLink to='/' className={({ isActive, isPending }) => 
-                    isPending ? "pending" : isActive ? "text-[#81C9E9] font-bold flex items-center gap-2" : "flex items-center gap-2"
-                 }> */}
+        {/* <NavLink to={"/from"}> */}
         Home
         {/* </NavLink> */}
       </li>
@@ -39,9 +38,9 @@ const Nav = () => {
   //   };
   //   window.addEventListener("scroll", setFixed);
   return (
-    <div className="navbar bg-black">
+    <div className="navbar bg-black px-5">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">Akatsuki</a>
+        <h1 className=" text-3xl peralta-regular  text-white uppercase">Akatsuki</h1>
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">{navList}</ul>
