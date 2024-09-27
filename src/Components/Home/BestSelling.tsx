@@ -6,23 +6,24 @@ const BestSelling = () => {
   const data = [
     {
       type: "Action",
-      image: "https://i.ibb.co.com/XkhLBnD/bestsell4.jpg",
+      image: "https://i.ibb.co/XkhLBnD/bestsell4.jpg",
     },
     {
       type: "Adventure",
-      image: "https://i.ibb.co.com/6XKfB4S/bestsell3.jpg",
+      image: "https://i.ibb.co/6XKfB4S/bestsell3.jpg",
     },
     {
       type: "Fantasy",
-      image: "https://i.ibb.co.com/thwvMVz/bestsell2.jpg",
+      image: "https://i.ibb.co/thwvMVz/bestsell2.jpg",
     },
     {
       type: "Love Story",
-      image: "https://i.ibb.co.com/288srWf/bestsell1.jpg",
+      image: "https://i.ibb.co/288srWf/bestsell1.jpg",
     },
   ];
+
   return (
-    <div className=" mx-10 py-20">
+    <div className="mx-10 py-20">
       <SectionTitle
         heading={"Discover all the best manga series at great prices"}
         subHeading={"bestselling manga"}
@@ -31,22 +32,22 @@ const BestSelling = () => {
         {data.map((data) => (
           <div
             key={data.type}
-            className="card rounded-none text-black transform transition-transform duration-300 hover:scale-105 hover:shadow-lg relative overflow-hidden "
+            className="card rounded-none text-black relative overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-2xl transform hover:rotate-1 group"
           >
-            <figure className="relative group">
+            <figure className="relative">
               <Image
-                width={600}
+                width={800}
                 height={800}
                 src={data.image}
-                alt="anime"
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 group-hover:grayscale-50"
+                alt={data.type}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale-0 group-hover:grayscale group-hover:rotate-2 group-hover:brightness-75"
               />
-              <div className="absolute bottom-0 w-full  group-hover:duration-300">
-                <h3 className="text-xl text-white font-bold px-4 py-2 transition-all duration-300 transform translate-y-1 group-hover:translate-y-0">
+              <div className="absolute bottom-10 w-full transition-all duration-500 ease-in-out transform group-hover:translate-y-8 translate-y-full">
+                <h3 className="text-2xl text-white font-bold px-4">
                   {data.type}
                 </h3>
-                <button className=" btn btn-ghost border-none group-hover:flex hidden  font-bold text-white bg-transparent  transition-all duration-300 transform translate-y-12 group-hover:translate-y-0">
-                  Shop Now <BsArrowRight className="text-xl" />
+                <button className="btn btn-ghost border-none group-hover:flex hidden font-bold text-white  px-6 py-3 rounded-full transition-all duration-500 transform hover:scale-105 hover:shadow-lg">
+                  Shop Now <BsArrowRight className="ml-2 text-xl" />
                 </button>
               </div>
             </figure>
