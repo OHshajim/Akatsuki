@@ -15,10 +15,10 @@ const WatchOnline = () => {
         <div className="absolute z-10 top-0 w-full h-full ">
           <div className="flex justify-center items-center w-full h-full">
             <div className="px-5 lg:px-20 max-w-xl lg:max-w-5xl text-center uppercase text-white font-bold">
-              <h4 className="lg:text-xl md:text-base text-[5px]">
+              <h4 className="lg:text-xl md:text-base text-[5px] bebas-neue tracking-[1px] font-semibold">
                 Watch Online
               </h4>
-              <h3 className="text-sm md:text-xl lg:text-3xl xl:text-5xl my-5">
+              <h3 className="text-sm md:text-xl lg:text-3xl xl:text-5xl my-5 bebas-neue tracking-[2px]">
                 We offer the largest anime movies database.
               </h3>
               <button className="btn bg-white border-none rounded-none text-black font-semibold uppercase hover:bg-zinc-300 hover:scale-110 mt-5 px-10">

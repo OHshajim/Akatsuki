@@ -43,7 +43,7 @@ const BestSelling = () => {
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale-0 group-hover:grayscale group-hover:rotate-2 group-hover:brightness-75"
               />
               <div className="absolute bottom-10 w-full transition-all duration-500 ease-in-out transform group-hover:translate-y-8 translate-y-full">
-                <h3 className="text-2xl text-white font-bold px-4">
+                <h3 className="text-2xl  text-white font-bold px-4 bebas-neue tracking-[2px]">
                   {data.type}
                 </h3>
                 <button className="btn btn-ghost border-none group-hover:flex hidden font-bold text-white  px-6 py-3 rounded-full transition-all duration-500 transform hover:scale-105 hover:shadow-lg">

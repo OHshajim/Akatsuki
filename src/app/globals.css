@@ -6,18 +6,20 @@
 
 
 
-.peralta-regular {
-  font-family: "Peralta", serif;
-  letter-spacing: 6px;
+* {
+  font-family: "Roboto Slab", serif;
+  letter-spacing: 1px;
 }
 
-.bebas-neue-regular {
+.font-peralta{
+  font-family: "Peralta", serif;
+  letter-spacing: 5px;
+}
+
+.bebas-neue {
   font-family: "Bebas Neue", sans-serif;
 }
 
-.font-Roboto{
-  font-family: "Roboto Slab", serif;
-} 
 
 
 .rr--box {

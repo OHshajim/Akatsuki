@@ -12,11 +12,11 @@ const Footer = () => {
     <div className="bg-black py-5">
       <footer className="footer bg-black container mx-auto py-20 lg:px-10 px-5">
         <aside>
-          <h1 className="text-3xl font-bold text-white peralta-regular">Akatsuki</h1>
+          <h1 className="text-4xl font-bold text-white font-peralta">Akatsuki</h1>
         </aside>
         <aside className="flex justify-between w-full flex-col md:flex-row gap-5">
           <nav>
-            <h3 className="text-xl font-semibold border-b pb-1 uppercase">
+            <h3 className="text-xl font-semibold border-b pb-1 uppercase bebas-neue tracking-[2px]">
               Social
             </h3>
             <div className="flex  gap-5 text-3xl  items-center justify-center mt-3">
@@ -41,7 +41,7 @@ const Footer = () => {
             </div>
           </nav>
           <nav>
-            <h3 className="text-xl font-semibold border-b pb-1 uppercase">
+            <h3 className="text-xl font-medium border-b pb-1 uppercase bebas-neue tracking-[2px]">
               Menu
             </h3>
             <div className="flex flex-col my-4 text-base font-medium ">
@@ -52,7 +52,7 @@ const Footer = () => {
             </div>
           </nav>
           <nav>
-            <h3 className="text-xl font-semibold border-b pb-1 uppercase">
+            <h3 className="text-xl font-medium border-b pb-1 uppercase bebas-neue tracking-[2px]">
               Say Hello
             </h3>
             <div className="my-4 space-y-2 flex flex-col items-start gap-2">
@@ -73,7 +73,7 @@ const Footer = () => {
         <hr />
         <aside className="pt-5">
           <p>
-            <span className="text-zinc-300 font-semibold ">Akatsuki</span> ©{" "}
+            <span className="text-zinc-300 font-bold font-peralta">Akatsuki</span> ©{" "}
             {new Date().getFullYear()} - All right reserved.
           </p>
         </aside>

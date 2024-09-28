@@ -6,8 +6,8 @@ const PopularAnime = () => {
   return (
     <div className="container mx-auto py-20">
       <SectionTitle
-        heading={"Top Anime"}
-        subHeading={"Popular anime this week"}
+        subHeading={"Top Anime"}
+        heading={"Popular anime this week"}
       />
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-10">
         {popular.map((popular) => (

@@ -19,7 +19,7 @@ const Card = ({ item }) => {
         </div>
       </figure>
       <div className="card-body py-2 px-1">
-        <h2 className="card-title">{item.name}</h2>
+        <h2 className="card-title bebas-neue font-medium tracking-[1px]">{item.name}</h2>
         <div className="flex justify-between">
           <h3 className="font-semibold text-zinc-500">{item.price} $</h3>
           <Rating

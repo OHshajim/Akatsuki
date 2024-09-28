@@ -33,8 +33,8 @@ const Article = () => {
                   />
                 </figure>
                 <div className="card-body py-2 px-1">
-                  <p className="font-bold">Anime</p>
-                  <h2 className="card-title group-hover:text-zinc-500">{blog.title}</h2>
+                  <p className="font-medium bebas-neue tracking-[1px]">Anime</p>
+                  <h2 className="card-title group-hover:text-zinc-500 bebas-neue tracking-[2px]">{blog.title}</h2>
                   <div className="flex items-center gap-4">
                     <h3 className="font-semibold text-zinc-500 ">
                       {blog.publish_date}

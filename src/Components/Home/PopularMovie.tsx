@@ -10,8 +10,8 @@ const PopularMovie = () => {
     <div className="bg-[#000000f9]">
       <div className="container mx-auto py-20 ">
         <div className="mb-10 uppercase font-bold text-white">
-          <p className="text-base  px-2 py-1 mb-2">New collections</p>
-          <h3 className="text-xl lg:text-3xl xl:text-5xl">Popular movies</h3>
+          <p className="text-base  px-2 py-1 mb-2 bebas-neue tracking-[1px] font-medium">New collections</p>
+          <h3 className="text-xl lg:text-3xl xl:text-5xl bebas-neue tracking-[2px]">Popular movies</h3>
         </div>
         <Swiper
           slidesPerView={4}
@@ -42,7 +42,7 @@ const PopularMovie = () => {
                   </div>
                 </figure>
                 <div className="card-body py-2 px-1">
-                  <h2 className="card-title text-white">{popular.name}</h2>
+                  <h2 className="card-title text-white bebas-neue tracking-[2px] font-medium">{popular.name}</h2>
                   <div className="flex justify-between">
                     <h3 className="font-semibold text-zinc-400">
                       {popular.price} $
@@ -61,48 +61,52 @@ const PopularMovie = () => {
       </div>
       <div className="flex overflow-hidden space-x-0 text-nowrap text-xl xl:text-2xl font-bold uppercase pb-5 text-[#E3962B]">
         <div className="flex animate-loop-scroll gap-2 ">
-          <p> / One Piece</p>
-          <p> / Naruto</p>
-          <p> / Demon Slayer: Kimetsu no Yaiba</p>
-          <p> / Attack on Titan</p>
-          <p> / My Hero Academia</p>
-          <p> / Death Note</p>
-          <p> / Fullmetal Alchemist: Brotherhood</p>
-          <p> / Sword Art Online</p>
-          <p> / Hunter x Hunter </p>
-          <p> / Tokyo Ghoul</p>
-          <p> / Jujutsu Kaisen</p>
-          <p> / Your Name</p>
-          <p> / Suzume</p>
-          <p> / One Punch Man</p>
-          <p> / Re:Zero - Starting Life in Another World</p>
-          <p> / Fairy Tail</p>
-          <p> / Mob Psycho 100</p>
-          <p> / Code Geass</p>
-          <p> / Spirited Away</p>
-          <p> / Neon Genesis Evangelion</p>
+          <p className="bebas-neue"> / One Piece</p>
+          <p className="bebas-neue"> / Naruto</p>
+          <p className="bebas-neue"> / Demon Slayer: Kimetsu no Yaiba</p>
+          <p className="bebas-neue"> / Attack on Titan</p>
+          <p className="bebas-neue"> / My Hero Academia</p>
+          <p className="bebas-neue"> / Death Note</p>
+          <p className="bebas-neue"> / Fullmetal Alchemist: Brotherhood</p>
+          <p className="bebas-neue"> / Sword Art Online</p>
+          <p className="bebas-neue"> / Hunter x Hunter </p>
+          <p className="bebas-neue"> / Tokyo Ghoul</p>
+          <p className="bebas-neue"> / Jujutsu Kaisen</p>
+          <p className="bebas-neue"> / Your Name</p>
+          <p className="bebas-neue"> / Suzume</p>
+          <p className="bebas-neue"> / One Punch Man</p>
+          <p className="bebas-neue">
+            / Re:Zero - Starting Life in Another World
+          </p>
+          <p className="bebas-neue"> / Fairy Tail</p>
+          <p className="bebas-neue"> / Mob Psycho 100</p>
+          <p className="bebas-neue"> / Code Geass</p>
+          <p className="bebas-neue"> / Spirited Away</p>
+          <p className="bebas-neue"> / Neon Genesis Evangelion</p>
         </div>
         <div className="flex animate-loop-scroll gap-2 " aria-hidden="true">
-          <p> / One Piece</p>
-          <p> / Naruto</p>
-          <p> / Demon Slayer: Kimetsu no Yaiba</p>
-          <p> / Attack on Titan</p>
-          <p> / My Hero Academia</p>
-          <p> / Death Note</p>
-          <p> / Fullmetal Alchemist: Brotherhood</p>
-          <p> / Sword Art Online</p>
-          <p> / Hunter x Hunter </p>
-          <p> / Tokyo Ghoul</p>
-          <p> / Jujutsu Kaisen</p>
-          <p> / Your Name</p>
-          <p> / Suzume</p>
-          <p> / One Punch Man</p>
-          <p> / Re:Zero - Starting Life in Another World</p>
-          <p> / Fairy Tail</p>
-          <p> / Mob Psycho 100</p>
-          <p> / Code Geass</p>
-          <p> / Spirited Away</p>
-          <p> / Neon Genesis Evangelion</p>
+          <p className="bebas-neue"> / One Piece</p>
+          <p className="bebas-neue"> / Naruto</p>
+          <p className="bebas-neue"> / Demon Slayer: Kimetsu no Yaiba</p>
+          <p className="bebas-neue"> / Attack on Titan</p>
+          <p className="bebas-neue"> / My Hero Academia</p>
+          <p className="bebas-neue"> / Death Note</p>
+          <p className="bebas-neue"> / Fullmetal Alchemist: Brotherhood</p>
+          <p className="bebas-neue"> / Sword Art Online</p>
+          <p className="bebas-neue"> / Hunter x Hunter </p>
+          <p className="bebas-neue"> / Tokyo Ghoul</p>
+          <p className="bebas-neue"> / Jujutsu Kaisen</p>
+          <p className="bebas-neue"> / Your Name</p>
+          <p className="bebas-neue"> / Suzume</p>
+          <p className="bebas-neue"> / One Punch Man</p>
+          <p className="bebas-neue">
+            / Re:Zero - Starting Life in Another World
+          </p>
+          <p className="bebas-neue"> / Fairy Tail</p>
+          <p className="bebas-neue"> / Mob Psycho 100</p>
+          <p className="bebas-neue"> / Code Geass</p>
+          <p className="bebas-neue"> / Spirited Away</p>
+          <p className="bebas-neue"> / Neon Genesis Evangelion</p>
         </div>
       </div>
     </div>

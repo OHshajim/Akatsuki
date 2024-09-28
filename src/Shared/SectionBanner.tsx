@@ -13,7 +13,7 @@ const SectionBanner = ({ title, subTitle }) => {
       <div className="absolute z-10 top-0 w-full h-full bg-black/50">
         <div className="flex justify-center items-center w-full h-full">
           <div className="px-5 lg:px-20 max-w-xl lg:max-w-5xl text-center lg:text-left">
-            <h3 className="text-sm md:text-xl lg:text-3xl xl:text-5xl text-white font-bold lg:my-5">
+            <h3 className="text-sm md:text-xl lg:text-3xl xl:text-5xl text-white font-bold lg:my-5 bebas-neue">
               {title}
             </h3>
             <p className="text-zinc-300 lg:text-sm md:text-xs text-[5px] text-center">
