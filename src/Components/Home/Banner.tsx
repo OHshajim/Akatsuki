@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Banner = () => {
   return (
-    <div className="bg-black py-5">
+    <div className="bg-[#000000f5] py-5">
       <div className="flex overflow-hidden space-x-0 text-nowrap text-xl xl:text-2xl font-bold uppercase pb-5 text-[#E3962B]">
         <div className="flex animate-loop-scroll gap-2 ">
           <p className="bebas-neue"> / One Piece</p>
@@ -64,13 +64,13 @@ const Banner = () => {
       <div className="w-full h-full ">
         <div className="flex justify-start items-end w-full h-full">
           <div className="px-5 lg:px-20 text-center lg:text-left font-bold py-4">
-            <h4 className="lg:text-2xl md:text-xl text-xs text-white bebas-neue tracking-[2px]">
+            <h4 className="lg:text-3xl md:text-xl text-xs text-white bebas-neue tracking-[2px]">
               Join The community of All-time japanese classics
             </h4>
-            <h1 className="text-xl lg:text-3xl xl:text-9xl text-[#E3962B] lg:my-5">
+            <h1 className="text-xl lg:text-4xl xl:text-9xl text-[#E3962B] lg:my-5">
               Welcome to <span className="font-peralta uppercase xl:text-8xl">Akatsuki</span>
             </h1>
-            <p className="text-white text-sm text-[5px] uppercase bebas-neue tracking-[2px]">
+            <p className="text-white lg:text-lg text-sm uppercase bebas-neue tracking-[2px]">
               Anime Culture
             </p>
           </div>

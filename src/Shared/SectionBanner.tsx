@@ -7,8 +7,9 @@ const SectionBanner = ({ title, subTitle }) => {
         width={3000}
         height={1000}
         src="https://i.ibb.co.com/CQRdzPz/header-bg-copyright.jpg"
-        alt=""
+        alt="Cover2"
         className="w-full h-auto object-cover"
+        priority
       />
       <div className="absolute z-10 top-0 w-full h-full bg-black/50">
         <div className="flex justify-center items-center w-full h-full">

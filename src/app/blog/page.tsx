@@ -5,7 +5,7 @@ const page = () => {
   return (
     <div>
       <div className="bg-white">
-        <SectionBanner subTitle={"Home > Blogs"} title={"Blogs"} />
+        <SectionBanner subTitle={"Home > Blog"} title={"Blog"} />
         <AllBlogs />
       </div>
     </div>
