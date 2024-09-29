@@ -37,7 +37,7 @@ const PopularMovie = () => {
                       Quick View
                     </button>
                     <button className="btn bg-black w-1/2 border-none hover:bg-gray-800 text-white font-bold">
-                      Add to Card
+                      Add to Wishlist
                     </button>
                   </div>
                 </figure>

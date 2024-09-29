@@ -5,16 +5,15 @@ import { useEffect, useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { RiShoppingBag4Line } from "react-icons/ri";
 
+
 const Nav = () => {
   const path = usePathname();
-  console.log(path);
-
   const [activeRoute, setActiveRoute] = useState("/");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     setActiveRoute(path);
-  }, [ path]);
+  }, [path]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);

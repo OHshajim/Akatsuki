@@ -1,10 +1,12 @@
-"use client"
+"use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode} from "swiper/modules";
+import { FreeMode } from "swiper/modules";
 import "swiper/css";
 import { popular } from "../../../Public/Popular";
 import Card from "@/Shared/Card";
+
 const RecentAnime = () => {
+
   return (
     <div className="py-20 bg-zinc-200">
       <Swiper
@@ -14,9 +16,20 @@ const RecentAnime = () => {
         loop={true}
         modules={[FreeMode]}
         className="mySwiper"
+        breakpoints={{
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 4 },
+        }}
       >
-        {popular.map(popular=><SwiperSlide key={popular.product_id}><Card item={popular}/></SwiperSlide>)}
+        {popular.map((item) => (
+          <SwiperSlide key={item.product_id}>
+            <Card item={item} />
+          </SwiperSlide>
+        ))}
       </Swiper>
+
+
     </div>
   );
 };
