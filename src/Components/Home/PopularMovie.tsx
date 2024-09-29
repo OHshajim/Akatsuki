@@ -45,7 +45,7 @@ const PopularMovie = () => {
                   <h2 className="card-title text-white bebas-neue tracking-[2px] font-medium">{popular.name}</h2>
                   <div className="flex justify-between">
                     <h3 className="font-semibold text-zinc-400">
-                      {popular.price} $
+                      {popular.tags[1]} 
                     </h3>
                     <Rating
                       style={{ maxWidth: 110, color: "#fff" }}
