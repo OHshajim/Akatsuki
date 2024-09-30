@@ -1,5 +1,6 @@
 import SectionTitle from "@/Shared/SectionTitle";
 import Image from "next/image";
+import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 
 const BestSelling = () => {
@@ -34,23 +35,25 @@ const BestSelling = () => {
             key={data.type}
             className="card rounded-none text-black relative overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-2xl transform hover:rotate-1 group"
           >
-            <figure className="relative">
-              <Image
-                width={800}
-                height={800}
-                src={data.image}
-                alt={data.type}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale-0 group-hover:grayscale group-hover:rotate-2 group-hover:brightness-75"
-              />
-              <div className="absolute bottom-10 w-full transition-all duration-500 ease-in-out transform group-hover:translate-y-8 translate-y-full">
-                <h3 className="text-2xl  text-white font-bold px-4 bebas-neue tracking-[2px]">
-                  {data.type}
-                </h3>
-                <button className="btn btn-ghost border-none group-hover:flex hidden font-bold text-white  px-6 py-3 rounded-full transition-all duration-500 transform hover:scale-105 hover:shadow-lg">
-                  Shop Now <BsArrowRight className="ml-2 text-xl" />
-                </button>
-              </div>
-            </figure>
+            <Link href={"/shop"}>
+              <figure className="relative">
+                <Image
+                  width={800}
+                  height={800}
+                  src={data.image}
+                  alt={data.type}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale-0 group-hover:grayscale group-hover:rotate-2 group-hover:brightness-75"
+                />
+                <div className="absolute bottom-10 w-full transition-all duration-500 ease-in-out transform group-hover:translate-y-8 translate-y-full">
+                  <h3 className="text-2xl  text-white font-bold px-4 bebas-neue tracking-[2px]">
+                    {data.type}
+                  </h3>
+                  <button className="btn btn-ghost border-none group-hover:flex hidden font-bold text-white  px-6 py-3 rounded-full transition-all duration-500 transform hover:scale-105 hover:shadow-lg">
+                    Shop Now <BsArrowRight className="ml-2 text-xl" />
+                  </button>
+                </div>
+              </figure>
+            </Link>
           </div>
         ))}
       </div>

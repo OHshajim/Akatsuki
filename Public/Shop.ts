@@ -91,7 +91,7 @@ export const shop = [
     year_of_publishing: 2012,
     rating: 4,
     tags: ["Action", "Adventure", "Romance"],
-    product_id: "007",
+    product_id: "017",
     price: 27.99,
     image: "https://i.ibb.co.com/S5bRwNs/product15-copyright-600x700.jpgg",
     description:
@@ -105,7 +105,7 @@ export const shop = [
     year_of_publishing: 2020,
     rating: 5,
     tags: ["Action", "Supernatural", "Dark Fantasy"],
-    product_id: "008",
+    product_id: "018",
     price: 31.99,
     image: "https://i.ibb.co.com/VC7Pn6w/product12-copyright-600x700.jpg",
     description:
@@ -119,7 +119,7 @@ export const shop = [
     year_of_publishing: 2014,
     rating: 4.5,
     tags: ["Action", "Supernatural", "Horror"],
-    product_id: "009",
+    product_id: "019",
     price: 26.99,
     image: "https://i.ibb.co.com/jHXP4W4/product13-copyright-600x700.jpg",
     description:
@@ -133,7 +133,7 @@ export const shop = [
     year_of_publishing: 2016,
     rating: 5,
     tags: ["Action", "Superhero", "Fantasy"],
-    product_id: "010",
+    product_id: "110",
     price: 32.99,
     image: "https://i.ibb.co.com/kGfJBKx/product16-copyright-600x700.jpg",
     description:
@@ -147,7 +147,7 @@ export const shop = [
     year_of_publishing: 1989,
     rating: 4.5,
     tags: ["Action", "Martial Arts", "Adventure"],
-    product_id: "011",
+    product_id: "111",
     price: 28.99,
     image: "https://i.ibb.co.com/vXdQX2z/product17-copyright-600x700.jpg",
     description:
