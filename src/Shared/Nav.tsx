@@ -69,12 +69,12 @@ const Nav = () => {
           {navList}
           <li>
             <Link
-              href={"/card"}
+              href={"/cart"}
               className={`${
                 activeRoute === "/card"
                   ? "text-[#E3962B] font-bold "
                   : "text-white"
-              } text-2xl transition-colors duration-300 hover:text-[#E3962B] bebas-neue tracking-[2px]`}
+              } text-2xl transition-colors duration-300 hover:text-[#E3962B] bebas-neue tracking-[2px] hover:bg-transparent`}
             >
               <RiShoppingBag4Line />
             </Link>
@@ -94,7 +94,7 @@ const Nav = () => {
                   activeRoute === "/card"
                     ? "text-[#E3962B] font-bold "
                     : "text-white"
-                } transition-colors duration-300 hover:text-[#E3962B] bebas-neue tracking-[2px]`}
+                } transition-colors duration-300 hover:text-[#E3962B] bebas-neue tracking-[2px] hover:bg-transparent`}
               >
                 <RiShoppingBag4Line />
               </Link>
