@@ -1,41 +1,33 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { RiShoppingBag4Line } from "react-icons/ri";
 
-
 const Nav = () => {
   const path = usePathname();
-  const [activeRoute, setActiveRoute] = useState("/");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    setActiveRoute(path);
-  }, [path]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   const navList = (
-    <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6 text-lg bebas-neue">
+    <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-4 text-lg bebas-neue">
       {[
         { href: "/", label: "Home" },
         { href: "/shop", label: "Shop" },
         { href: "/movies", label: "Movies" },
         { href: "/blog", label: "Blog" },
-        { href: "/join", label: "Join" },
+        { href: "/login", label: "Join" },
       ].map(({ href, label }) => (
-        <li
-          key={label}
-        >
+        <li key={label}>
           <Link
             href={href}
             className={`${
-              activeRoute === href ? "text-[#E3962B] font-bold " : "text-white"
-            } transition-colors duration-300 hover:text-[#E3962B] bebas-neue tracking-[2px] hover:bg-transparent `}
+              path === href ? "text-[#E3962B] font-bold " : "text-white"
+            } focus:text-[#E3962B] focus:bg-transparent transition-colors duration-300 hover:text-[#E3962B] bebas-neue tracking-[2px] hover:bg-transparent `}
           >
             {label}
           </Link>
@@ -69,12 +61,10 @@ const Nav = () => {
           {navList}
           <li>
             <Link
-              href={"/cart"}
+              href={"/card"}
               className={`${
-                activeRoute === "/card"
-                  ? "text-[#E3962B] font-bold "
-                  : "text-white"
-              } text-2xl transition-colors duration-300 hover:text-[#E3962B] bebas-neue tracking-[2px] hover:bg-transparent`}
+                path === "/card" ? "text-[#E3962B] font-bold " : "text-white"
+              } focus:text-[#E3962B] focus:bg-transparent text-2xl transition-colors duration-300 hover:text-[#E3962B] bebas-neue tracking-[2px] hover:bg-transparent`}
             >
               <RiShoppingBag4Line />
             </Link>
@@ -91,10 +81,10 @@ const Nav = () => {
               <Link
                 href={"href"}
                 className={`${
-                  activeRoute === "/card"
+                  path === "/card"
                     ? "text-[#E3962B] font-bold "
                     : "text-white"
-                } transition-colors duration-300 hover:text-[#E3962B] bebas-neue tracking-[2px] hover:bg-transparent`}
+                } focus:text-[#E3962B] focus:bg-transparent transition-colors duration-300 hover:text-[#E3962B] bebas-neue tracking-[2px] hover:bg-transparent`}
               >
                 <RiShoppingBag4Line />
               </Link>
