@@ -31,7 +31,7 @@ const page = () => {
         className="fixed top-0 w-full h-full object-cover opacity-30"
       />
       <motion.div
-        initial={{ opacity: 0, scale: 15 }}
+        initial={{ opacity: 0, scale: 10 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: "easeInOut" }}
         className="relative flex justify-around w-full container mx-auto bg-transparent py-20 rounded-2xl z-50"

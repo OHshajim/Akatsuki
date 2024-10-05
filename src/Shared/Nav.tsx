@@ -37,7 +37,7 @@ const Nav = () => {
   );
 
   return (
-    <div className="navbar bg-[#000000f5] p-5 items-center z-50">
+    <div className="navbar bg-[#000000f5] p-5 items-center ">
       {/* Brand and Logo */}
       <div className="flex-1">
         <h1 className="text-3xl font-peralta text-white uppercase font-bold">
@@ -64,7 +64,7 @@ const Nav = () => {
               href={"/card"}
               className={`${
                 path === "/card" ? "text-[#E3962B] font-bold " : "text-white"
-              } focus:text-[#E3962B] focus:bg-transparent text-2xl transition-colors duration-300 hover:text-[#E3962B] bebas-neue tracking-[2px] hover:bg-transparent`}
+              } focus:text-[#E3962B] focus:bg-transparent text-2xl transition-colors duration-300 hover:text-[#E3962B] bebas-neue tracking-[2px] hover:bg-transparent z-50`}
             >
               <RiShoppingBag4Line />
             </Link>
@@ -82,7 +82,7 @@ const Nav = () => {
                 href={"href"}
                 className={`${
                   path === "/card" ? "text-[#E3962B] font-bold " : "text-white"
-                } focus:text-[#E3962B] focus:bg-transparent transition-colors duration-300 hover:text-[#E3962B] bebas-neue tracking-[2px] hover:bg-transparent`}
+                } focus:text-[#E3962B] focus:bg-transparent transition-colors duration-300 hover:text-[#E3962B] bebas-neue tracking-[2px] hover:bg-transparent z-50`}
               >
                 <RiShoppingBag4Line />
               </Link>

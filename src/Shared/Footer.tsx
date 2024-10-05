@@ -48,10 +48,10 @@ const Footer = () => {
               Menu
             </h3>
             <div className="flex flex-col my-4 text-base ">
-              <Link className="link link-hover z-50" href={"/"}>Home</Link>
-              <Link className="link link-hover z-50" href={"/shop"}>Shop</Link>
-              <Link className="link link-hover z-50" href={"/movies"}>Movies</Link>
-              <Link className="link link-hover z-50" href={"/blogs"}>Blogs</Link>
+              <Link className="link link-hover hover:text-white z-50" href={"/"}>Home</Link>
+              <Link className="link link-hover hover:text-white z-50" href={"/shop"}>Shop</Link>
+              <Link className="link link-hover hover:text-white z-50" href={"/movies"}>Movies</Link>
+              <Link className="link link-hover hover:text-white z-50" href={"/blogs"}>Blogs</Link>
             </div>
           </nav>
           <nav>
