@@ -4,6 +4,7 @@ import BestSelling from "@/Components/Home/BestSelling";
 import PopularAnime from "@/Components/Home/PopularAnime";
 import PopularMovie from "@/Components/Home/PopularMovie";
 import RecentAnime from "@/Components/Home/RecentAnime";
+import RecentPost from "@/Components/Home/RecentPost";
 import Team from "@/Components/Home/Team";
 import Tickets from "@/Components/Home/Tickets";
 import WatchOnline from "@/Components/Home/WatchOnline";
@@ -21,6 +22,7 @@ export default function Home() {
       <Tickets />
       <Testimonials />
       <Article />
+      <RecentPost />
       <Team />
     </div>
   );

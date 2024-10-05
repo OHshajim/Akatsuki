@@ -9,7 +9,7 @@ const WatchOnline = () => {
           width={3000}
           height={1000}
           src="https://i.ibb.co.com/vHvqdBp/Picsart-24-09-26-18-23-23-445.png"
-          alt=""
+          alt="bg"
           className="w-full h-auto object-cover"
         />
         <div className="absolute z-10 top-0 w-full h-full ">
