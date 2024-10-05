@@ -13,13 +13,13 @@ const Footer = () => {
     <div className="bg-black py-5">
       <footer className="footer bg-black container mx-auto py-20 lg:px-10 px-5">
         <aside>
-          <h1 className="text-4xl font-bold text-white font-peralta">
+          <h1 className="text-4xl font-bold text-white font-peralta uppercase">
             Akatsuki
           </h1>
         </aside>
-        <aside className="flex justify-between w-full flex-col md:flex-row gap-5">
+        <aside className="flex justify-between w-full flex-col md:flex-row gap-5 font-medium">
           <nav>
-            <h3 className="text-xl text-white font-semibold border-b pb-1 uppercase bebas-neue tracking-[2px]">
+            <h3 className="text-xl text-white  border-b pb-1 uppercase bebas-neue tracking-[2px]">
               Social
             </h3>
             <div className="flex  gap-5 text-3xl  items-center justify-center mt-3">
@@ -44,18 +44,18 @@ const Footer = () => {
             </div>
           </nav>
           <nav>
-            <h3 className="text-xl font-medium border-b pb-1 uppercase bebas-neue tracking-[2px] text-white">
+            <h3 className="text-xl  border-b pb-1 uppercase bebas-neue tracking-[2px] text-white">
               Menu
             </h3>
-            <div className="flex flex-col my-4 text-base font-medium ">
-              <Link className="link link-hover" href={"/"}>Home</Link>
-              <Link className="link link-hover" href={"/shop"}>Shop</Link>
-              <Link className="link link-hover" href={"/movies"}>Movies</Link>
-              <Link className="link link-hover" href={"/blogs"}>Blogs</Link>
+            <div className="flex flex-col my-4 text-base ">
+              <Link className="link link-hover z-50" href={"/"}>Home</Link>
+              <Link className="link link-hover z-50" href={"/shop"}>Shop</Link>
+              <Link className="link link-hover z-50" href={"/movies"}>Movies</Link>
+              <Link className="link link-hover z-50" href={"/blogs"}>Blogs</Link>
             </div>
           </nav>
           <nav>
-            <h3 className="text-xl font-medium border-b pb-1 uppercase bebas-neue tracking-[2px] text-white">
+            <h3 className="text-xl border-b pb-1 uppercase bebas-neue tracking-[2px] text-white">
               Say Hello
             </h3>
             <div className="my-4 space-y-2 flex flex-col items-start gap-2">
@@ -76,7 +76,7 @@ const Footer = () => {
         <hr />
         <aside className="pt-5">
           <p>
-            <span className="text-zinc-300 font-bold font-peralta">
+            <span className="text-zinc-300 font-bold font-peralta uppercase">
               Akatsuki
             </span>{" "}
             © {new Date().getFullYear()} - All right reserved.
