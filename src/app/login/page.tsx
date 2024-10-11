@@ -21,7 +21,7 @@ const page = () => {
     console.log(data);
   };
   return (
-    <div className=" flex  justify-center bg-black relative overflow-hidden ">
+    <div className=" flex  justify-center bg-black relative overflow-hidden select-none">
       {/* Background Image */}
       <Image
         width={4000}

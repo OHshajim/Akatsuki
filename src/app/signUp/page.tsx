@@ -6,9 +6,10 @@ import { FaUserAlt, FaLock } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 
-interface LoginFormInputs {
+interface SignUpFormInputs {
   email: string;
   password: string;
+  confirmPassword: string;
 }
 
 const page = () => {
@@ -16,12 +17,12 @@ const page = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormInputs>();
-  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
+  } = useForm<SignUpFormInputs>();
+  const onSubmit: SubmitHandler<SignUpFormInputs> = (data) => {
     console.log(data);
   };
   return (
-    <div className=" flex  justify-center bg-black relative overflow-hidden ">
+    <div className=" flex  justify-center bg-black relative overflow-hidden select-none">
       {/* Background Image */}
       <Image
         width={4000}
@@ -57,7 +58,6 @@ const page = () => {
                 <FaUserAlt /> <span>Email</span>
               </label>
               <input
-                id="email"
                 type="email"
                 {...register("email", { required: true })}
                 className="w-full mt-2 p-3 border border-red-500 bg-gray-800 rounded-lg focus:outline-none focus:border-red-600 transition duration-300"
@@ -76,13 +76,29 @@ const page = () => {
                 <FaLock /> <span>Password</span>
               </label>
               <input
-                id="password"
                 type="password"
                 {...register("password", { required: true })}
                 className="w-full mt-2 p-3 border border-red-500 bg-gray-800 rounded-lg focus:outline-none focus:border-red-600 transition duration-300"
                 placeholder="Enter your password"
               />
               {errors.password && (
+                <span className="text-red-400">Password is required</span>
+              )}
+            </div>
+            <div>
+              <label
+                htmlFor="Password"
+                className="text-white flex items-center space-x-2"
+              >
+                <FaLock /> <span>Confirm Password</span>
+              </label>
+              <input
+                type="password"
+                {...register("confirmPassword", { required: true })}
+                className="w-full mt-2 p-3 border border-red-500 bg-gray-800 rounded-lg focus:outline-none focus:border-red-600 transition duration-300"
+                placeholder="Confirm Password"
+              />
+              {errors.confirmPassword && (
                 <span className="text-red-400">Password is required</span>
               )}
             </div>
