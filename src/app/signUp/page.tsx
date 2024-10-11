@@ -99,7 +99,7 @@ const page = () => {
                 placeholder="Confirm Password"
               />
               {errors.confirmPassword && (
-                <span className="text-red-400">Password is required</span>
+                <span className="text-red-400">Confirm Password is required</span>
               )}
             </div>
 

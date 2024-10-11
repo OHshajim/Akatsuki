@@ -11,6 +11,8 @@
   "dependencies": {
     "@smastrom/react-rating": "^1.5.0",
     "framer-motion": "^11.11.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.7.1",
     "next": "14.2.13",
     "react": "^18",
     "react-dom": "^18",
@@ -21,6 +23,7 @@
     "swiper": "^11.1.14"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
