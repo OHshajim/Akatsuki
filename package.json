@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@smastrom/react-rating": "^1.5.0",
+    "axios": "^1.7.7",
     "framer-motion": "^11.11.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.7.1",

@@ -1,10 +1,11 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { motion } from "framer-motion";
-import { FaUserAlt, FaLock } from "react-icons/fa";
+import { FaUserAlt, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
 
 interface SignUpFormInputs {
   email: string;
@@ -12,24 +13,49 @@ interface SignUpFormInputs {
   confirmPassword: string;
 }
 
-const page = () => {
+const Page = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<SignUpFormInputs>();
-  const onSubmit: SubmitHandler<SignUpFormInputs> = (data) => {
-    console.log(data);
+
+  // State for toggling password visibility
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  // State for API response messages
+  const [serverError, setServerError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const onSubmit: SubmitHandler<SignUpFormInputs> = async (data) => {
+    if (data.password !== data.confirmPassword) return;
+
+    try {
+      const result = await axios.post("http://localhost:3000/api/auth/SignUp", {
+        email: data.email,
+        password: data.password,
+      });
+      console.log(result);
+
+      setSuccessMessage("Registration successful!");
+      setServerError(""); // Clear error if the request succeeds
+    } catch (error) {
+      console.log(error);
+
+      setServerError("Failed to register. Please try again.");
+    }
   };
+
   return (
-    <div className=" flex  justify-center bg-black relative overflow-hidden select-none">
+    <div className="flex justify-center bg-black relative overflow-hidden select-none">
       {/* Background Image */}
       <Image
         width={4000}
         height={4000}
-        src="https://i.ibb.co.com/wztQQv9/Authentication-BG.gif" // Replace with your own Akatsuki image
+        src="https://i.ibb.co/wztQQv9/Authentication-BG.gif"
         alt="Akatsuki background"
-        className="fixed top-0 w-full h-full object-cover opacity-30 select-multiple"
+        className="fixed top-0 w-full h-full object-cover opacity-30"
       />
       <motion.div
         initial={{ opacity: 0, scale: 0.1 }}
@@ -64,10 +90,11 @@ const page = () => {
                 placeholder="Enter your email"
               />
               {errors.email && (
-                <span className="text-red-400">email is required</span>
+                <span className="text-red-400">Email is required</span>
               )}
             </div>
 
+            {/* Password Field with Show/Hide Functionality */}
             <div>
               <label
                 htmlFor="password"
@@ -75,34 +102,55 @@ const page = () => {
               >
                 <FaLock /> <span>Password</span>
               </label>
-              <input
-                type="password"
-                {...register("password", { required: true })}
-                className="w-full mt-2 p-3 border border-red-500 bg-gray-800 rounded-lg focus:outline-none focus:border-red-600 transition duration-300"
-                placeholder="Enter your password"
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  {...register("password", { required: true })}
+                  className="w-full mt-2 p-3 border border-red-500 bg-gray-800 rounded-lg focus:outline-none focus:border-red-600 transition duration-300"
+                  placeholder="Enter your password"
+                />
+                <span
+                  className="absolute inset-y-0 right-3 top-2 flex items-center cursor-pointer"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
+              </div>
               {errors.password && (
                 <span className="text-red-400">Password is required</span>
               )}
             </div>
+
+            {/* Confirm Password Field with Show/Hide Functionality */}
             <div>
               <label
-                htmlFor="Password"
+                htmlFor="confirmPassword"
                 className="text-white flex items-center space-x-2"
               >
                 <FaLock /> <span>Confirm Password</span>
               </label>
-              <input
-                type="password"
-                {...register("confirmPassword", { required: true })}
-                className="w-full mt-2 p-3 border border-red-500 bg-gray-800 rounded-lg focus:outline-none focus:border-red-600 transition duration-300"
-                placeholder="Confirm Password"
-              />
+              <div className="relative">
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  {...register("confirmPassword", { required: true })}
+                  className="w-full mt-2 p-3 border border-red-500 bg-gray-800 rounded-lg focus:outline-none focus:border-red-600 transition duration-300"
+                  placeholder="Confirm Password"
+                />
+                <span
+                  className="absolute inset-y-0 top-2 right-3 flex items-center cursor-pointer"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                >
+                  {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
+              </div>
               {errors.confirmPassword && (
-                <span className="text-red-400">Confirm Password is required</span>
+                <span className="text-red-400">
+                  Confirm Password is required
+                </span>
               )}
             </div>
 
+            {/* Submit Button */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -111,6 +159,16 @@ const page = () => {
             >
               Sign Up
             </motion.button>
+
+            {/* API Response Messages */}
+            {serverError && (
+              <p className="text-red-500 text-center mt-2">{serverError}</p>
+            )}
+            {successMessage && (
+              <p className="text-green-500 text-center mt-2">
+                {successMessage}
+              </p>
+            )}
           </form>
 
           <div className="text-center mt-6">
@@ -127,4 +185,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -20,7 +20,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
     //   return res.status(400).json({ message: "Invalid credentials" });
     // }
 
-    const token = generateToken(user._id);
+    const token = generateToken()
 
     res.status(200).json({ token });
   } catch (error) {
