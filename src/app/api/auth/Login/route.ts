@@ -1,29 +1,26 @@
 import { User } from "@/models/User";
 import dbConnect from "@/utils/dbConnect";
 import { generateToken } from "@/utils/jwt";
-import { NextApiRequest, NextApiResponse } from "next";
 
-
-export default async function login(req: NextApiRequest, res: NextApiResponse) {
-  await dbConnect();
-
-  const { email, password } = req.body;
-
+export const POST = async (request) => {
+  const { email, password } = await request.json();
   try {
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({ message: "User not found" });
+    await dbConnect();
+    const existingUser = await User.findOne({ email });
+    if (!existingUser) {
+      return Response.json({
+        message: "This account doesn't Exist !!! Please SignUp Now",
+      });
     }
 
-    // const isMatch = await bcrypt.compare(password, user.password);
-    // if (!isMatch) {
-    //   return res.status(400).json({ message: "Invalid credentials" });
-    // }
-
-    const token = generateToken()
-
-    res.status(200).json({ token });
+    const token = generateToken(existingUser._id);
+    return Response.json({
+      message: "User Logged in successfully",
+      Access_token: token,
+      userId: existingUser._id,
+    });
   } catch (error) {
-    res.status(500).json({ message: "Server error" });
+    console.log(error);
+    return Response.json({ message: "Internal Server Error !!!" });
   }
-}
+};

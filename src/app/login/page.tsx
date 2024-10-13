@@ -1,24 +1,41 @@
 "use client";
-import React from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaUserAlt, FaLock } from "react-icons/fa";
+import { FaUserAlt, FaLock, FaEyeSlash, FaEye } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 interface LoginFormInputs {
   email: string;
   password: string;
 }
 
-const page = () => {
+const Page = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormInputs>();
-  const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
-    console.log(data);
+
+  // State for toggling password visibility
+  const [showPassword, setShowPassword] = useState(false);
+
+  const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
+    try {
+      const result = await axios.post("http://localhost:3000/api/auth/Login", {
+        email: data.email,
+        password: data.password,
+      });
+      console.log(result);
+      if (result) {
+        localStorage.setItem("Access_Key", result.data.Access_token);
+        localStorage.setItem("UserId", result.data.userId);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className=" flex  justify-center bg-black relative overflow-hidden select-none">
@@ -75,13 +92,20 @@ const page = () => {
               >
                 <FaLock /> <span>Password</span>
               </label>
-              <input
-                id="password"
-                type="password"
-                {...register("password", { required: true })}
-                className="w-full mt-2 p-3 border border-red-500 bg-gray-800 rounded-lg focus:outline-none focus:border-red-600 transition duration-300"
-                placeholder="Enter your password"
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  {...register("password", { required: true })}
+                  className="w-full mt-2 p-3 border border-red-500 bg-gray-800 rounded-lg focus:outline-none focus:border-red-600 transition duration-300"
+                  placeholder="Enter your password"
+                />
+                <span
+                  className="absolute inset-y-0 right-3 top-2 flex items-center cursor-pointer"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </span>
+              </div>
               {errors.password && (
                 <span className="text-red-400">Password is required</span>
               )}
@@ -111,4 +135,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

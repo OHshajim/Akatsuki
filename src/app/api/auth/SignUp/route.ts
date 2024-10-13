@@ -24,6 +24,7 @@ export const POST = async (request) => {
     return Response.json({
       message: "User registered successfully",
       Access_token: token,
+      userId : newUser._id
     });
   } catch (error) {
     console.log(error);

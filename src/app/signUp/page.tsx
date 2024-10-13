@@ -24,10 +24,6 @@ const Page = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // State for API response messages
-  const [serverError, setServerError] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
-
   const onSubmit: SubmitHandler<SignUpFormInputs> = async (data) => {
     if (data.password !== data.confirmPassword) return;
 
@@ -37,13 +33,13 @@ const Page = () => {
         password: data.password,
       });
       console.log(result);
+      if(result){
+        localStorage.setItem("Access_Key",result.data.Access_token);
+        localStorage.setItem("UserId",result.data.userId);
+      }
 
-      setSuccessMessage("Registration successful!");
-      setServerError(""); // Clear error if the request succeeds
     } catch (error) {
       console.log(error);
-
-      setServerError("Failed to register. Please try again.");
     }
   };
 
@@ -159,16 +155,6 @@ const Page = () => {
             >
               Sign Up
             </motion.button>
-
-            {/* API Response Messages */}
-            {serverError && (
-              <p className="text-red-500 text-center mt-2">{serverError}</p>
-            )}
-            {successMessage && (
-              <p className="text-green-500 text-center mt-2">
-                {successMessage}
-              </p>
-            )}
           </form>
 
           <div className="text-center mt-6">
