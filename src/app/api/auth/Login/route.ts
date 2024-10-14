@@ -3,7 +3,7 @@ import dbConnect from "@/utils/dbConnect";
 import { generateToken } from "@/utils/jwt";
 
 export const POST = async (request) => {
-  const { email, password } = await request.json();
+  const { email } = await request.json();
   try {
     await dbConnect();
     const existingUser = await User.findOne({ email });

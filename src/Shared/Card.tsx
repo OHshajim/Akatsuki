@@ -6,6 +6,7 @@ import { AiTwotoneEye } from "react-icons/ai";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import Link from "next/link";
 
 const Card = ({ item }) => {
   const [done, setDone] = useState(false);
@@ -47,10 +48,12 @@ const Card = ({ item }) => {
           className="w-full group"
         />
         <div className="absolute bottom-0 w-full group-hover:flex hidden bg-white group-hover:duration-200 group-hover:delay-100">
-          <button className="btn bg-white w-1/2 border-none hover:bg-gray-100 text-black font-bold">
-            <AiTwotoneEye className="text-xl" />
-            Quick View
-          </button>
+          <Link href={`shop/${item.product_id}`} className="w-full">
+            <button className="btn bg-white w-full border-none hover:bg-gray-100 text-black font-bold">
+              <AiTwotoneEye className="text-xl" />
+              Quick View
+            </button>
+          </Link>
           {done ? (
             <button
               onClick={() => SaveCart(item.product_id)}

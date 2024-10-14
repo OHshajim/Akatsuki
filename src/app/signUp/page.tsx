@@ -6,6 +6,7 @@ import { FaUserAlt, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
+import { redirect } from "next/navigation";
 
 interface SignUpFormInputs {
   email: string;
@@ -36,6 +37,7 @@ const Page = () => {
       if(result){
         localStorage.setItem("Access_Key",result.data.Access_token);
         localStorage.setItem("UserId",result.data.userId);
+        redirect('/login')
       }
 
     } catch (error) {

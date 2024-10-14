@@ -1,11 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaUserAlt, FaLock, FaEyeSlash, FaEye } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { redirect } from "next/navigation";
 
 interface LoginFormInputs {
   email: string;
@@ -13,6 +14,7 @@ interface LoginFormInputs {
 }
 
 const Page = () => {
+  
   const {
     register,
     handleSubmit,
@@ -32,6 +34,7 @@ const Page = () => {
       if (result) {
         localStorage.setItem("Access_Key", result.data.Access_token);
         localStorage.setItem("UserId", result.data.userId);
+        redirect("/");
       }
     } catch (error) {
       console.log(error);

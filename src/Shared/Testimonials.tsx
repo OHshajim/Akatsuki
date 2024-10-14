@@ -39,7 +39,7 @@ const Testimonials = () => {
               <div className="flex justify-center">
                 <div className=" bg-zinc-100 p-8 rounded-lg shadow-lg text-center transition-transform transform hover:scale-105 duration-500">
                   <p className="text-xl font-semibold text-black italic">
-                    "{testimonial.text}"
+                    {`"${testimonial.text}"`}
                   </p>
                   <h4 className="mt-4 text-2xl text-yellow-500 font-bold">
                     {testimonial.name}
