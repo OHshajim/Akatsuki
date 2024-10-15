@@ -2,18 +2,18 @@ import { User } from "@/models/User";
 import dbConnect from "@/utils/dbConnect";
 import { generateToken } from "@/utils/jwt";
 
-export const POST = async (request) => {
-  const { email, password } = await request.json();
+export const POST = async () => {
+  // const { email, password } = await NextRequest.json();
   try {
     await dbConnect();
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email:"ajshajimmax@gmail.com" });
     if (existingUser) {
       return Response.json({ message: "Account is Already Exist !!! Please Login" });
     }
 
     const newUser = new User({
-      email,
-      password,
+      // email,
+      // password,
       WishList: [],
       CartList: [],
     });

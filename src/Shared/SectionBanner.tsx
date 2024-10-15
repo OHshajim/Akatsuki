@@ -1,6 +1,10 @@
 import Image from "next/image";
+type SectionBannerProps = {
+  title: string;
+  subTitle: string;
+};
 
-const SectionBanner = ({ title, subTitle }) => {
+const SectionBanner = ({ title, subTitle }: SectionBannerProps) => {
   return (
     <div className="relative z-0">
       <Image

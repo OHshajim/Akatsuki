@@ -2,11 +2,10 @@ import { User } from "@/models/User";
 import dbConnect from "@/utils/dbConnect";
 import { generateToken } from "@/utils/jwt";
 
-export const POST = async (request) => {
-  const { email } = await request.json();
+export const POST = async () => {
   try {
     await dbConnect();
-    const existingUser = await User.findOne({ email });
+    const existingUser = await User.findOne({ email:"ajshajimmax@gmail.com" });
     if (!existingUser) {
       return Response.json({
         message: "This account doesn't Exist !!! Please SignUp Now",

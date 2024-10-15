@@ -13,7 +13,7 @@ const Footer = () => {
     <div className="bg-black py-5">
       <footer className="footer bg-black container mx-auto py-20 lg:px-10 px-5">
         <aside>
-          <h1 className="text-4xl font-bold text-white font-peralta uppercase">
+          <h1 className="text-4xl font-bold text-white font-peralta uppercase0">
             Akatsuki
           </h1>
         </aside>

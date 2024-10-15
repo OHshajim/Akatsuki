@@ -8,7 +8,18 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import Link from "next/link";
 
-const Card = ({ item }) => {
+type Item = {
+  name: string;
+  rating: number;
+  product_id: string;
+  price: number;
+  image: string;
+};
+type CardProps = {
+  item: Item;
+};
+
+const Card = ({ item }: CardProps) => {
   const [done, setDone] = useState(false);
   const SaveCart = (productId: string) => {
     if (typeof window !== "undefined") {

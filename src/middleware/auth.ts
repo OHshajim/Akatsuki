@@ -15,11 +15,11 @@ export const authMiddleware = async (
 
   try {
     const decoded = verifyToken(token);
-    const user = await User.findById(decoded.id);
+    const user = await User.findById(decoded);
     if (!user) {
       return res.status(401).json({ message: "Invalid token" });
     }
-    req.User = user;
+    // req.User = user;
     next();
   } catch (error) {
     console.log(error);
