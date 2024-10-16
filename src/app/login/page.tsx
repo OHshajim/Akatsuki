@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { FaUserAlt, FaLock, FaEyeSlash, FaEye } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
-import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { redirect } from "next/navigation";
+// import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 interface LoginFormInputs {
   email: string;
@@ -14,7 +14,7 @@ interface LoginFormInputs {
 }
 
 const Page = () => {
-  
+  // const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -26,16 +26,19 @@ const Page = () => {
 
   const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
     try {
-      const result = await axios.post("http://localhost:3000/api/auth/Login", {
+      const result = await signIn("credentials", {
         email: data.email,
         password: data.password,
+        redirect: false,
       });
       console.log(result);
-      if (result) {
-        localStorage.setItem("Access_Key", result.data.Access_token);
-        localStorage.setItem("UserId", result.data.userId);
-        redirect("/");
-      }
+
+      // if (result.data.Access_token) {
+      //   console.log(result.data);
+      //   localStorage.setItem("Access_Key", result.data.Access_token);
+      //   localStorage.setItem("UserId", result.data.userId);
+      //   return router.push("/");
+      // }
     } catch (error) {
       console.log(error);
     }
