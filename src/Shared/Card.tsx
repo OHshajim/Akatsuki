@@ -7,6 +7,7 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import Link from "next/link";
+import QuickViewModal from "./QuickViewModal";
 
 type Item = {
   name: string;
@@ -21,6 +22,15 @@ type CardProps = {
 
 const Card = ({ item }: CardProps) => {
   const [done, setDone] = useState(false);
+  const handleClick = () => {
+    const modal = document.getElementById("my_modal_3") as HTMLDialogElement;
+    console.log(modal);
+
+    if (modal) {
+      modal.showModal();
+    }
+  };
+
   const SaveCart = (productId: string) => {
     if (typeof window !== "undefined") {
       const existingCart = window.localStorage.getItem("cartItems");
@@ -51,20 +61,23 @@ const Card = ({ item }: CardProps) => {
   return (
     <div className="card rounded-none text-black">
       <figure className=" relative group">
-        <Image
-          width={600}
-          height={800}
-          src={item.image}
-          alt="Shoes"
-          className="w-full group"
-        />
+        <Link href={`shop/${item.product_id}`} className="w-full">
+          <Image
+            width={600}
+            height={800}
+            src={item.image}
+            alt="Shoes"
+            className="w-full group"
+          />
+        </Link>
         <div className="absolute bottom-0 w-full group-hover:flex hidden bg-white group-hover:duration-200 group-hover:delay-100">
-          <Link href={`shop/${item.product_id}`} className="w-full">
-            <button className="btn bg-white w-full border-none hover:bg-gray-100 text-black font-bold">
-              <AiTwotoneEye className="text-xl" />
-              Quick View
-            </button>
-          </Link>
+          <button
+            onClick={handleClick}
+            className="btn bg-white w-1/2 border-none hover:bg-gray-100 text-black font-bold"
+          >
+            <AiTwotoneEye className="text-xl" />
+            Quick View
+          </button>
           {done ? (
             <button
               onClick={() => SaveCart(item.product_id)}
@@ -83,19 +96,22 @@ const Card = ({ item }: CardProps) => {
           )}
         </div>
       </figure>
-      <div className="card-body py-2 px-1">
-        <h2 className="card-title bebas-neue font-medium tracking-[1px]">
-          {item.name}
-        </h2>
-        <div className="flex justify-between">
-          <h3 className="font-semibold text-zinc-500">{item.price} $</h3>
-          <Rating
-            style={{ maxWidth: 110, color: "#fff" }}
-            value={item.rating}
-            readOnly
-          />
+      <Link href={`shop/${item.product_id}`} className="w-full">
+        <div className="card-body py-2 px-1">
+          <h2 className="card-title bebas-neue font-medium tracking-[1px]">
+            {item.name}
+          </h2>
+          <div className="flex justify-between">
+            <h3 className="font-semibold text-zinc-500">{item.price} $</h3>
+            <Rating
+              style={{ maxWidth: 110, color: "#fff" }}
+              value={item.rating}
+              readOnly
+            />
+          </div>
         </div>
-      </div>
+      </Link>
+      <QuickViewModal />
     </div>
   );
 };
