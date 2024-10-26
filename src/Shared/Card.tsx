@@ -22,10 +22,10 @@ type CardProps = {
 
 const Card = ({ item }: CardProps) => {
   const [done, setDone] = useState(false);
+  const [quickViewItem, setItem] = useState(item);
   const handleClick = () => {
-    const modal = document.getElementById("my_modal_3") as HTMLDialogElement;
-    console.log(modal);
-
+    const modal = document.getElementById("my_modal_2") as HTMLDialogElement;
+    setItem(item);
     if (modal) {
       modal.showModal();
     }
@@ -111,7 +111,7 @@ const Card = ({ item }: CardProps) => {
           </div>
         </div>
       </Link>
-      <QuickViewModal />
+      {quickViewItem && <QuickViewModal item={quickViewItem} />}
     </div>
   );
 };
