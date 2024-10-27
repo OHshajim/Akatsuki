@@ -1,9 +1,24 @@
+"use client";
 import Card from "@/Shared/Card";
 import SectionTitle from "@/Shared/SectionTitle";
-import { popular } from "../../../Public/Popular";
 import { BsArrowRight } from "react-icons/bs";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import axios from "axios";
 const PopularAnime = () => {
+  const [books, setBook] = useState([]);
+  const dataLoad = async () => {
+    const data = await axios.get(
+      "http://localhost:3000/api/Shop/BestSellingBooks"
+    );
+    console.log(data);
+    if (data.data.status) {
+      setBook(data.data.data);
+    }
+  };
+  useEffect(() => {
+    dataLoad();
+  }, []);
   return (
     <div className="container mx-auto py-20">
       <SectionTitle
@@ -11,8 +26,8 @@ const PopularAnime = () => {
         heading={"Popular anime this week"}
       />
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-10">
-        {popular.map((popular) => (
-          <Card key={popular.product_id} item={popular}></Card>
+        {books.map((book) => (
+          <Card key={book._id} item={book}></Card>
         ))}
       </div>
       <div className="flex justify-center mt-5">

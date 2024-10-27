@@ -4,7 +4,7 @@ import dbConnect from "@/utils/dbConnect";
 export const GET = async () => {
   try {
     await dbConnect();
-    const item = await shop.find().sort({ yearPublished: -1 }).limit(8);
+    const item = await shop.find().sort({ rating: -1 }).limit(8);
 
     return Response.json({
       status: 200,

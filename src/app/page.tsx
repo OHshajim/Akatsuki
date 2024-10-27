@@ -3,7 +3,7 @@ import Banner from "@/Components/Home/Banner";
 import BestSelling from "@/Components/Home/BestSelling";
 import PopularAnime from "@/Components/Home/PopularAnime";
 import PopularMovie from "@/Components/Home/PopularMovie";
-import RecentAnime from "@/Components/Home/RecentAnime";
+import TopRatedAnime from "@/Components/Home/RecentAnime";
 import RecentPost from "@/Components/Home/RecentPost";
 import Team from "@/Components/Home/Team";
 import Tickets from "@/Components/Home/Tickets";
@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div className="bg-white">
       <Banner />
-      <RecentAnime />
+      <TopRatedAnime />
       <BestSelling />
       <PopularAnime />
       <WatchOnline />

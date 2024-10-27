@@ -6,10 +6,10 @@ import Card from "@/Shared/Card";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const RecentAnime = () => {
+const TopRatedAnime = () => {
   const [books, setBook] = useState([]);
   const dataLoad = async () => {
-    const data = await axios.get("http://localhost:3000/api/Shop/RecentBooks");
+    const data = await axios.get("http://localhost:3000/api/Shop/TopRatedBooks");
     console.log(data);
     if (data.data.status) {
       setBook(data.data.data);
@@ -43,4 +43,4 @@ const RecentAnime = () => {
   );
 };
 
-export default RecentAnime;
+export default TopRatedAnime;
