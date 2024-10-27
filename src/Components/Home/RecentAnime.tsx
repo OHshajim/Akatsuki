@@ -2,11 +2,22 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 import "swiper/css";
-import { popular } from "../../../Public/Popular";
 import Card from "@/Shared/Card";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const RecentAnime = () => {
-
+  const [books, setBook] = useState([]);
+  const dataLoad = async () => {
+    const data = await axios.get("http://localhost:3000/api/Shop/RecentBooks");
+    console.log(data);
+    if (data.data.status) {
+      setBook(data.data.data);
+    }
+  };
+  useEffect(() => {
+    dataLoad();
+  }, []);
   return (
     <div className="py-20 bg-zinc-200">
       <Swiper
@@ -22,14 +33,12 @@ const RecentAnime = () => {
           1024: { slidesPerView: 4 },
         }}
       >
-        {popular.map((item) => (
-          <SwiperSlide key={item.product_id}>
+        {books.map((item) => (
+          <SwiperSlide key={item._id}>
             <Card item={item} />
           </SwiperSlide>
         ))}
       </Swiper>
-
-
     </div>
   );
 };

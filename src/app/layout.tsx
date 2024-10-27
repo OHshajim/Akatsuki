@@ -6,8 +6,8 @@ import Footer from "@/Shared/Footer";
 export const metadata: Metadata = {
   title: "AKATSUKI",
   description: "Be prepare for Manga",
+  icons: { icon: "https://ibb.co.com/pWf2fYM" }
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{

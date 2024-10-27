@@ -1,8 +1,6 @@
 import { Rating } from "@smastrom/react-rating";
 
 const QuickViewModal = ({item}) => {
-  console.log(item);
-  
   return (
     <dialog id="my_modal_2" className="modal">
       <div className="modal-box">

@@ -10,11 +10,11 @@ import Link from "next/link";
 import QuickViewModal from "./QuickViewModal";
 
 type Item = {
-  name: string;
+  title: string;
+  imageUrl: string;
   rating: number;
-  product_id: string;
+  _id: string;
   price: number;
-  image: string;
 };
 type CardProps = {
   item: Item;
@@ -61,13 +61,13 @@ const Card = ({ item }: CardProps) => {
   return (
     <div className="card rounded-none text-black">
       <figure className=" relative group">
-        <Link href={`shop/${item.product_id}`} className="w-full">
+        <Link href={`shop/${item._id}`} className="w-full">
           <Image
             width={600}
             height={800}
-            src={item.image}
+            src={item.imageUrl}
             alt="Shoes"
-            className="w-full group"
+            className="w-full group h-[550px]"
           />
         </Link>
         <div className="absolute bottom-0 w-full group-hover:flex hidden bg-white group-hover:duration-200 group-hover:delay-100">
@@ -80,14 +80,14 @@ const Card = ({ item }: CardProps) => {
           </button>
           {done ? (
             <button
-              onClick={() => SaveCart(item.product_id)}
+              onClick={() => SaveCart(item._id)}
               className="btn bg-white w-1/2 border-none hover:bg-gray-100 text-black font-bold"
             >
               Done
             </button>
           ) : (
             <button
-              onClick={() => SaveCart(item.product_id)}
+              onClick={() => SaveCart(item._id)}
               className="btn bg-white w-1/2 border-none hover:bg-gray-100 text-black font-bold"
             >
               <MdOutlineShoppingCart className="text-xl" />
@@ -96,10 +96,10 @@ const Card = ({ item }: CardProps) => {
           )}
         </div>
       </figure>
-      <Link href={`shop/${item.product_id}`} className="w-full">
+      <Link href={`shop/${item._id}`} className="w-full">
         <div className="card-body py-2 px-1">
           <h2 className="card-title bebas-neue font-medium tracking-[1px]">
-            {item.name}
+            {item.title}
           </h2>
           <div className="flex justify-between">
             <h3 className="font-semibold text-zinc-500">{item.price} $</h3>
