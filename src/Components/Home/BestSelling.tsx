@@ -26,8 +26,8 @@ const BestSelling = () => {
   return (
     <div className="mx-10 py-20">
       <SectionTitle
-        heading={"Discover all the best manga series at great prices"}
-        subHeading={"bestselling manga"}
+        heading={"Discover all the best manga categories"}
+        subHeading={"best choice"}
       />
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-10">
         {data.map((data) => (
@@ -35,7 +35,7 @@ const BestSelling = () => {
             key={data.type}
             className="card rounded-none text-black relative overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-2xl transform hover:rotate-1 group"
           >
-            <Link href={"/shop"}>
+            <Link href={"/shop?1"}>
               <figure className="relative">
                 <Image
                   width={800}

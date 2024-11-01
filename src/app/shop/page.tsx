@@ -8,7 +8,7 @@ const Page = () => {
   const [books, setBook] = useState([]);
   const dataLoad = async () => {
     const data = await axios.get("http://localhost:3000/api/Shop");
-    console.log(data);
+    // console.log(data);
     if (data.data.status) {
       setBook(data.data.data);
     }

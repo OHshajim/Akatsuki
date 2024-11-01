@@ -1,14 +1,14 @@
 import Article from "@/Components/Home/Article";
 import Banner from "@/Components/Home/Banner";
 import BestSelling from "@/Components/Home/BestSelling";
-import PopularAnime from "@/Components/Home/PopularAnime";
 import PopularMovie from "@/Components/Home/PopularMovie";
-import TopRatedAnime from "@/Components/Home/RecentAnime";
+import TopRatedAnime from "@/Components/Home/TopRatedAnime";
 import RecentPost from "@/Components/Home/RecentPost";
 import Team from "@/Components/Home/Team";
 import Tickets from "@/Components/Home/Tickets";
 import WatchOnline from "@/Components/Home/WatchOnline";
 import Testimonials from "@/Shared/Testimonials";
+import BestSoldBooks from "@/Components/Home/BestSoldBooks";
 
 export default function Home() {
   return (
@@ -16,7 +16,7 @@ export default function Home() {
       <Banner />
       <TopRatedAnime />
       <BestSelling />
-      <PopularAnime />
+      <BestSoldBooks />
       <WatchOnline />
       <PopularMovie />
       <Tickets />

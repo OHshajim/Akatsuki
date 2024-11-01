@@ -67,7 +67,7 @@ const Card = ({ item }: CardProps) => {
             height={800}
             src={item.imageUrl}
             alt="Shoes"
-            className="w-full group h-[550px]"
+            className="w-full group "
           />
         </Link>
         <div className="absolute bottom-0 w-full group-hover:flex hidden bg-white group-hover:duration-200 group-hover:delay-100">

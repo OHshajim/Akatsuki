@@ -5,7 +5,7 @@ import { BsArrowRight } from "react-icons/bs";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
-const PopularAnime = () => {
+const BestSoldBooks = () => {
   const [books, setBook] = useState([]);
   const dataLoad = async () => {
     const data = await axios.get(
@@ -41,4 +41,4 @@ const PopularAnime = () => {
   );
 };
 
-export default PopularAnime;
+export default BestSoldBooks;
