@@ -606,8 +606,8 @@ export const movies = [
     rating: 4.6,
     genres: ["Action", "Adventure", "Fantasy"],
     imageUrl: [
-      "https://i.ibb.co.com/GTZVgnm/Dragon-Ball-Z-Battle-of-Gods.jpg",
-      "https://i.ibb.co.com/k04xgMq/Dragon-Ball-Z-Battle-of-Gods1.jpg",
+      "https://i.ibb.co.com/kh1w31h/Dragon-Ball-Z-Battle-of-Gods.jpg",
+      "https://i.ibb.co.com/wNVDDQy/Dragon-Ball-Z-Battle-of-Gods1.jpg",
     ],
     description:
       "Dragon Ball Z: Battle of Gods introduces Beerus, the God of Destruction, who awakens after years of slumber and challenges Earth’s mightiest warriors. Goku, curious and eager to test his limits, attains the Super Saiyan God form to match Beerus’s strength. This film is notable for its humor, new character dynamics, and insight into the hierarchy of deities in the Dragon Ball universe. Battle of Gods combines intense fights with lighthearted moments, as Earth’s defenders rally to protect their planet from a force unlike any they have faced before.",
@@ -617,7 +617,7 @@ export const movies = [
   },
   {
     title: "Dragon Ball Z Kai",
-    category: "Series",
+    category: "Movie",
     director: "Yasuhiro Nowatari",
     duration: "98 episodes",
     yearPublished: 2009,
@@ -639,8 +639,8 @@ export const movies = [
     rating: 4.5,
     genres: ["Action", "Adventure", "Fantasy"],
     imageUrl: [
-      "https://i.ibb.co.com/zR10gjL/Dragon-Ball-Z-Resurrection-F.jpg",
-      "https://i.ibb.co.com/WcCVfhW/Dragon-Ball-Z-Resurrection-F-1.jpg",
+      "https://i.ibb.co.com/WPXnp6X/Dragon-Ball-Z-Resurrection-F.jpg",
+      "https://i.ibb.co.com/4thTvKm/Dragon-Ball-Z-Resurrection-F-1.jpg",
     ],
     description:
       "In Dragon Ball Z: Resurrection 'F', the villain Frieza is resurrected and seeks revenge on Goku and the Z Fighters. Frieza trains for the first time to reach a powerful new form, Golden Frieza, and attacks Earth with a massive army. Goku and Vegeta, now training under Whis, return to defend their planet in a series of epic battles. The movie showcases Frieza’s unparalleled hatred for Goku and the fierce rivalry that fuels their clash, providing thrilling combat and stunning animation as the heroes face their old enemy at his strongest.",
@@ -669,7 +669,7 @@ export const movies = [
   },
   {
     title: "Honoo no Chuunin Shiken! Naruto vs Konohamaru",
-    category: "OVA",
+    category: "Movie",
     director: "Hayato Date",
     duration: "26 minutes",
     yearPublished: 2011,
@@ -705,7 +705,7 @@ export const movies = [
   },
   {
     title: "Mononoke",
-    category: "Series",
+    category: "Movie",
     director: "Kenji Nakamura",
     duration: "12 episodes",
     yearPublished: 2007,
@@ -724,7 +724,7 @@ export const movies = [
   },
   {
     title: "Naruto Find the Crimson Four-leaf Clover",
-    category: "OVA",
+    category: "Movie",
     director: "Hayato Date",
     duration: "17 minutes",
     yearPublished: 2003,
@@ -749,8 +749,8 @@ export const movies = [
     rating: 4.6,
     genres: ["Action", "Adventure"],
     imageUrl: [
-      "https://i.ibb.co.com/tZ0pbC5/Naruto-Shipp-den-The-Movie-3-Inheritors-of-the-Will-of-Fire.jpg",
-      "https://i.ibb.co.com/GPDPB7H/Naruto-Shipp-den-The-Movie-3-Inheritors-of-the-Will-of-Fire1.jpg",
+      "https://i.ibb.co.com/YXC0ShL/Naruto-Shipp-den-The-Movie-3-Inheritors-of-the-Will-of-Fire.jpg",
+      "https://i.ibb.co.com/xjBck8b/Naruto-Shipp-den-The-Movie-3-Inheritors-of-the-Will-of-Fire1.jpg",
     ],
     description:
       "In this high-stakes Naruto Shippuden movie, a mysterious illness has put the lives of powerful ninjas at risk, pushing the world to the brink of war. Naruto is tasked with preventing the impending conflict by seeking out the source of the illness, believed to be linked to the rogue ninja Hiruko. As he ventures out to save his friends and protect the village, Naruto must draw on his determination and strength, staying true to the Will of Fire that binds all Konoha shinobi. This movie emphasizes the power of legacy and unity in overcoming formidable challenges.",
@@ -767,8 +767,8 @@ export const movies = [
     rating: 4.4,
     genres: ["Action", "Adventure"],
     imageUrl: [
-      "https://i.ibb.co.com/ThJ6R65/Naruto-Shippuden-the-Movie-Blood-Prison.jpg",
-      "https://i.ibb.co.com/vhHnWRt/Naruto-Shippuden-the-Movie-Blood-Prison1.jpg",
+      "https://i.ibb.co.com/cbSwB68/Naruto-Shippuden-the-Movie-Blood-Prison.jpg",
+      "https://i.ibb.co.com/8dYgyJ8/Naruto-Shippuden-the-Movie-Blood-Prison1.jpg",
     ],
     description:
       "Wrongfully accused and imprisoned in Hozuki Castle, Naruto faces one of his most difficult challenges yet. Stripped of his powers and branded as a criminal, he must uncover the truth behind a dark conspiracy within the Blood Prison. As he battles ruthless inmates and prison guards, Naruto’s will and ingenuity are put to the ultimate test. Blood Prison is a gripping tale of resilience, filled with suspense and action, as Naruto fights to clear his name and protect his friends from a mysterious threat.",
@@ -778,7 +778,7 @@ export const movies = [
   },
   {
     title: "Naruto The Lost Story - Mission: Protect the Waterfall Village",
-    category: "OVA",
+    category: "Movie",
     director: "Hajime Kamegaki",
     duration: "40 minutes",
     yearPublished: 2003,
@@ -832,7 +832,7 @@ export const movies = [
   },
   {
     title: "One Piece - Umi no heso daiboken hen",
-    category: "Special",
+    category: "Movie",
     director: "Konosuke Uda",
     duration: "46 minutes",
     yearPublished: 2000,
@@ -850,7 +850,7 @@ export const movies = [
   },
   {
     title: "One Piece 3D2Y - Overcome Ace's Death! Luffy's Vow to His Friends",
-    category: "Special",
+    category: "Movie",
     director: "Naoyuki Itou",
     duration: "107 minutes",
     yearPublished: 2014,
@@ -868,7 +868,7 @@ export const movies = [
   },
   {
     title: "One Piece Adventure of Nebulandia",
-    category: "Special",
+    category: "Movie",
     director: "Konosuke Uda",
     duration: "106 minutes",
     yearPublished: 2015,
@@ -978,7 +978,7 @@ export const movies = [
   },
   {
     title: "One Piece Episode of Chopper Plus: Bloom in the Winter",
-    category: "Special",
+    category: "Movie",
     director: "Munehisa Sakai",
     duration: "100 minutes",
     yearPublished: 2011,
@@ -996,7 +996,7 @@ export const movies = [
   },
   {
     title: "One Piece Episode of Luffy: Adventure on Hand Island",
-    category: "Special",
+    category: "Movie",
     director: "Kōnosuke Uda",
     duration: "45 minutes",
     yearPublished: 2012,

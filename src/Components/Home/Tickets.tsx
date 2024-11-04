@@ -1,23 +1,23 @@
 const Tickets = () => {
-  const peckage = [
+  const packages = [
     {
       id: 1,
-      type: "ONE DAY",
-      price: 7.0,
-      time: "Per/Day",
+      type: "Weekly package",
+      price: 12.99,
+      time: "Per/Week"
     },
     {
       id: 2,
       type: "Vip Pass",
-      price: 35.0,
-      time: "Per/Month",
+      price: 499.99,
+      time: "Unlimited"
     },
     {
       id: 3,
-      type: "7 Days Pack",
-      price: 12.0,
-      time: "Per/Week",
-    },
+      type: "Monthly Package",
+      price: 49.99,
+      time: "Per/Month"
+    }
   ];
   return (
     <div className="bg-black py-20">
@@ -26,7 +26,7 @@ const Tickets = () => {
         <h3 className="md:text-3xl sm:text-2xl text-xl bebas-neue tracking-[2px]">Our tickets</h3>
       </div>
       <div className="grid grid-cols-3 container mx-auto gap-10">
-        {peckage.map((pack) => (
+        {packages.map((pack) => (
           <div
             key={pack.id}
             className="bg-zinc-900 p-10 group hover:scale-110 duration-200 delay-75"
@@ -44,9 +44,8 @@ const Tickets = () => {
           </div>
         ))}
       </div>
-        <p className="text-center py-8">
-          Adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim.
+        <p className="text-center text-white mt-16">
+         Be comfortable with Akatsuki - Do not sacrifice with comfort
         </p>
     </div>
   );

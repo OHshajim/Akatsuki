@@ -5,12 +5,15 @@ const MoviesSchema = new Schema({
   category: { type: String, required: true },
   director: { type: String, required: true },
   duration: { type: String, required: true },
-  year_of_publishing: { type: Number, required: true },
+  yearPublished: { type: Number, required: true },
   rating: { type: Number, required: true },
-  tags: { type: Array, required: true },
-  price: { type: Number, required: true },
-  image: { type: String, required: true },
+  genres: { type: Array, required: true },
+  imageUrl: { type: Array, required: true },
   description: { type: String, required: true },
+  language: { type: String, required: true },
+  publisher: { type: String, required: true },
+  totalViews: { type: Number, required: true },
 });
 
-export const Movies = mongoose.models.Movies || mongoose.model("Movies", MoviesSchema);
+export const Movies =
+  mongoose.models.Movies || mongoose.model("Movies", MoviesSchema);
