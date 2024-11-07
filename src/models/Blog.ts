@@ -2,15 +2,16 @@ import mongoose, { Schema } from "mongoose";
 
 const BlogSchema = new Schema({
   name: { type: String, required: true },
-  category: { type: String, required: true },
-  director: { type: String, required: true },
-  duration: { type: String, required: true },
-  year_of_publishing: { type: Number, required: true },
-  rating: { type: Number, required: true },
+  category: { type: Object, required: true },
+  intro: { type: String, required: true },
+  author: { type: String, required: true },
+  likes: { type: Number, required: true },
+  date: { type: String, required: true },
   tags: { type: Array, required: true },
-  price: { type: Number, required: true },
-  image: { type: String, required: true },
+  explanation: { type: String, required: true },
+  images: { type: Object, required: true },
   description: { type: String, required: true },
+  endingParagraph: { type: String, required: true },
 });
 
 export const Blog = mongoose.models.Blog || mongoose.model("Blog", BlogSchema);
