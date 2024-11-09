@@ -7,7 +7,7 @@ const BlogSchema = new Schema({
   author: { type: String, required: true },
   likes: { type: Number, required: true },
   date: { type: String, required: true },
-  tags: { type: Array, required: true },
+  genres: { type: Array, required: true },
   explanation: { type: String, required: true },
   images: { type: Object, required: true },
   description: { type: String, required: true },

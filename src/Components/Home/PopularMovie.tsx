@@ -42,7 +42,7 @@ const PopularMovie = () => {
         >
           {movies &&
             movies.map((popular) => (
-              <SwiperSlide key={popular.product_id}>
+              <SwiperSlide key={popular._id}>
                 <div className="card rounded-none text-black">
                   <figure className=" relative group">
                     <Image
