@@ -1,4 +1,5 @@
 import Image from "next/image";
+import React from "react";
 type SectionBannerProps = {
   title: string;
   subTitle: string;
