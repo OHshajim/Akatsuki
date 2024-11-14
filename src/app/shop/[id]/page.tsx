@@ -39,7 +39,7 @@ const Page = ({ params }) => {
           </p>
           <p className="mt-2 font-medium">Director: {book.publisher}</p>
           <p className="mt-2 font-medium">Product_id: {book.ISBN} </p>
-          <p className="mt-2 font-bold text-xl">Price: {book.price}</p>
+          <p className="mt-2 font-bold text-xl">Price: {book.price}$</p>
           <div className="card-actions justify-end">
             <button className="btn bg-yellow-600 text-white">
               Add To Cart
