@@ -36,14 +36,12 @@ const Page = ({ params }) => {
           <p className="mt-2 font-medium">
             Type: <span className="text-zinc-500"> Anime - Hard Copy</span>
           </p>
-          <p className="mt-2 font-medium">
-            Tags:{" "}
-            {book?.genres?.map((tag) => (
-              <span className="text-zinc-500" key={tag}>
-                {tag},{" "}
-              </span>
-            ))}
-          </p>
+          {book.genres && (
+            <p className="font-medium tracking-widest my-1">
+              <strong className="bebas-neue font-medium">Tags:</strong>{" "}
+              <span className="text-gray-500">{book.genres.join(", ")}</span>
+            </p>
+          )}
           <p className="mt-2 font-medium">
             Publisher: <span className="text-zinc-500">{book.publisher} </span>
           </p>

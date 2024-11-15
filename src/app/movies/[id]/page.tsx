@@ -54,7 +54,7 @@ const Page = ({ params }) => {
               onSwiper={setThumbsSwiper}
               loop={true}
               spaceBetween={30}
-              slidesPerView={3}
+              slidesPerView={movie?.imageUrl?.length}
               freeMode={true}
               watchSlidesProgress={true}
               modules={[FreeMode, Thumbs]}

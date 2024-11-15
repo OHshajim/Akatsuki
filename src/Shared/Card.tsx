@@ -16,16 +16,18 @@ type Item = {
   _id: string;
   price: number;
 };
+type setViewItem = () => void;
 type CardProps = {
   item: Item;
+  setViewItem: setViewItem;
 };
 
-const Card = ({ item }: CardProps) => {
+const Card = ({ item, setViewItem }: CardProps) => {
   const [done, setDone] = useState(false);
-  const [quickViewItem, setItem] = useState(item);
+  // const [quickViewItem, setItem] = useState(item);
   const handleClick = () => {
     const modal = document.getElementById("my_modal_2") as HTMLDialogElement;
-    setItem(item);
+    setViewItem(item);
     if (modal) {
       modal.showModal();
     }
@@ -111,7 +113,7 @@ const Card = ({ item }: CardProps) => {
           </div>
         </div>
       </Link>
-      {quickViewItem && <QuickViewModal item={quickViewItem} />}
+      {/* {quickViewItem && <QuickViewModal item={quickViewItem} />} */}
     </div>
   );
 };
