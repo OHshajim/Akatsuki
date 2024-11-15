@@ -37,7 +37,7 @@ const Page = () => {
                     />
                     <div className="absolute bottom-0 w-full group-hover:flex hidden bg-black group-hover:duration-200 group-hover:delay-100">
                       <button className="btn bg-black w-1/2 border-none hover:bg-gray-800 text-white font-bold">
-                        Add to Cart
+                       Quick View
                       </button>
                       <button className="btn bg-black w-1/2 border-none hover:bg-gray-800 text-white font-bold">
                         Add to Wishlist

@@ -1,17 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Peralta&family=Roboto+Slab:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Peralta&family=Roboto+Slab:wght@100..900&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-
-*{
+* {
   font-family: "Roboto Slab", serif;
   letter-spacing: 1px;
 }
 
-.font-peralta{
+.font-peralta {
   font-family: "Peralta", serif;
   letter-spacing: 5px;
 }
@@ -19,8 +17,6 @@
 .bebas-neue {
   font-family: "Bebas Neue", sans-serif;
 }
-
-
 
 .rr--box {
   --rr--fill-on-color: #ffd207 !important;
@@ -52,4 +48,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.swiper-slide-thumb-active img {
+  border: 5px solid #6fc9cd !important;
 }

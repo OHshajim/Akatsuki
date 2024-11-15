@@ -35,6 +35,17 @@ const SingleBlog = ({ params }) => {
       dataLoad();
     }
   };
+
+  const handleLikeRemove = async () => {
+    const data = await axios.patch(
+      `http://localhost:3000/api/Blog/UpdateLikeRemove/${params.id}`
+    );
+    if (data.data.status) {
+      setLiked(false);
+      setBlog(data.data.data);
+      dataLoad();
+    }
+  };
   return (
     <div>
       <BlogBanner blog={Blog} />
@@ -84,7 +95,7 @@ const SingleBlog = ({ params }) => {
                     </h3>
                     {liked === true ? (
                       <button
-                        onClick={() => setLiked(false)}
+                        onClick={handleLikeRemove}
                         className="btn bg-[#6fc9cd] text-white hover:bg-slate-400"
                       >
                         <HiHeart />
