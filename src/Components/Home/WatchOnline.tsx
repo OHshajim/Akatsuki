@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 
 const WatchOnline = () => {
@@ -21,9 +22,11 @@ const WatchOnline = () => {
               <h3 className="text-sm md:text-xl lg:text-3xl xl:text-5xl my-5 bebas-neue tracking-[2px]">
                 We offer the largest anime movies database.
               </h3>
-              <button className="btn bg-white border-none rounded-none text-black font-semibold uppercase hover:bg-zinc-300 hover:scale-110 mt-5 px-10">
-                View Details <BsArrowRight className="text-xl" />
-              </button>
+              <Link href={"movies"}>
+                <button className="btn bg-white border-none rounded-none text-black font-semibold uppercase hover:bg-zinc-300 hover:scale-110 mt-5 px-10">
+                  Watch Now <BsArrowRight className="text-xl" />
+                </button>
+              </Link>
             </div>
           </div>
         </div>

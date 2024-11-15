@@ -30,16 +30,16 @@ const RecentPost = () => {
             alt="bg02"
             className="w-full h-auto object-cover"
           />
-          <div className="absolute z-10 top-0 w-full h-full ">
-            <div className="flex container mx-auto py-28 w-full h-full ">
-              <div className="mb-10 uppercase font-bold text-white">
-                <p className="text-base  px-2 py-1 mb-2 bebas-neue tracking-[1px] font-medium">
+          <div className="absolute z-10 top-0 w-full h-full">
+            <div className="flex container mx-auto py-28 w-full h-full">
+              <div className="mb-10 uppercase font-bold text-white w-full h-full">
+                <p className="text-base  px-2 py-1 mb-2 bebas-neue tracking-[1px] font-medium text-center">
                   stay-up-to-date
                 </p>
-                <h3 className="text-xl lg:text-3xl xl:text-5xl bebas-neue tracking-[2px]">
+                <h3 className="text-xl lg:text-3xl xl:text-5xl bebas-neue tracking-[2px] text-center">
                   Recent Posts
                 </h3>
-                <div className="flex py-5 gap-10">
+                <div className="flex w-full flex-1 justify-evenly py-5 gap-10">
                   <div className="card rounded-none group">
                     <figure className="">
                       <Image
@@ -58,25 +58,25 @@ const RecentPost = () => {
                         </h1>
                       </div>
                       <div>
-                        <h2 className="card-title group-hover:text-zinc-500 bebas-neue tracking-[2px]">
+                        <h2 className="card-title group-hover:text-zinc-300 bebas-neue tracking-[2px]">
                           {blogs[0].title}
                         </h2>
                         <div className="flex items-center gap-4">
-                          <h3 className="font-semibold text-zinc-500 ">
+                          <h3 className="font-semibold text-zinc-400 ">
                             {blogs[0].date}
                           </h3>
-                          <h3 className="font-semibold text-zinc-500 flex  items-center gap-2">
+                          <h3 className="font-semibold text-zinc-400 flex  items-center gap-2">
                             <FaRegHeart /> {blogs[0].likes}
                           </h3>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="flex flex-col gap-5">
+                  <div className="flex flex-col gap-5 ">
                     {blogs.slice(1, 4).map((blog) => (
                       <div
                         key={blog._id}
-                        className="flex flex-row card rounded-none text-white group "
+                        className="flex flex-row card gap-5 rounded-none text-white group "
                       >
                         <figure className="">
                           <Image
@@ -89,16 +89,16 @@ const RecentPost = () => {
                         </figure>
                         <div className="card-body py-2 px-1">
                           <p className="font-medium bebas-neue tracking-[1px]">
-                            Anime
+                            Anime - Blog
                           </p>
-                          <h2 className="card-title group-hover:text-zinc-500 bebas-neue tracking-[2px]">
+                          <h2 className="card-title group-hover:text-zinc-300 bebas-neue tracking-[2px]">
                             {blog.title}
                           </h2>
                           <div className="flex items-center gap-4">
-                            <h3 className="font-semibold text-zinc-500 ">
+                            <h3 className="font-semibold text-zinc-400 ">
                               {blog.date}
                             </h3>
-                            <h3 className="font-semibold text-zinc-500 flex  items-center gap-2">
+                            <h3 className="font-semibold text-zinc-400 flex  items-center gap-2">
                               <FaRegHeart /> {blog.likes}
                             </h3>
                           </div>

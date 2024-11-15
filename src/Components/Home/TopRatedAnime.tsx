@@ -5,11 +5,15 @@ import "swiper/css";
 import Card from "@/Shared/Card";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import QuickViewModal from "@/Shared/QuickViewModal";
 
 const TopRatedAnime = () => {
   const [books, setBook] = useState([]);
+  const [selectedBook, setSelectedBook] = useState(null);
   const dataLoad = async () => {
-    const data = await axios.get("http://localhost:3000/api/Shop/TopRatedBooks");
+    const data = await axios.get(
+      "http://localhost:3000/api/Shop/TopRatedBooks"
+    );
     console.log(data);
     if (data.data.status) {
       setBook(data.data.data);
@@ -35,10 +39,17 @@ const TopRatedAnime = () => {
       >
         {books.map((item) => (
           <SwiperSlide key={item._id}>
-            <Card item={item} />
+            <Card item={item} setViewItem={setSelectedBook} />
           </SwiperSlide>
         ))}
       </Swiper>
+      {/* Quick View Modal */}
+      {selectedBook && (
+        <QuickViewModal
+          item={selectedBook}
+          onClose={() => setSelectedBook(null)}
+        />
+      )}
     </div>
   );
 };

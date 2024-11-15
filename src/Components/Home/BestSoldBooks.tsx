@@ -5,8 +5,10 @@ import { BsArrowRight } from "react-icons/bs";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import QuickViewModal from "@/Shared/QuickViewModal";
 const BestSoldBooks = () => {
   const [books, setBook] = useState([]);
+  const [selectedBook, setSelectedBook] = useState(null);
   const dataLoad = async () => {
     const data = await axios.get(
       "http://localhost:3000/api/Shop/BestSellingBooks"
@@ -27,7 +29,7 @@ const BestSoldBooks = () => {
       />
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-10">
         {books.map((book) => (
-          <Card key={book._id} item={book}></Card>
+          <Card key={book._id} item={book} setViewItem={setSelectedBook} />
         ))}
       </div>
       <div className="flex justify-center mt-5">
@@ -37,6 +39,13 @@ const BestSoldBooks = () => {
           </button>
         </Link>
       </div>
+      {/* Quick View Modal */}
+      {selectedBook && (
+        <QuickViewModal
+          item={selectedBook}
+          onClose={() => setSelectedBook(null)}
+        />
+      )}
     </div>
   );
 };
