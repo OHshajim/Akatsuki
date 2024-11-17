@@ -18,7 +18,7 @@ const BlogCard = ({ blog }) => {
         <h2 className="card-title group-hover:text-zinc-500 bebas-neue tracking-[2px]">
           {blog.title}
         </h2>
-        <div className="flex items-center gap-4">
+        <div className="flex justify-between items-center gap-4">
           <h3 className="font-semibold text-zinc-500 ">{blog.date}</h3>
           <h3 className="font-semibold text-zinc-500 flex  items-center gap-2">
             <FaRegHeart /> {blog.likes}

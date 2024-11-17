@@ -35,11 +35,8 @@ const Page = () => {
       });
       console.log(result);
       if(result){
-        localStorage.setItem("Access_Key",result.data.Access_token);
-        localStorage.setItem("UserId",result.data.userId);
         redirect('/login')
       }
-
     } catch (error) {
       console.log(error);
     }
@@ -84,7 +81,7 @@ const Page = () => {
               <input
                 type="email"
                 {...register("email", { required: true })}
-                className="w-full mt-2 p-3 border border-red-500 bg-gray-800 rounded-lg focus:outline-none focus:border-red-600 transition duration-300"
+                className="w-full mt-2 p-3 border border-red-500 bg-gray-900 rounded-lg focus:outline-none focus:border-red-600 transition duration-300 text-white focus:bg-black"
                 placeholder="Enter your email"
               />
               {errors.email && (
@@ -104,11 +101,11 @@ const Page = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   {...register("password", { required: true })}
-                  className="w-full mt-2 p-3 border border-red-500 bg-gray-800 rounded-lg focus:outline-none focus:border-red-600 transition duration-300"
+                  className="w-full mt-2 p-3 border border-red-500 bg-gray-900 rounded-lg focus:outline-none focus:border-red-600 transition duration-300 text-white focus:bg-black"
                   placeholder="Enter your password"
                 />
                 <span
-                  className="absolute inset-y-0 right-3 top-2 flex items-center cursor-pointer"
+                  className="absolute inset-y-0 right-3 top-2 flex items-center cursor-pointer text-white"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
@@ -131,11 +128,11 @@ const Page = () => {
                 <input
                   type={showConfirmPassword ? "text" : "password"}
                   {...register("confirmPassword", { required: true })}
-                  className="w-full mt-2 p-3 border border-red-500 bg-gray-800 rounded-lg focus:outline-none focus:border-red-600 transition duration-300"
+                  className="w-full mt-2 p-3 border border-red-500 bg-gray-900 rounded-lg focus:outline-none focus:border-red-600 transition duration-300 text-white focus:bg-black"
                   placeholder="Confirm Password"
                 />
                 <span
-                  className="absolute inset-y-0 top-2 right-3 flex items-center cursor-pointer"
+                  className="absolute inset-y-0 top-2 right-3 flex items-center cursor-pointer text-white"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 >
                   {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}

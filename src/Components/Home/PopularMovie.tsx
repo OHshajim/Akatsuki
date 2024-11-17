@@ -2,18 +2,18 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 import "swiper/css";
-import { Rating } from "@smastrom/react-rating";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import MovieCard from "../Movies/MovieCard";
 
 const PopularMovie = () => {
   const [movies, setMovies] = useState([]);
+  const [selectedBook, setSelectedBook] = useState(null);
+
   const dataLoad = async () => {
     const data = await axios.get(
       "http://localhost:3000/api/Movies/PopularMovies"
     );
-    console.log(data);
     if (data.data.status) {
       setMovies(data.data.data);
     }
@@ -43,7 +43,7 @@ const PopularMovie = () => {
           {movies &&
             movies.map((popular) => (
               <SwiperSlide key={popular._id}>
-                <div className="card rounded-none text-black">
+                {/* <div className="card rounded-none text-black">
                   <figure className=" relative group">
                     <Image
                       width={600}
@@ -76,7 +76,8 @@ const PopularMovie = () => {
                       />
                     </div>
                   </div>
-                </div>
+                </div> */}
+                <MovieCard movie={popular} textColor={"text-white"}/>
               </SwiperSlide>
             ))}
         </Swiper>

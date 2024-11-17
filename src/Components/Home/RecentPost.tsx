@@ -10,7 +10,6 @@ const RecentPost = () => {
 
   const dataLoad = async () => {
     const data = await axios.get("http://localhost:3000/api/Blog/RecentBlogs");
-    console.log(data);
     if (data.data.status) {
       setLoading(false);
       setBlogs(data.data.data);

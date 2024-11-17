@@ -5,6 +5,7 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   WishList: { type: Array, required: true },
   CartList: { type: Array, required: true },
+  Liked: { type: Array, required: true },
 });
 
 export const User = mongoose.models.User || mongoose.model("User", userSchema);

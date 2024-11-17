@@ -13,7 +13,6 @@ const BestSoldBooks = () => {
     const data = await axios.get(
       "http://localhost:3000/api/Shop/BestSellingBooks"
     );
-    console.log(data);
     if (data.data.status) {
       setBook(data.data.data);
     }

@@ -22,7 +22,6 @@ const Page = ({ params }) => {
       setMovie(data.data.data);
     }
   };
-  console.log(movie);
   useEffect(() => {
     dataLoad();
   }, [params]);

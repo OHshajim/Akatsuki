@@ -13,7 +13,6 @@ const Article = () => {
   const [blogs, setBlogs] = useState([]);
   const dataLoad = async () => {
     const data = await axios.get("http://localhost:3000/api/Blog/BestBlogs");
-    console.log(data);
     if (data.data.status) {
       setBlogs(data.data.data);
     }

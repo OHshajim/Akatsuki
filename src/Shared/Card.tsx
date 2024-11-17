@@ -7,7 +7,6 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import Link from "next/link";
-import QuickViewModal from "./QuickViewModal";
 
 type Item = {
   title: string;
@@ -23,40 +22,11 @@ type CardProps = {
 };
 
 const Card = ({ item, setViewItem }: CardProps) => {
-  const [done, setDone] = useState(false);
-  // const [quickViewItem, setItem] = useState(item);
   const handleClick = () => {
     const modal = document.getElementById("my_modal_2") as HTMLDialogElement;
     setViewItem(item);
     if (modal) {
       modal.showModal();
-    }
-  };
-
-  const SaveCart = (productId: string) => {
-    if (typeof window !== "undefined") {
-      const existingCart = window.localStorage.getItem("cartItems");
-
-      const cartItems: string[] = existingCart ? JSON.parse(existingCart) : [];
-
-      if (cartItems.includes(productId)) {
-        Swal.fire({
-          title: "Already added",
-          text: "This item is already added on your cart list",
-          icon: "error",
-        });
-        setDone(true);
-        return;
-      }
-      if (!cartItems.includes(productId)) {
-        cartItems.push(productId);
-      }
-      window.localStorage.setItem("cartItems", JSON.stringify(cartItems));
-      Swal.fire({
-        title: "Successfully added",
-        text: "This item is added on your cart list",
-        icon: "success",
-      });
     }
   };
 
@@ -80,22 +50,13 @@ const Card = ({ item, setViewItem }: CardProps) => {
             <AiTwotoneEye className="text-xl" />
             Quick View
           </button>
-          {done ? (
-            <button
-              onClick={() => SaveCart(item._id)}
-              className="btn bg-white w-1/2 border-none hover:bg-gray-100 text-black font-bold"
-            >
+          {/* <button className="btn bg-white w-1/2 border-none hover:bg-gray-100 text-black font-bold">
               Done
-            </button>
-          ) : (
-            <button
-              onClick={() => SaveCart(item._id)}
-              className="btn bg-white w-1/2 border-none hover:bg-gray-100 text-black font-bold"
-            >
-              <MdOutlineShoppingCart className="text-xl" />
-              Add to Card
-            </button>
-          )}
+            </button> */}
+          <button className="btn bg-white w-1/2 border-none hover:bg-gray-100 text-black font-bold">
+            <MdOutlineShoppingCart className="text-xl" />
+            Add to Card
+          </button>
         </div>
       </figure>
       <Link href={`shop/${item._id}`} className="w-full">
@@ -113,7 +74,6 @@ const Card = ({ item, setViewItem }: CardProps) => {
           </div>
         </div>
       </Link>
-      {/* {quickViewItem && <QuickViewModal item={quickViewItem} />} */}
     </div>
   );
 };

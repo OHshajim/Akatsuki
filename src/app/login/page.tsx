@@ -21,7 +21,6 @@ const Page = () => {
     formState: { errors },
   } = useForm<LoginFormInputs>();
 
-  // State for toggling password visibility
   const [showPassword, setShowPassword] = useState(false);
 
   const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
@@ -31,12 +30,10 @@ const Page = () => {
         password: data.password,
         redirect: false,
       });
-      console.log(result);
+      console.log({result});
 
       // if (result.data.Access_token) {
       //   console.log(result.data);
-      //   localStorage.setItem("Access_Key", result.data.Access_token);
-      //   localStorage.setItem("UserId", result.data.userId);
       //   return router.push("/");
       // }
     } catch (error) {
@@ -83,7 +80,7 @@ const Page = () => {
                 id="email"
                 type="email"
                 {...register("email", { required: true })}
-                className="w-full mt-2 p-3 border border-red-500 bg-gray-800 rounded-lg focus:outline-none focus:border-red-600 transition duration-300"
+                className="w-full mt-2 p-3 border border-red-500 bg-gray-900 rounded-lg focus:outline-none focus:border-red-600 transition duration-300 text-white focus:bg-black"
                 placeholder="Enter your email"
               />
               {errors.email && (
@@ -102,11 +99,11 @@ const Page = () => {
                 <input
                   type={showPassword ? "text" : "password"}
                   {...register("password", { required: true })}
-                  className="w-full mt-2 p-3 border border-red-500 bg-gray-800 rounded-lg focus:outline-none focus:border-red-600 transition duration-300"
+                  className="w-full mt-2 p-3 border border-red-500 bg-gray-900 rounded-lg focus:outline-none focus:border-red-600 transition duration-300 text-white focus:bg-black"
                   placeholder="Enter your password"
                 />
                 <span
-                  className="absolute inset-y-0 right-3 top-2 flex items-center cursor-pointer"
+                  className="absolute inset-y-0 right-3 top-2 flex items-center cursor-pointer text-white" 
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
