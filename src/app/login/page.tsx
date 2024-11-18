@@ -54,9 +54,9 @@ const Page = () => {
         initial={{ opacity: 0, scale: 10 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: "easeInOut" }}
-        className="relative flex justify-around w-full container mx-auto bg-transparent py-20 rounded-2xl z-50"
+        className="relative flex lg:flex-row flex-col px-5 justify-around w-full container mx-auto bg-transparent py-20 rounded-2xl z-50"
       >
-        <div className="mb-5 w-1/2">
+        <div className="mb-5 lg:w-1/2">
           <h3 className="text-3xl font-semibold text-center text-zinc-300 mb-4">
             Welcome Back to
           </h3>
@@ -64,7 +64,7 @@ const Page = () => {
             Akatsuki
           </h1>
         </div>
-        <div className="w-4/12">
+        <div className="lg:w-4/12">
           <h3 className="text-3xl font-medium text-center text-zinc-300 mb-4">
             Please Login
           </h3>

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { motion } from "framer-motion";
 import { FaUserAlt, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
@@ -7,9 +7,14 @@ import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
 import { redirect } from "next/navigation";
+import { LuImagePlus } from "react-icons/lu";
+import { MdAlternateEmail } from "react-icons/md";
+import ImageHosting from "@/Services/ImageHosting";
 
 interface SignUpFormInputs {
+  username: string;
   email: string;
+  image: string;
   password: string;
   confirmPassword: string;
 }
@@ -21,22 +26,35 @@ const Page = () => {
     formState: { errors },
   } = useForm<SignUpFormInputs>();
 
-  // State for toggling password visibility
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const onSubmit: SubmitHandler<SignUpFormInputs> = async (data) => {
     if (data.password !== data.confirmPassword) return;
-
+    setLoading(true);
+    const imageFile = { image: data.image[0] };
     try {
-      const result = await axios.post("http://localhost:3000/api/auth/SignUp", {
-        email: data.email,
-        password: data.password,
-      });
-      console.log(result);
-      if(result){
-        redirect('/login')
+      const imageHostedFile = await ImageHosting(imageFile);
+      console.log(imageHostedFile);
+      if (imageHostedFile.displayURL) {
+        const result = await axios.post(
+          "http://localhost:3000/api/auth/SignUp",
+          {
+            email: data.email,
+            password: data.password,
+            username: data.username,
+            imageURL: imageHostedFile.displayURL,
+          }
+        );
+        console.log(result);
+        if (result) {
+          setLoading(false);
+          redirect("/login");
+        }
       }
+      console.log("done");
     } catch (error) {
       console.log(error);
     }
@@ -73,10 +91,28 @@ const Page = () => {
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div>
               <label
+                htmlFor="username"
+                className="text-white flex items-center space-x-2"
+              >
+                <FaUserAlt /> <span>User Name</span>
+              </label>
+              <input
+                type="text"
+                {...register("username", { required: true })}
+                className="w-full mt-2 p-3 border border-red-500 bg-gray-900 rounded-lg focus:outline-none focus:border-red-600 transition duration-300 text-white focus:bg-black"
+                placeholder="Enter your username"
+              />
+              {errors.username && (
+                <span className="text-red-400">Username is required</span>
+              )}
+            </div>
+            <div>
+              <label
                 htmlFor="email"
                 className="text-white flex items-center space-x-2"
               >
-                <FaUserAlt /> <span>Email</span>
+                <MdAlternateEmail className="text-xl" />
+                <span>Email</span>
               </label>
               <input
                 type="email"
@@ -88,8 +124,25 @@ const Page = () => {
                 <span className="text-red-400">Email is required</span>
               )}
             </div>
+            <div>
+              <label
+                htmlFor="image"
+                className="text-white flex items-center space-x-2"
+              >
+                <LuImagePlus className="text-xl" /> <span>Image</span>
+              </label>
+              <input
+                type="file"
+                {...register("image", { required: true })}
+                className="w-full mt-2 p-3 border border-red-500 bg-gray-900 rounded-lg focus:outline-none focus:border-red-600 transition duration-300 text-white focus:bg-black"
+                placeholder="Enter your image"
+              />
+              {errors.image && (
+                <span className="text-red-400">Image is required</span>
+              )}
+            </div>
 
-            {/* Password Field with Show/Hide Functionality */}
+            {/* Password*/}
             <div>
               <label
                 htmlFor="password"
@@ -116,7 +169,7 @@ const Page = () => {
               )}
             </div>
 
-            {/* Confirm Password Field with Show/Hide Functionality */}
+            {/* Confirm Password */}
             <div>
               <label
                 htmlFor="confirmPassword"
@@ -149,10 +202,12 @@ const Page = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full bg-red-600 text-white py-3 rounded-lg shadow-md hover:bg-red-700 transition duration-300"
+              className={`w-full bg-red-600 text-white py-3 rounded-lg shadow-md hover:bg-red-700 transition duration-300 ${
+                loading ? "cursor-wait" : ""
+              }`}
               type="submit"
             >
-              Sign Up
+              {loading ? "Loading" : "Sign Up"}
             </motion.button>
           </form>
 
