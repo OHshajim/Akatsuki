@@ -1,6 +1,4 @@
 import Image from "next/image";
-import React from "react";
-
 const Banner = () => {
   return (
     <div className="bg-[#000000f5] py-5">
@@ -69,7 +67,7 @@ const Banner = () => {
               Join The community of All-time japanese classics
             </h4>
             <h1 className="text-xl lg:text-4xl xl:text-9xl text-[#E3962B] lg:my-5">
-              Welcome to <span className="font-peralta uppercase xl:text-8xl">Akatsuki</span>
+              Welcome to <span className="font-peralta xl:text-8xl">AKATSUKI</span>
             </h1>
             <p className="text-white lg:text-lg text-sm uppercase bebas-neue tracking-[2px]">
               Anime Culture

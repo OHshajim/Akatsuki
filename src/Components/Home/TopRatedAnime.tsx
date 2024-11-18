@@ -9,12 +9,12 @@ import QuickViewModal from "@/Shared/QuickViewModal";
 
 const TopRatedAnime = () => {
   const [books, setBook] = useState([]);
-  const [selectedBook, setSelectedBook] = useState(null);
+  const [selectedBook, setSelectedBook] = useState({});
   const dataLoad = async () => {
     const data = await axios.get(
       "http://localhost:3000/api/Shop/TopRatedBooks"
     );
-    if (data.data.status) {
+    if (data.data.data) {
       setBook(data.data.data);
     }
   };
@@ -43,12 +43,7 @@ const TopRatedAnime = () => {
         ))}
       </Swiper>
       {/* Quick View Modal */}
-      {selectedBook && (
-        <QuickViewModal
-          item={selectedBook}
-          onClose={() => setSelectedBook(null)}
-        />
-      )}
+      {selectedBook && <QuickViewModal item={selectedBook} />}
     </div>
   );
 };

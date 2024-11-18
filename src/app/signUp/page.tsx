@@ -26,7 +26,6 @@ const Page = () => {
     formState: { errors },
   } = useForm<SignUpFormInputs>();
 
-
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -38,18 +37,20 @@ const Page = () => {
     try {
       const imageHostedFile = await ImageHosting(imageFile);
       console.log(imageHostedFile);
-      if (imageHostedFile.displayURL) {
+      if (imageHostedFile.display_url) {
+        console.log("entry on API");
         const result = await axios.post(
           "http://localhost:3000/api/auth/SignUp",
           {
             email: data.email,
             password: data.password,
             username: data.username,
-            imageURL: imageHostedFile.displayURL,
+            imageURL: imageHostedFile.display_url
           }
         );
         console.log(result);
         if (result) {
+          console.log("data posted");
           setLoading(false);
           redirect("/login");
         }

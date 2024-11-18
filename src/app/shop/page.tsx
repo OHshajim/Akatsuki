@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "@/Shared/Card";
@@ -8,7 +7,7 @@ import QuickViewModal from "@/Shared/QuickViewModal";
 
 const Page = () => {
   const [books, setBooks] = useState([]);
-  const [selectedBook, setSelectedBook] = useState(null);
+  const [selectedBook, setSelectedBook] = useState({});
 
   // Fetch Books from API
   const fetchBooks = async () => {
@@ -46,7 +45,7 @@ const Page = () => {
       {selectedBook && (
         <QuickViewModal
           item={selectedBook}
-          onClose={() => setSelectedBook(null)}
+          onClose={() => setSelectedBook({})}
         />
       )}
     </div>

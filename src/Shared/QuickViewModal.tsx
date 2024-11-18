@@ -9,13 +9,17 @@ type QuickViewModalProps = {
     title: string;
     price: number;
     rating: number;
-    genres?: string[];
+    pages: number;
+    genres: [];
     publisher: string;
     ISBN: string;
+    author: string;
   };
 };
 
 const QuickViewModal: React.FC<QuickViewModalProps> = ({ item }) => {
+  console.log(item);
+
   return (
     <dialog id="my_modal_2" className="modal">
       {/* Modal Box */}
@@ -75,6 +79,16 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({ item }) => {
               </p>
             )}
             <p className="font-medium tracking-widest my-1">
+              <strong className="bebas-neue font-medium">
+                Number of Page:
+              </strong>{" "}
+              <span className="text-gray-500">{item.pages}</span>
+            </p>
+            <p className="font-medium tracking-widest my-1">
+              <strong className="bebas-neue font-medium">Writer:</strong>{" "}
+              <span className="text-gray-500">{item.author}</span>
+            </p>
+            <p className="font-medium tracking-widest my-1">
               <strong className="bebas-neue font-medium">Publisher:</strong>{" "}
               <span className="text-gray-500">{item.publisher}</span>
             </p>
@@ -86,11 +100,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({ item }) => {
               <h3 className="text-xl font-semibold text-[#6fc9cd] ">
                 {item.price} $
               </h3>
-              <Rating
-                style={{ maxWidth: 110 }}
-                value={item.rating}
-                readOnly
-              />
+              <Rating style={{ maxWidth: 110 }} value={item.rating} readOnly />
             </div>
             <motion.button
               className="btn bg-[#6fc9cd] text-white hover:bg-[#5ba3a7]  flex items-center gap-2 px-6 py-2 rounded-lg shadow-lg bebas-neue font-medium text-lg"

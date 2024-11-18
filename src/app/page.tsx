@@ -12,7 +12,7 @@ import BestSoldBooks from "@/Components/Home/BestSoldBooks";
 
 export default function Home() {
   return (
-    <div className="bg-white">
+    <div>
       <Banner />
       <TopRatedAnime />
       <BestSelling />

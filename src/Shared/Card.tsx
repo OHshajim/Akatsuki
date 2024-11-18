@@ -1,21 +1,22 @@
-"use client";
+// "use client";
 import { Rating } from "@smastrom/react-rating";
 import Image from "next/image";
 import "@smastrom/react-rating/style.css";
 import { AiTwotoneEye } from "react-icons/ai";
 import { MdOutlineShoppingCart } from "react-icons/md";
-import Swal from "sweetalert2";
-import { useState } from "react";
 import Link from "next/link";
 
 type Item = {
-  title: string;
   imageUrl: string;
-  rating: number;
-  _id: string;
+  title: string;
   price: number;
+  rating: number;
+  genres?: string[] | undefined;
+  publisher: string;
+  ISBN: string;
 };
-type setViewItem = () => void;
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+type setViewItem = Function;
 type CardProps = {
   item: Item;
   setViewItem: setViewItem;
@@ -23,8 +24,8 @@ type CardProps = {
 
 const Card = ({ item, setViewItem }: CardProps) => {
   const handleClick = () => {
-    const modal = document.getElementById("my_modal_2") as HTMLDialogElement;
     setViewItem(item);
+    const modal = document.getElementById("my_modal_2") as HTMLDialogElement;
     if (modal) {
       modal.showModal();
     }
@@ -38,7 +39,7 @@ const Card = ({ item, setViewItem }: CardProps) => {
             width={600}
             height={800}
             src={item.imageUrl}
-            alt="Shoes"
+            alt={item.title}
             className="w-full group "
           />
         </Link>

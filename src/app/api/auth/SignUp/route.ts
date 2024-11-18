@@ -5,7 +5,7 @@ import { generateToken } from "@/utils/jwt";
 import { NextRequest } from "next/server";
 
 export const POST = async (req: NextRequest) => {
-  const { email, password } = await req.json();
+  const { email, password, imageURL, username } = await req.json();
   try {
     await dbConnect();
     const existingUser = await User.findOne({ email: email });
@@ -17,12 +17,15 @@ export const POST = async (req: NextRequest) => {
     const hashedPassword = bcrypt.hashSync(password, 15);
     const newUser = new User({
       email,
+      username,
       password: hashedPassword,
+      imageURL: imageURL,
       WishList: [],
       CartList: [],
       Liked: [],
+      role: "Member",
     });
-    console.log(newUser);
+    console.log(newUser, imageURL);
 
     const token = generateToken(newUser._id);
     await newUser.save();

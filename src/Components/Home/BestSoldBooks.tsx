@@ -6,14 +6,16 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import QuickViewModal from "@/Shared/QuickViewModal";
+
 const BestSoldBooks = () => {
   const [books, setBook] = useState([]);
-  const [selectedBook, setSelectedBook] = useState(null);
+  const [selectedBook, setSelectedBook] = useState({});
   const dataLoad = async () => {
     const data = await axios.get(
       "http://localhost:3000/api/Shop/BestSellingBooks"
     );
-    if (data.data.status) {
+    if (data.data.data) {
+      console.log(books);
       setBook(data.data.data);
     }
   };
@@ -39,12 +41,7 @@ const BestSoldBooks = () => {
         </Link>
       </div>
       {/* Quick View Modal */}
-      {selectedBook && (
-        <QuickViewModal
-          item={selectedBook}
-          onClose={() => setSelectedBook(null)}
-        />
-      )}
+      {selectedBook && <QuickViewModal item={selectedBook} />}
     </div>
   );
 };

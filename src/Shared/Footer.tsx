@@ -14,11 +14,11 @@ const Footer = () => {
   const path = usePathname();
   return (
     path === "/dashboard" || (
-      <div className="bg-black py-5">
+      <div className="bg-black py-5 text-zinc-300">
         <footer className="footer bg-black container mx-auto py-20 lg:px-10 px-5">
           <aside>
-            <h1 className="text-4xl font-bold text-white font-peralta uppercase0">
-              Akatsuki
+            <h1 className="text-4xl font-bold text-white font-peralta z-50">
+              AKATSUKI
             </h1>
           </aside>
           <aside className="flex justify-between w-full flex-col md:flex-row gap-5 font-medium">
@@ -98,10 +98,10 @@ const Footer = () => {
         </footer>
         <footer className=" bg-black container mx-auto px-5">
           <hr />
-          <aside className="pt-5">
+          <aside className="pt-5 text-zinc-300">
             <p>
-              <span className="text-zinc-300 font-bold font-peralta uppercase">
-                Akatsuki
+              <span className="z-50 text-white font-bold font-peralta ">
+              AKATSUKI
               </span>{" "}
               © {new Date().getFullYear()} - All right reserved.
             </p>

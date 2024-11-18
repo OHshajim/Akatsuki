@@ -6,7 +6,7 @@ const ImageHosting = async (imageFile: unknown) => {
     const res = await axios.post(ImageHostingAPI, imageFile, {
       headers: { "content-type": "multipart/form-data" },
     });
-    return res.data;
+    return res.data.data;
   } catch (error) {
     console.log(error);
     return null;
