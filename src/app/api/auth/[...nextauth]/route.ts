@@ -26,7 +26,7 @@ export const authSession = {
         await dbConnect();
         const currentUser = await User.findOne({ email });
 
-        if (!currentUser) {
+        if (!currentUser || !currentUser.password) {
           return null;
         }
         console.log(currentUser);
@@ -49,33 +49,38 @@ export const authSession = {
   pages: {
     signIn: "/login",
   },
-  // callbacks: {
-  //   async signIn({ user, account }) {
-  //     if (account.provider === "google" || account.provider === "facebook") {
-  //       const { email } = user;
-  //       try {
-  //         await dbConnect();
-  //         const userExist = await User.findOne({ email });
-  //         if (!userExist) {
-  //           const newUser = new User({
-  //             email,
-  //             // password: user.password,
-  //             WishList: [],
-  //             CartList: [],
-  //           });
-  //           await newUser.save();
-  //           return user;
-  //         } else {
-  //           return user;
-  //         }
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     } else {
-  //       return user;
-  //     }
-  //   },
-  // },
+  callbacks: {
+    async signIn({ user, account }) {
+      if (account.provider === "google" || account.provider === "facebook") {
+        const { email, name, image } = user;
+        console.log(user, account);
+
+        try {
+          await dbConnect();
+          const userExist = await User.findOne({ email });
+          if (!userExist) {
+            const newUser = new User({
+              email,
+              username: name,
+              imageURL: image,
+              WishList: [],
+              CartList: [],
+              Liked: [],
+              role: "Member",
+            });
+            await newUser.save();
+            return user;
+          } else {
+            return user;
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        return user;
+      }
+    },
+  },
 };
 
 const handler = NextAuth(authSession);

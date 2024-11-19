@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import BlogBanner from "../../../Components/Blog/BlogBanner";
 import { HiHeart } from "react-icons/hi2";
 import { BiHeart } from "react-icons/bi";
@@ -24,6 +24,7 @@ const SingleBlog = ({ params }) => {
   useEffect(() => {
     dataLoad();
   }, []);
+
 
   const handleLike = async () => {
     const data = await axios.patch(

@@ -3,9 +3,9 @@ import "./style.css";
 import { signIn } from "next-auth/react";
 
 const SocialAuthentication = () => {
-  const handleSocialAuth = async (provider: string) => {
-    const res = await signIn(provider);
-    console.log({res});
+  const handleSocialAuth = (provider: string) => {
+    const res = signIn(provider, { redirect: false });
+    console.log({ res });
   };
   return (
     <div className="flex justify-center mt-3">
