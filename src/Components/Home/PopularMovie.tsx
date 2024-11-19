@@ -43,41 +43,7 @@ const PopularMovie = () => {
           {movies &&
             movies.map((popular) => (
               <SwiperSlide key={popular._id}>
-                {/* <div className="card rounded-none text-black">
-                  <figure className=" relative group">
-                    <Image
-                      width={600}
-                      height={800}
-                      src={popular.imageUrl[0]}
-                      alt="Shoes"
-                      className="w-full group"
-                    />
-                    <div className="absolute bottom-0 w-full group-hover:flex hidden bg-black group-hover:duration-200 group-hover:delay-100">
-                      <button className="btn bg-black w-1/2 border-none hover:bg-gray-800 text-white font-bold">
-                        Quick View
-                      </button>
-                      <button className="btn bg-black w-1/2 border-none hover:bg-gray-800 text-white font-bold">
-                        Add to Wishlist
-                      </button>
-                    </div>
-                  </figure>
-                  <div className="card-body py-2 px-1">
-                    <h2 className="card-title text-white bebas-neue tracking-[2px] font-medium">
-                      {popular.title}
-                    </h2>
-                    <div className="flex justify-between">
-                      <h3 className="font-semibold text-zinc-400">
-                        {popular.genres[0]}
-                      </h3>
-                      <Rating
-                        style={{ maxWidth: 110, color: "#fff" }}
-                        value={popular.rating}
-                        readOnly
-                      />
-                    </div>
-                  </div>
-                </div> */}
-                <MovieCard movie={popular} textColor={"text-white"}/>
+                <MovieCard movie={popular}/>
               </SwiperSlide>
             ))}
         </Swiper>
