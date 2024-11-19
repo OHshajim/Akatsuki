@@ -1,5 +1,5 @@
 import axios from "axios";
-const ImageHosting = async (imageFile: unknown) => {
+const ImageHosting = async (imageFile: FormData) => {
   const ImageHostingAPI = process.env.NEXT_PUBLIC_IMAGE_HOSTING_API;
 
   try {

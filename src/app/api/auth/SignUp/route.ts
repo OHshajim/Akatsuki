@@ -1,7 +1,6 @@
 import bcrypt from "bcrypt";
 import { User } from "@/models/User";
 import dbConnect from "@/utils/dbConnect";
-import { generateToken } from "@/utils/jwt";
 import { NextRequest } from "next/server";
 
 export const POST = async (req: NextRequest) => {
@@ -10,9 +9,12 @@ export const POST = async (req: NextRequest) => {
     await dbConnect();
     const existingUser = await User.findOne({ email: email });
     if (existingUser) {
-      return Response.json({
-        message: "Account is Already Exist !!! Please Login",
-      });
+      return Response.json(
+        {
+          message: "Account is Already Exist !!! Please Login",
+        },
+        { status: 400 }
+      );
     }
     const hashedPassword = bcrypt.hashSync(password, 15);
     const newUser = new User({
@@ -27,13 +29,10 @@ export const POST = async (req: NextRequest) => {
     });
     console.log(newUser, imageURL);
 
-    const token = generateToken(newUser._id);
     await newUser.save();
     return Response.json(
       {
         message: "User registered successfully",
-        Access_token: token,
-        userId: newUser._id,
       },
       { status: 201 }
     );

@@ -6,10 +6,11 @@ import { FaUserAlt, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
-import { redirect } from "next/navigation";
 import { LuImagePlus } from "react-icons/lu";
 import { MdAlternateEmail } from "react-icons/md";
 import ImageHosting from "@/Services/ImageHosting";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 interface SignUpFormInputs {
   username: string;
@@ -20,6 +21,7 @@ interface SignUpFormInputs {
 }
 
 const Page = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -38,24 +40,32 @@ const Page = () => {
       const imageHostedFile = await ImageHosting(imageFile);
       console.log(imageHostedFile);
       if (imageHostedFile.display_url) {
-        console.log("entry on API");
         const result = await axios.post(
           "http://localhost:3000/api/auth/SignUp",
           {
             email: data.email,
             password: data.password,
             username: data.username,
-            imageURL: imageHostedFile.display_url
+            imageURL: imageHostedFile.display_url,
           }
         );
         console.log(result);
-        if (result) {
-          console.log("data posted");
-          setLoading(false);
-          redirect("/login");
+        if (result.status === 201) {
+          const signInResponse = await signIn("credentials", {
+            redirect: false,
+            email: data.email,
+            password: data.password,
+          });
+          if (signInResponse?.ok) {
+            setLoading(false);
+            router.push("/");
+          } else {
+            alert("Error during automatic login");
+          }
+        } else {
+          alert("Sign-up failed. Try again.");
         }
       }
-      console.log("done");
     } catch (error) {
       console.log(error);
     }

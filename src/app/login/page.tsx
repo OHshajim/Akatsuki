@@ -5,7 +5,7 @@ import { FaUserAlt, FaLock, FaEyeSlash, FaEye } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
-// import { useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 
 interface LoginFormInputs {
@@ -14,7 +14,7 @@ interface LoginFormInputs {
 }
 
 const Page = () => {
-  // const router = useRouter();
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -22,20 +22,19 @@ const Page = () => {
   } = useForm<LoginFormInputs>();
 
   const [showPassword, setShowPassword] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   const onSubmit: SubmitHandler<LoginFormInputs> = async (data) => {
+    setLoading(true);
     try {
       const result = await signIn("credentials", {
         email: data.email,
         password: data.password,
         redirect: false,
       });
-      console.log({result});
-
-      // if (result.data.Access_token) {
-      //   console.log(result.data);
-      //   return router.push("/");
-      // }
+      if (result?.ok) {
+        setLoading(false);
+        return router.push("/");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -103,7 +102,7 @@ const Page = () => {
                   placeholder="Enter your password"
                 />
                 <span
-                  className="absolute inset-y-0 right-3 top-2 flex items-center cursor-pointer text-white" 
+                  className="absolute inset-y-0 right-3 top-2 flex items-center cursor-pointer text-white"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? <FaEyeSlash /> : <FaEye />}
@@ -117,10 +116,12 @@ const Page = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full bg-red-600 text-white py-3 rounded-lg shadow-md hover:bg-red-700 transition duration-300"
+              className={`w-full bg-red-600 text-white py-3 rounded-lg shadow-md hover:bg-red-700 transition duration-300 ${
+                loading ? "cursor-wait" : ""
+              }`}
               type="submit"
             >
-              Login
+              {loading ? "Loading" : "Login"}
             </motion.button>
           </form>
 
