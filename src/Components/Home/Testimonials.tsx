@@ -20,10 +20,10 @@ const testimonials: Testimonial[] = [
 const Testimonials = () => {
   return (
     <div className="sticky py-32 w-full">
-    {/* Sticky full-width "Testimonials" header within this section */}
-    <h2 className="text-6xl text-center text-black font-bold uppercase tracking-wide  top-0 w-full anime-header z-10 py-4">
-      Testimonials
-    </h2>
+      {/* Sticky full-width "Testimonials" header within this section */}
+      <h2 className="text-6xl text-center text-black font-bold uppercase tracking-wide  top-0 w-full anime-header z-10 py-4">
+        Testimonials
+      </h2>
 
       {/* Testimonial carousel section */}
       <div className="max-w-7xl mx-auto px-4">

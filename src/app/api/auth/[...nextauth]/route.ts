@@ -3,7 +3,8 @@ import dbConnect from "@/utils/dbConnect";
 import bcrypt from "bcrypt";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-// import GoogleProvider from "next-auth/providers/google";
+import GoogleProvider from "next-auth/providers/google";
+import FacebookProvider from "next-auth/providers/facebook";
 
 export const authSession = {
   secret: process.env.JWT_SECRET,
@@ -36,14 +37,14 @@ export const authSession = {
         return currentUser;
       },
     }),
-    // GoogleProvider({
-    //   clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
-    //   clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
-    // }),
-    // GitHubProvider({
-    //   clientId: process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID,
-    //   clientSecret: process.env.NEXT_PUBLIC_GITHUB_CLIENT_SECRET,
-    // }),
+    GoogleProvider({
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
+    }),
+    FacebookProvider({
+      clientId: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_SECRET,
+    }),
   ],
   pages: {
     signIn: "/login",

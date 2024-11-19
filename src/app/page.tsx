@@ -7,7 +7,7 @@ import RecentPost from "@/Components/Home/RecentPost";
 import Team from "@/Components/Home/Team";
 import Tickets from "@/Components/Home/Tickets";
 import WatchOnline from "@/Components/Home/WatchOnline";
-import Testimonials from "@/Shared/Testimonials";
+import Testimonials from "@/Components/Home/Testimonials";
 import BestSoldBooks from "@/Components/Home/BestSoldBooks";
 
 export default function Home() {

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import SocialAuthentication from "@/Shared/SocialAuth/SocialAuthentication";
 
 interface LoginFormInputs {
   email: string;
@@ -125,13 +126,22 @@ const Page = () => {
             </motion.button>
           </form>
 
-          <div className="text-center mt-6">
-            <p className="text-gray-400">
+          <div className="text-center mt-4">
+            <p className="text-gray-300">
               Don’t have an account?{" "}
-              <Link href="/signUp" className="text-red-500 hover:underline">
+              <Link
+                href="/signUp"
+                className="text-red-500 hover:underline text-lg"
+              >
                 Sign Up
               </Link>
             </p>
+          </div>
+          <div>
+            <h4 className="text-xl text-red-600 font-bold text-center mt-2">
+              &&
+            </h4>
+            <SocialAuthentication />
           </div>
         </div>
       </motion.div>
