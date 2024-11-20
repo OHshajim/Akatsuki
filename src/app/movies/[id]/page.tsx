@@ -8,35 +8,45 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Thumbs } from "swiper/modules";
 import { BiHeart } from "react-icons/bi";
 import { HiHeart } from "react-icons/hi2";
-import { MovieData, MovieSubscription } from "@/Services/AllDataLoad/DataLoad";
+import {
+  MovieData,
+  MovieSubscription,
+  WishlistCheck,
+  WishlistToggle,
+} from "@/Services/AllDataLoad/DataLoad";
 import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 
 const Page = ({ params }) => {
   const { data: session } = useSession();
+  const email = session?.user?.email ? session.user.email : null;
   const route = useRouter();
   const [movie, setMovie] = useState(null);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const [isSubscribed, setSubscribed] = useState(false);
+  const [isLiked, setLiked] = useState(false);
 
   const dataLoad = async () => {
-    const data = await MovieData(params.id);
-    setMovie(data);
+    const data = await MovieData(email, params.id);
+    console.log(data);
+
+    setLiked(data.isLiked);
+    setMovie(data.data);
   };
+
   useEffect(() => {
     dataLoad();
-  }, [params]);
+  }, [params, session]);
 
   const handleCheckSubscription = async () => {
     try {
-      if (!session?.user?.email) {
+      if (!session?.user) {
         Swal.fire({
           title: "Please Login !!!",
           text: "Are want to login Now?",
           icon: "warning",
           showCancelButton: true,
-          confirmButtonColor: "#3085d6",
+          confirmButtonColor: "#6fc9cd",
           cancelButtonColor: "#d33",
           confirmButtonText: "Yes",
         }).then((result) => {
@@ -44,9 +54,9 @@ const Page = ({ params }) => {
             route.push("/login");
           }
         });
+        return null;
       }
       const res = await MovieSubscription(session.user.email);
-      setSubscribed(res.isSubscribed);
       if (res.isSubscribed === true) {
         Swal.fire({
           title: "This content will added soon",
@@ -54,13 +64,13 @@ const Page = ({ params }) => {
           width: 600,
           padding: "3em",
           color: "#716add",
-          background: "#fff url(/images/trees.png)",
+          background: "#fff ",
           backdrop: `
-            rgba(0,0,123,0.4)
-            url("/images/nyan-cat.gif")
-            left top
-            no-repeat
-          `,
+          rgba(0,0,123,0.4)
+          url("https://i.ibb.co.com/JzXgd9F/nyan-cat.gif")
+          left top
+          no-repeat
+        `,
         });
       } else if (res.message === "Subscription has expired.") {
         Swal.fire({
@@ -84,8 +94,56 @@ const Page = ({ params }) => {
       });
     }
   };
-  const handleWishlist = (id) => {
 
+  const handleWishlist = async () => {
+    if (!session?.user) {
+      Swal.fire({
+        title: "Please Login !!!",
+        text: "Are want to login Now?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#6fc9cd",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          route.push("/login");
+        }
+      });
+      return null;
+    }
+    const res = await WishlistToggle(session.user.email, params.id);
+    if (res.status === 201) {
+      setLiked(true);
+      Swal.fire({
+        title: "Successfully Added",
+        text: `${movie?.title || "Successfully this movie"} added 🥳🥳🥳!!!`,
+        width: 600,
+        padding: "3em",
+        color: "#716add",
+        background: "#fff ",
+        backdrop: `
+          rgba(0,0,123,0.4)
+          url("https://i.ibb.co.com/JzXgd9F/nyan-cat.gif")
+          left top
+          no-repeat
+        `,
+      });
+    } else if (res.status === 200) {
+      setLiked(false);
+      Swal.fire({
+        title: `Successfully Removed !!!`,
+        text: `${movie?.title || "Successfully this movie"} was removed !!!`,
+        icon: "success",
+        confirmButtonColor: "#6fc9cd",
+      });
+    } else {
+      Swal.fire({
+        title: "Error",
+        text: "Something gone wrong!!! Please try again!",
+        icon: "error",
+      });
+    }
   };
   return (
     <div className="card lg:card-side p-10 bg-white text-black rounded-none gap-10 container mx-auto">
@@ -169,21 +227,21 @@ const Page = ({ params }) => {
                 >
                   Watch Now
                 </button>
-                {/* {liked === true ? (
+                {isLiked ? (
                   <button
-                    onClick={handleLikeRemove}
+                    onClick={handleWishlist}
                     className="btn bg-[#6fc9cd] text-white hover:bg-slate-400"
                   >
                     <HiHeart />
                   </button>
-                ) : ( */}
-                <button
-                  onClick={() => handleWishlist(movie._id)}
-                  className="btn bg-[#6fc9cd] text-white hover:bg-slate-400"
-                >
-                  <BiHeart />
-                </button>
-                {/* )} */}
+                ) : (
+                  <button
+                    onClick={handleWishlist}
+                    className="btn bg-[#6fc9cd] text-white hover:bg-slate-400"
+                  >
+                    <BiHeart />
+                  </button>
+                )}
               </div>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import axios from "axios";
+import Email from "next-auth/providers/email";
 
 export const AllBlogs = async () => {
   try {
@@ -19,15 +20,21 @@ export const AllMovies = async () => {
     return [];
   }
 };
-export const MovieData = async (id: string) => {
+export const MovieData = async (email, id: string) => {
   try {
+    if (!email) {
+      const response = await axios.get(
+        `http://localhost:3000/api/Movies/Movie/${id}`
+      );
+      return response.data;
+    }
     const response = await axios.get(
-      `http://localhost:3000/api/Movies/Movie/${id}`
+      `http://localhost:3000/api/Movies/Movie/${id}?email=${email}`
     );
-    return response.data.data;
+    return response.data;
   } catch (error) {
     console.error(error);
-    return [];
+    return null;
   }
 };
 // subscription check for movies
@@ -39,7 +46,30 @@ export const MovieSubscription = async (email) => {
     return response.data;
   } catch (error) {
     console.error(error);
-    return [];
+    return null;
+  }
+};
+export const WishlistToggle = async (email, id) => {
+  try {
+    const response = await axios.post(
+      `http://localhost:3000/api/Movies/WishlistToggle/${email}`,
+      { movieId: id }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+export const WishlistCheck = async (email) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:3000/api/Movies/WishlistToggle/${email}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
   }
 };
 
