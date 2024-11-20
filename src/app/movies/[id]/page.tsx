@@ -11,7 +11,6 @@ import { HiHeart } from "react-icons/hi2";
 import {
   MovieData,
   MovieSubscription,
-  WishlistCheck,
   WishlistToggle,
 } from "@/Services/AllDataLoad/DataLoad";
 import { useSession } from "next-auth/react";
@@ -28,8 +27,6 @@ const Page = ({ params }) => {
 
   const dataLoad = async () => {
     const data = await MovieData(email, params.id);
-    console.log(data);
-
     setLiked(data.isLiked);
     setMovie(data.data);
   };

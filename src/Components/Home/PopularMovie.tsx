@@ -23,8 +23,8 @@ const PopularMovie = () => {
   }, []);
   return (
     <div className="bg-[#000000f9]">
-      <div className="container mx-auto py-20 ">
-        <div className="mb-10 uppercase font-bold text-white">
+      <div className="container mx-auto py-20 text-white">
+        <div className="mb-10 uppercase font-bold ">
           <p className="text-base  px-2 py-1 mb-2 bebas-neue tracking-[1px] font-medium">
             New collections
           </p>

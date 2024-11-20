@@ -1,57 +1,86 @@
 "use client";
-import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import BlogBanner from "../../../Components/Blog/BlogBanner";
 import { HiHeart } from "react-icons/hi2";
 import { BiHeart } from "react-icons/bi";
+import { useSession } from "next-auth/react";
+import { BlogData, LikeToggle } from "@/Services/AllDataLoad/DataLoad";
+import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 const SingleBlog = ({ params }) => {
+  const { data: session } = useSession();
+  const email = session?.user?.email ? session.user.email : null;
+  const route = useRouter();
   const [Blog, setBlog] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [liked, setLiked] = useState(false);
 
   const dataLoad = async () => {
-    const data = await axios.get(
-      `http://localhost:3000/api/Blog/getSingleBlog/${params.id}`
-    );
-    if (data.data.status) {
-      setLoading(false);
-      setBlog(data.data.data);
-    }
+    const data = await BlogData(email, params.id);
+    setLiked(data.isLiked);
+    setBlog(data.data);
   };
 
   useEffect(() => {
     dataLoad();
-  }, []);
-
+  }, [params, session]);
 
   const handleLike = async () => {
-    const data = await axios.patch(
-      `http://localhost:3000/api/Blog/UpdateLike/${params.id}`
-    );
-    if (data.data.status) {
-      setLiked(true);
-      setBlog(data.data.data);
-      dataLoad();
+    if (!session?.user) {
+      Swal.fire({
+        title: "Please Login !!!",
+        text: "Are want to login Now?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#6fc9cd",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          route.push("/login");
+        }
+      });
+      return null;
     }
-  };
-
-  const handleLikeRemove = async () => {
-    const data = await axios.patch(
-      `http://localhost:3000/api/Blog/UpdateLikeRemove/${params.id}`
-    );
-    if (data.data.status) {
+    const res = await LikeToggle(session.user.email, params.id);
+    if (res.status === 201) {
+      setLiked(true);
+      Swal.fire({
+        title: "Successfully Added",
+        text: `${Blog?.title || "Successfully this Blog"} added 🥳🥳🥳!!!`,
+        width: 600,
+        padding: "3em",
+        color: "#716add",
+        background: "#fff ",
+        backdrop: `
+          rgba(0,0,123,0.4)
+          url("https://i.ibb.co.com/JzXgd9F/nyan-cat.gif")
+          left top
+          no-repeat
+        `,
+      });
+    } else if (res.status === 200) {
       setLiked(false);
-      setBlog(data.data.data);
-      dataLoad();
+      Swal.fire({
+        title: `Successfully Removed !!!`,
+        text: `${Blog?.title || "Successfully this Blog"} was removed !!!`,
+        icon: "success",
+        confirmButtonColor: "#6fc9cd",
+      });
+    } else {
+      Swal.fire({
+        title: "Error",
+        text: "Something gone wrong!!! Please try again!",
+        icon: "error",
+      });
     }
   };
   return (
     <div>
       <BlogBanner blog={Blog} />
       <div className=" p-10 bg-white text-black gap-10 container mx-auto">
-        {loading || (
+        {Blog && (
           <>
             <div className="">
               <div>
@@ -94,9 +123,9 @@ const SingleBlog = ({ params }) => {
                     <h3 className="mt-2 font-bold text-xl">
                       Publisher: {Blog?.author}
                     </h3>
-                    {liked === true ? (
+                    {liked ? (
                       <button
-                        onClick={handleLikeRemove}
+                        onClick={handleLike}
                         className="btn bg-[#6fc9cd] text-white hover:bg-slate-400"
                       >
                         <HiHeart />
