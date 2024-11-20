@@ -12,7 +12,9 @@ const RecentPost = () => {
 
   const dataLoad = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/Blog/RecentBlogs");
+      const response = await axios.get(
+        "http://localhost:3000/api/Blog/RecentBlogs"
+      );
       if (response.data.status) {
         setBlogs(response.data.data);
         setLoading(false);
@@ -52,7 +54,7 @@ const RecentPost = () => {
                   Recent Posts
                 </h3>
                 <div className="flex w-full justify-evenly py-5 gap-10 flex-grow">
-                  <Link href={`/blog/${blogs?.[0]?._id}`}>
+                  <Link href={`/blog/${blogs?.[0]._id}`}>
                     <motion.div
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
@@ -62,8 +64,8 @@ const RecentPost = () => {
                         <Image
                           width={550}
                           height={600}
-                          src={blogs[0]?.images.mainImage}
-                          alt="blog"
+                          src={blogs[0].images.mainImage}
+                          alt={blogs[0].title}
                           className="w-full transition-transform duration-300 group-hover:scale-110"
                         />
                       </figure>
@@ -92,7 +94,7 @@ const RecentPost = () => {
                   </Link>
                   <div className="flex flex-col gap-5 w-1/2">
                     {blogs.slice(1, 4).map((blog) => (
-                      <Link key={blog._id} href={`/blog/${blog?._id}`}>
+                      <Link key={blog._id} href={`/blog/${blog._id}`}>
                         <motion.div
                           whileHover={{ scale: 1.03 }}
                           className="flex flex-row my-2 card gap-5 rounded-none text-white group"
@@ -102,7 +104,7 @@ const RecentPost = () => {
                               width={300}
                               height={500}
                               src={blog.images.mainImage}
-                              alt="blog"
+                              alt={blog.title}
                               className="transition-transform duration-300 group-hover:scale-110"
                             />
                           </figure>

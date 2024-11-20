@@ -3,7 +3,7 @@ import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-const BlogCard = ({ blog }: { blog: any }) => {
+const BlogCard = ({ blog }) => {
   return (
     <motion.div
       className="card rounded-none"

@@ -25,7 +25,7 @@ const Page = ({ params }) => {
           width={400}
           height={400}
           src={book.imageUrl}
-          alt="Album"
+          alt={book.title}
           className="w-full "
         />
       </figure>

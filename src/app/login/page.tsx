@@ -14,7 +14,7 @@ interface LoginFormInputs {
   password: string;
 }
 
-const Page = () => {
+const Login = () => {
   const router = useRouter();
   const {
     register,
@@ -49,6 +49,7 @@ const Page = () => {
         src="https://i.ibb.co.com/wztQQv9/Authentication-BG.gif" // Replace with your own Akatsuki image
         alt="Akatsuki background"
         className="fixed top-0 w-full h-full object-cover opacity-30"
+        priority
       />
       <motion.div
         initial={{ opacity: 0, scale: 10 }}
@@ -128,11 +129,12 @@ const Page = () => {
 
           <div className="text-center mt-4">
             <p className="text-gray-300">
-              Don’t have an account?{" "}
+              Don’t have an account?
               <Link
                 href="/signUp"
                 className="text-red-500 hover:underline text-lg"
               >
+                {" "}
                 Sign Up
               </Link>
             </p>
@@ -149,4 +151,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Login;

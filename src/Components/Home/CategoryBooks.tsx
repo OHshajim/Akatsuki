@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BsArrowRight } from "react-icons/bs";
 
-const BestSelling = () => {
+const CategoryBooks = () => {
   const data = [
     {
       type: "Action",
@@ -61,4 +61,4 @@ const BestSelling = () => {
   );
 };
 
-export default BestSelling;
+export default CategoryBooks;

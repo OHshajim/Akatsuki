@@ -15,13 +15,27 @@ import {
 } from "@/Services/AllDataLoad/DataLoad";
 import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
-const Page = ({ params }) => {
+interface Movie {
+  id: string;
+  title: string;
+  description: string;
+  genres: string[];
+  director: string;
+  duration: string;
+  publisher: string;
+  imageUrl: string[];
+}
+
+const Page = () => {
   const { data: session } = useSession();
-  const email = session?.user?.email ? session.user.email : null;
+  const email = session?.user?.email || null;
   const route = useRouter();
-  const [movie, setMovie] = useState(null);
+
+  const params = useParams();
+  console.log(params);
+  const [movie, setMovie] = useState<Movie | null>(null);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isLiked, setLiked] = useState(false);
 
@@ -32,8 +46,10 @@ const Page = ({ params }) => {
   };
 
   useEffect(() => {
-    dataLoad();
-  }, [params, session]);
+    if (params?.id) {
+      dataLoad();
+    }
+  }, [params?.id, session]);
 
   const handleCheckSubscription = async () => {
     try {
@@ -144,7 +160,9 @@ const Page = ({ params }) => {
   };
   return (
     <div className="card lg:card-side p-10 bg-white text-black rounded-none gap-10 container mx-auto">
-      {movie && (
+      {!movie ? (
+        "loading..."
+      ) : (
         <>
           <figure className="flex flex-col lg:w-1/3 h-full">
             <Swiper
@@ -170,19 +188,19 @@ const Page = ({ params }) => {
               onSwiper={setThumbsSwiper}
               loop={true}
               spaceBetween={30}
-              slidesPerView={movie?.imageUrl?.length}
+              slidesPerView={movie?.imageUrl?.length || 1}
               freeMode={true}
               watchSlidesProgress={true}
               modules={[FreeMode, Thumbs]}
               className="mySwiper"
             >
-              {movie?.imageUrl.map((img) => (
+              {movie?.imageUrl?.map((img: string) => (
                 <SwiperSlide key={img}>
                   <Image
                     width={400}
                     height={500}
                     src={img}
-                    alt="Album"
+                    alt={movie.title}
                     className="mt-5"
                   />
                 </SwiperSlide>

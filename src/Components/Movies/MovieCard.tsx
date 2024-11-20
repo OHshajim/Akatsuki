@@ -14,7 +14,6 @@ const MovieCard = ({ movie }: { movie: any }) => {
     >
       <Link href={`movies/${movie._id}`} className="w-full">
         <figure className="relative group">
-          {/* Animate only the image */}
           <motion.div
             className="w-full"
             whileHover={{ scale: 1.1 }} // Image scaling on hover
@@ -24,14 +23,14 @@ const MovieCard = ({ movie }: { movie: any }) => {
               width={600}
               height={800}
               src={movie?.imageUrl[0]}
-              alt={movie.title}
+              alt={movie?.title}
               className="w-full transition-transform duration-300 ease-in-out" // Smooth transition for the image
             />
           </motion.div>
         </figure>
         <motion.div
           className="card-body py-2 px-1"
-          whileHover={{ backgroundColor: "#f8f8f8" }}
+          whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.3 }}
         >
           <h2 className="card-title bebas-neue tracking-[2px] font-medium">
@@ -39,7 +38,9 @@ const MovieCard = ({ movie }: { movie: any }) => {
           </h2>
           <div className="flex justify-between">
             <h3 className="font-semibold text-zinc-400">{movie.genres[0]}</h3>
-            <Rating style={{ maxWidth: 110 }} value={movie.rating} readOnly />
+            <div>
+              <Rating style={{ maxWidth: 110 }} value={movie.rating} readOnly />
+            </div>
           </div>
         </motion.div>
       </Link>

@@ -3,19 +3,16 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 import "swiper/css";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import MovieCard from "../Movies/MovieCard";
+import { PopularMovies } from "@/Services/AllDataLoad/DataLoad";
 
 const PopularMovie = () => {
   const [movies, setMovies] = useState([]);
-  const [selectedBook, setSelectedBook] = useState(null);
 
   const dataLoad = async () => {
-    const data = await axios.get(
-      "http://localhost:3000/api/Movies/PopularMovies"
-    );
-    if (data.data.status) {
-      setMovies(data.data.data);
+    const data = await PopularMovies();
+    if (data.length > 0) {
+      setMovies(data);
     }
   };
   useEffect(() => {
@@ -43,7 +40,7 @@ const PopularMovie = () => {
           {movies &&
             movies.map((popular) => (
               <SwiperSlide key={popular._id}>
-                <MovieCard movie={popular}/>
+                <MovieCard movie={popular} />
               </SwiperSlide>
             ))}
         </Swiper>

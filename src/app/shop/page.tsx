@@ -9,7 +9,6 @@ const Page = () => {
   const [books, setBooks] = useState([]);
   const [selectedBook, setSelectedBook] = useState({});
 
-  // Fetch Books from API
   const fetchBooks = async () => {
     try {
       const response = await axios.get("http://localhost:3000/api/Shop");
@@ -31,15 +30,15 @@ const Page = () => {
       <SectionBanner subTitle="Home > Shop" title="SHOP" />
 
       {/* Books Grid */}
-      <div className="container mx-auto py-20 grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-10">
-        {books.map((book) => (
-          <Card
-            key={book._id}
-            item={book}
-            setViewItem={setSelectedBook}
-          />
-        ))}
-      </div>
+      {books.length < 0 ? (
+        "Loading"
+      ) : (
+        <div className="container mx-auto py-20 grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-10">
+          {books.map((book) => (
+            <Card key={book._id} item={book} setViewItem={setSelectedBook} />
+          ))}
+        </div>
+      )}
 
       {/* Quick View Modal */}
       {selectedBook && (

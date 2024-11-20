@@ -65,7 +65,6 @@ export const MovieData = async (email, id: string) => {
     return null;
   }
 };
-// subscription check for movies
 export const MovieSubscription = async (email) => {
   try {
     const response = await axios.get(
@@ -87,5 +86,18 @@ export const WishlistToggle = async (email, id) => {
   } catch (error) {
     console.error(error);
     return null;
+  }
+};
+
+// Popular Movies
+export const PopularMovies = async () => {
+  try {
+    const response = await axios.get(
+      "http://localhost:3000/api/Movies/PopularMovies"
+    );
+    return response.data.data;
+  } catch (error) {
+    console.error(error);
+    return [];
   }
 };

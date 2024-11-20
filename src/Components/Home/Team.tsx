@@ -52,7 +52,7 @@ const Team = () => {
                 <Image
                   width={600}
                   height={800}
-                  src={member.image}
+                  src={member?.image}
                   alt="member"
                   className="w-full h-auto object-cover transform group-hover:scale-110 group-hover:rotate-2 transition-transform duration-500"
                 />

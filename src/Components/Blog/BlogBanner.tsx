@@ -11,7 +11,6 @@ const BlogBanner = ({ blog }) => {
           src={blog?.images?.cover}
           alt={`${blog?.title} cover photo`}
           className="w-full h-[90vh] fixe"
-          priority
         />
         <div className="absolute z-10 top-0 w-full h-full bg-black/50 ">
           <div className="flex justify-center items-center w-full h-full">

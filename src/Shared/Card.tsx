@@ -38,8 +38,8 @@ const Card = ({ item, setViewItem }: CardProps) => {
           <Image
             width={600}
             height={800}
-            src={item.imageUrl}
-            alt={item.title}
+            src={item?.imageUrl}
+            alt={item?.title}
             className="w-full group "
           />
         </Link>

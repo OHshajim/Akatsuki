@@ -46,6 +46,7 @@ const SingleBlog = ({ params }) => {
     const res = await LikeToggle(session.user.email, params.id);
     if (res.status === 201) {
       setLiked(true);
+      Blog.likes = Blog.likes + 1;
       Swal.fire({
         title: "Successfully Added",
         text: `${Blog?.title || "Successfully this Blog"} added 🥳🥳🥳!!!`,
@@ -62,6 +63,7 @@ const SingleBlog = ({ params }) => {
       });
     } else if (res.status === 200) {
       setLiked(false);
+      Blog.likes = Blog.likes - 1;
       Swal.fire({
         title: `Successfully Removed !!!`,
         text: `${Blog?.title || "Successfully this Blog"} was removed !!!`,
@@ -76,6 +78,10 @@ const SingleBlog = ({ params }) => {
       });
     }
   };
+
+  if (!Blog) {
+    return <p> Loading</p>;
+  }
   return (
     <div>
       <BlogBanner blog={Blog} />
@@ -96,7 +102,7 @@ const SingleBlog = ({ params }) => {
                       width={500}
                       height={500}
                       src={img}
-                      alt="Images"
+                      alt={Blog.title}
                       className="w-full "
                     />
                   ))}
