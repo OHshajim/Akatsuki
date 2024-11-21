@@ -17,7 +17,9 @@
 .font-primary {
   font-family: "Bebas Neue", sans-serif;
 }
-
+.btn {
+  font-family: "Bebas Neue", sans-serif;
+}
 
 .anime-header {
   @apply font-primary tracking-widest;

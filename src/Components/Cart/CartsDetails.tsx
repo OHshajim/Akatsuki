@@ -24,11 +24,11 @@ const CartsDetails = ({ item, handleQuantityChange }) => {
             onChange={(e) =>
               handleQuantityChange(item._id, parseInt(e.target.value))
             }
-            className="w-16 border border-gray-300 rounded-md text-center"
+            className="w-16 border border-gray-300 rounded-none text-center py-3"
           />
         </td>
         <td className="py-4 px-6">
-          ${item.quantity ? item.price * item.quantity : item.price}
+          ${item.quantity ? (item.price * item.quantity).toFixed(2) : item.price}
         </td>
         <td className="py-4 px-6">
           <button className="text-rose-500 hover:text-red-700">&times;</button>
