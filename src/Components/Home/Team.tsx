@@ -58,7 +58,7 @@ const Team = () => {
                 />
               </figure>
               <div className="card-body flex-row items-center justify-between  py-4 px-2 opacity-90 group-hover:opacity-100 transition-opacity duration-300">
-                <h2 className="card-title group-hover:text-[#E3962B] transition-colors duration-300 bebas-neue tracking-[2px] text-lg md:text-xl lg:text-2xl">
+                <h2 className="card-title group-hover:text-[#E3962B] transition-colors duration-300 font-primary tracking-[2px] text-lg md:text-xl lg:text-2xl">
                   {member.name}
                 </h2>
                 <h3 className="font-semibold text-zinc-500 opacity-0 group-hover:text-zinc-700 group-hover:opacity-100 group-hover:translate-x-4 transition-all duration-500 pr-2">
@@ -72,14 +72,14 @@ const Team = () => {
       <div className="mt-10 flex overflow-hidden space-x-0 text-nowrap text-5xl xl:text-9xl font-bold uppercase pb-5 text-[#cdcdcd66]">
         <div className="flex animate-loop-scroll gap-2 ">
           {team.map((member) => (
-            <p key={member.id} className="bebas-neue">
+            <p key={member.id} className="font-primary">
               / {member.name} - {member.role} /
             </p>
           ))}
         </div>
         <div className="flex animate-loop-scroll gap-2 " aria-hidden="true">
           {team.map((member) => (
-            <p key={member.id} className="bebas-neue">
+            <p key={member.id} className="font-primary">
               / {member.name} - {member.role} /
             </p>
           ))}

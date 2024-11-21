@@ -102,8 +102,8 @@ const Page = ({ params }: { params: { id: string } }) => {
   }
 
   return (
-    <div className="container mx-auto my-20">
-      <div className="card lg:card-side p-10 bg-white gap-5 ">
+    <div className="container mx-auto my-20 sm:p-10">
+      <div className="card lg:card-side  bg-white gap-5 ">
         <figure className="overflow-hidden transform transition-transform duration-300 hover:scale-105">
           <Image
             width={1000}
@@ -115,19 +115,19 @@ const Page = ({ params }: { params: { id: string } }) => {
           />
         </figure>
         <div className="card-body lg:w-full">
-          <p className="font-medium my-2 tracking-wider font-primary">
+          <p className="font-medium my-2 tracking-wider font-primary sm:text-base text-sm">
             HOME / SHOP /{book.title}
           </p>
 
-          <h2 className="card-title text-3xl font-bold font-primary tracking-[3.5px]">{book.title}</h2>
+          <h2 className="card-title md:text-3xl sm:text-2x text-xl font-bold font-primary md:tracking-[3.5px] tracking-wider">{book.title}</h2>
           <p className="mb-4 font-medium">{book.category}</p>
           <div className="flex justify-between ">
-            <p className="font-bold text-xl">
+            <p className="font-bold sm:text-xl">
               Price : <span className="text-[#6fc9cd]">{book.price}$</span>
             </p>
             <Rating style={{ maxWidth: 110 }} value={book.rating} readOnly />
           </div>
-          <div className="space-y-3">
+          <div className="space-y-3 sm:text-base text-sm">
             <p className=" font-medium text-slate-600">
               <span className="text-black font-primary tracking-wider">
                 Type :
@@ -183,7 +183,7 @@ const Page = ({ params }: { params: { id: string } }) => {
           <div className="card-actions mt-4 justify-end ">
             <button
               onClick={handleCart}
-              className="btn text-white bg-[#6fc9cd] hover:bg-[#5db9bc]  rounded-none transform transition-transform duration-300 hover:scale-105 px-10 font-primary tracking-widest text-lg font-medium"
+              className="btn text-white bg-[#6fc9cd] hover:bg-[#5db9bc]  rounded-none transform transition-transform duration-300 hover:scale-105 px-10 font-primary tracking-widest sm:text-lg font-medium"
             >
               {isAdded ? (
                 <>
@@ -198,7 +198,7 @@ const Page = ({ params }: { params: { id: string } }) => {
           </div>
         </div>
       </div>
-      <p className="text-gray-700 tracking-widest my-2 max-h-fit">
+      <p className="text-gray-700 tracking-widest my-5 p-5 max-h-fit sm:text-base text-sm">
         <span className="text-black font-semibold text-xl font-primary tracking-[2.4px]">
           Description
         </span>

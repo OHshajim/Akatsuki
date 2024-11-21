@@ -119,7 +119,7 @@ const SingleBlog = ({ params }) => {
             <p className="flex flex-wrap font-medium gap-4 lg:text-lg sm:text-base text-sm">
               {Blog?.genres?.map((tag) => (
                 <span
-                  className="border-2 bebas-neue sm:px-3 sm:py-1 p-1 hover:text-[#6fc9cd] hover:border-[#6fc9cd] delay-75 duration-200"
+                  className="border-2 font-primary sm:px-3 sm:py-1 p-1 hover:text-[#6fc9cd] hover:border-[#6fc9cd] delay-75 duration-200"
                   key={tag}
                 >
                   {tag}{" "}

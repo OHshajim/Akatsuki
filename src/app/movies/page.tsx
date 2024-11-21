@@ -12,7 +12,7 @@ const Page = async () => {
       <div className="bg-white">
         <SectionBanner subTitle={"Home > Movies"} title={"Movies"} />
         {data.length > 0 && (
-          <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-10 container mx-auto py-20">
+          <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-10 sm:px-0 px-5 container mx-auto py-20">
             {data?.map((movie) => (
               <MovieCard key={movie._id} movie={movie} />
             ))}

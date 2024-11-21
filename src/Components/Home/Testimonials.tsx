@@ -29,19 +29,24 @@ const Testimonials = () => {
       <div className="max-w-7xl mx-auto px-4">
         <Swiper
           spaceBetween={50}
-          slidesPerView={3}
+          slidesPerView={1.5}
           loop={true}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          autoplay={{ delay: 2000, disableOnInteraction: false }}
           modules={[Autoplay]}
+          breakpoints={{
+            640: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
+            1024: { slidesPerView: 4 },
+          }}
         >
           {testimonials.map((testimonial, index) => (
             <SwiperSlide key={index}>
               <div className="flex justify-center">
                 <div className=" bg-zinc-100 p-8 rounded-lg shadow-lg text-center transition-transform transform hover:scale-105 duration-500">
-                  <p className="text-xl font-semibold text-black italic">
+                  <p className="sm:text-xl font-semibold text-black italic">
                     {`"${testimonial.text}"`}
                   </p>
-                  <h4 className="mt-4 text-2xl text-yellow-500 font-bold">
+                  <h4 className="mt-4 sm:text-2xl text-yellow-500 font-bold">
                     {testimonial.name}
                   </h4>
                 </div>

@@ -23,19 +23,19 @@ const BestSoldBooks = () => {
     dataLoad();
   }, []);
   return (
-    <div className="container mx-auto py-20">
+    <div className="container mx-auto py-20 px-5">
       <SectionTitle
         subHeading={"Top Anime"}
         heading={"Popular anime this week"}
       />
-      <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-10">
+      <div className="grid lg:grid-cols-4 sm:grid-cols-2 gap-10">
         {books.map((book) => (
           <Card key={book._id} item={book} setViewItem={setSelectedBook} />
         ))}
       </div>
       <div className="flex justify-center mt-5">
         <Link href={"/shop"}>
-          <button className="btn bg-[#ac2026] border-none rounded-none text-white font-semibold uppercase hover:bg-zinc-600 hover:scale-110 mt-5 px-10">
+          <button className="btn bg-[#ac2026] border-none rounded-none text-white font-semibold font-primary hover:bg-zinc-600 hover:scale-110 mt-5 px-10 tracking-[3px] text-lg">
             View Details <BsArrowRight className="text-xl" />
           </button>
         </Link>

@@ -162,7 +162,7 @@ const Page = () => {
     return <p>Loading...</p>;
   }
   return (
-    <div className="container mx-auto my-20">
+    <div className="container mx-auto my-20 p-10 ">
       <div className="card lg:card-side bg-white text-black rounded-none gap-10 ">
         <figure className="flex flex-col lg:w-1/3 h-full">
           <Swiper
@@ -210,21 +210,21 @@ const Page = () => {
 
         <div className="card-body p-0 lg:w-1/2">
           <div>
-            <p className="font-medium my-2 tracking-wider font-primary">
+            <p className="font-medium my-2 tracking-wider font-primary sm:text-base text-sm">
               HOME / Movies /{movie.title}
             </p>
-            <h2 className=" card-title text-3xl font-bold font-primary tracking-[3.5px]">
+            <h2 className=" card-title md:text-3xl sm:text-2x text-xl font-bold font-primary md:tracking-[3.5px] tracking-wider">
               {movie.title}
             </h2>
-            <div className="flex justify-between ">
+            <div className="flex justify-between sm:text-base text-sm">
               <p className="mb-4 font-medium">{movie.category}</p>
               <Rating style={{ maxWidth: 110 }} value={movie.rating} readOnly />
             </div>
 
-            <p className="mt-2 font-medium">
+            <p className="mt-2 font-medium sm:text-base text-sm">
               Type: <span className="text-zinc-500">Anime - Movie</span>
             </p>
-            <p className="mt-2 font-medium">
+            <p className="mt-2 font-medium sm:text-base text-sm">
               Tags :{" "}
               {movie?.genres?.map((tag) => (
                 <span className="text-zinc-500" key={tag}>
@@ -232,25 +232,25 @@ const Page = () => {
                 </span>
               ))}
             </p>
-            <p className="mt-2 font-medium">
+            <p className="mt-2 font-medium sm:text-base text-sm">
               Director: <span className="text-zinc-500">{movie.director}</span>
             </p>
-            <p className="mt-2 font-medium">
+            <p className="mt-2 font-medium sm:text-base text-sm">
               Publisher :{" "}
               <span className="text-zinc-500">{movie.publisher}</span>
             </p>
-            <p className="mt-2 font-medium">
+            <p className="mt-2 font-medium sm:text-base text-sm">
               Published Year :{" "}
               <span className="text-zinc-500">{movie.yearPublished}</span>
             </p>
-            <p className="mt-2 font-medium">
+            <p className="mt-2 font-medium sm:text-base text-sm">
               Language :
               <span className="text-zinc-500">{movie.language}</span>
             </p>
-            <p className="mt-2 font-medium">
+            <p className="mt-2 font-medium sm:text-base text-sm">
               Duration: <span className="text-zinc-500">{movie.duration} </span>
             </p>
-            <p className="mt-2 font-medium">
+            <p className="mt-2 font-medium sm:text-base text-sm">
               Views :{" "}
               <span className="text-zinc-500">{movie.totalViews/1000}k </span>
             </p>
@@ -258,18 +258,18 @@ const Page = () => {
             <div className="card-actions justify-end">
               <button
                 onClick={handleCheckSubscription}
-                className="btn bg-[#6fc9cd] text-white hover:bg-slate-400 font-primary tracking-widest font-normal text-lg px-5"
+                className="btn bg-[#6fc9cd] text-white hover:bg-slate-400 font-primary tracking-widest font-normal sm:text-lg px-5"
               >
                 Watch Now
               </button>
               <button
                 onClick={handleWishlist}
-                className="btn bg-[#6fc9cd] text-xl text-white hover:bg-slate-400"
+                className="btn bg-[#6fc9cd] sm:text-xl text-white hover:bg-slate-400"
               >
                 {isLiked ? <HiHeart /> : <BiHeart />}
               </button>
             </div>
-            <p className="text-gray-700 tracking-widest my-5 max-h-fit">
+            <p className="text-gray-700 tracking-widest my-5 max-h-fit sm:text-base text-sm">
               <span className="text-black font-semibold text-xl font-primary tracking-[2.4px]">
                 Description
               </span>

@@ -23,7 +23,7 @@ const Footer = () => {
           </aside>
           <aside className="flex justify-between w-full flex-col md:flex-row gap-5 font-medium">
             <nav>
-              <h3 className="text-xl text-white  border-b pb-1 uppercase bebas-neue tracking-[2px]">
+              <h3 className="text-xl text-white  border-b pb-1 uppercase font-primary tracking-[2px]">
                 Social
               </h3>
               <div className="flex  gap-5 text-3xl  items-center justify-center mt-3">
@@ -48,7 +48,7 @@ const Footer = () => {
               </div>
             </nav>
             <nav>
-              <h3 className="text-xl  border-b pb-1 uppercase bebas-neue tracking-[2px] text-white">
+              <h3 className="text-xl  border-b pb-1 uppercase font-primary tracking-[2px] text-white">
                 Menu
               </h3>
               <div className="flex flex-col my-4 text-base ">
@@ -79,7 +79,7 @@ const Footer = () => {
               </div>
             </nav>
             <nav>
-              <h3 className="text-xl border-b pb-1 uppercase bebas-neue tracking-[2px] text-white">
+              <h3 className="text-xl border-b pb-1 uppercase font-primary tracking-[2px] text-white">
                 Say Hello
               </h3>
               <div className="my-4 space-y-2 flex flex-col items-start gap-2">

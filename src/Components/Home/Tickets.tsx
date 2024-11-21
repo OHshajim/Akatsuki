@@ -23,14 +23,14 @@ const Tickets = () => {
   return (
     <div className="bg-black py-20">
       <div className="flex justify-center items-center flex-col py-10 uppercase font-bold text-white">
-        <p className="text-base px-2 py-1 mb-2 bebas-neue tracking-[1px] font-semibold">
+        <p className="text-base px-2 py-1 mb-2 font-primary tracking-[1px] font-semibold">
           prices
         </p>
-        <h3 className="md:text-3xl sm:text-2xl text-xl bebas-neue tracking-[2px]">
+        <h3 className="md:text-3xl sm:text-2xl text-xl font-primary tracking-[2px]">
           Our tickets
         </h3>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 container mx-auto gap-10">
+      <div className="grid  lg:grid-cols-3 container mx-auto gap-10 px-5">
         {packages.map((pack) => (
           <div
             key={pack.id}

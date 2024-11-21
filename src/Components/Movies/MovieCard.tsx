@@ -20,8 +20,8 @@ const MovieCard = ({ movie }: { movie: any }) => {
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             <Image
-              width={600}
-              height={800}
+              width={1000}
+              height={1400}
               src={movie?.imageUrl[0]}
               alt={movie?.title}
               className="w-full transition-transform duration-300 ease-in-out" // Smooth transition for the image
@@ -33,7 +33,7 @@ const MovieCard = ({ movie }: { movie: any }) => {
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.3 }}
         >
-          <h2 className="card-title bebas-neue tracking-[2px] font-medium">
+          <h2 className="card-title font-primary tracking-[2px] font-medium">
             {movie.title}
           </h2>
           <div className="flex justify-between">

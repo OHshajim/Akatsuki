@@ -23,22 +23,21 @@ const Page = () => {
   useEffect(() => {
     fetchBooks();
   }, []);
-
+  if (books.length < 1) {
+    return <p>Loading...</p>;
+  }
   return (
-    <div className="bg-white">
+    <div>
       {/* Banner Section */}
       <SectionBanner subTitle="Home > Shop" title="SHOP" />
 
       {/* Books Grid */}
-      {books.length < 0 ? (
-        "Loading"
-      ) : (
-        <div className="container mx-auto py-20 grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-10">
-          {books.map((book) => (
-            <Card key={book._id} item={book} setViewItem={setSelectedBook} />
-          ))}
-        </div>
-      )}
+
+      <div className="container mx-auto py-20 grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-10 sm:px-0 px-5">
+        {books.map((book) => (
+          <Card key={book._id} item={book} setViewItem={setSelectedBook} />
+        ))}
+      </div>
 
       {/* Quick View Modal */}
       {selectedBook && (

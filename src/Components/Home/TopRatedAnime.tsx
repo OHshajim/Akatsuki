@@ -1,6 +1,6 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode } from "swiper/modules";
+import { FreeMode, Autoplay } from "swiper/modules";
 import "swiper/css";
 import Card from "@/Shared/Cart";
 import { useEffect, useState } from "react";
@@ -22,17 +22,21 @@ const TopRatedAnime = () => {
     dataLoad();
   }, []);
   return (
-    <div className="py-20 bg-zinc-200">
+    <div className="sm:py-20 py-16 bg-zinc-200">
       <Swiper
-        slidesPerView={4}
+        slidesPerView={1.5}
         spaceBetween={30}
         freeMode={true}
         loop={true}
-        modules={[FreeMode]}
+        modules={[Autoplay, FreeMode]}
         className="mySwiper"
+        autoplay={{
+          delay: 1200,
+          disableOnInteraction: false,
+        }}
         breakpoints={{
-          640: { slidesPerView: 1 },
-          768: { slidesPerView: 2 },
+          640: { slidesPerView: 2 },
+          768: { slidesPerView: 3 },
           1024: { slidesPerView: 4 },
         }}
       >

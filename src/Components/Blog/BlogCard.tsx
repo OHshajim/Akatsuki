@@ -22,8 +22,8 @@ const BlogCard = ({ blog }) => {
           }}
         >
           <Image
-            width={600}
-            height={800}
+            width={1000}
+            height={1400}
             src={blog.images.mainImage}
             alt="blog"
             className="w-full h-auto object-cover transition-transform duration-300 ease-in-out"
@@ -36,7 +36,7 @@ const BlogCard = ({ blog }) => {
         <p className="font-medium text-gray-600 tracking-wide">Anime</p>
 
         {/* Title */}
-        <h2 className="card-title text-black font-semibold text-lg tracking-normal">
+        <h2 className="card-title text-black font-semibold sm:text-lg tracking-normal">
           {blog.title}
         </h2>
 

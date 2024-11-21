@@ -36,7 +36,7 @@ const Nav = () => {
               path === href
                 ? "text-[#E3962B] font-bold scale-125"
                 : "text-white"
-            } focus:text-[#E3962B] focus:bg-transparent transition-colors duration-300 hover:text-[#E3962B] bebas-neue tracking-[2px] hover:bg-transparent z-50`}
+            } focus:text-[#E3962B] focus:bg-transparent transition-colors duration-300 hover:text-[#E3962B] font-primary tracking-[2px] hover:bg-transparent z-50`}
           >
             {label}
           </Link>
@@ -77,7 +77,7 @@ const Nav = () => {
                     path === "/login"
                       ? "text-[#E3962B] font-bold scale-125"
                       : "text-white"
-                  } focus:text-[#E3962B] focus:bg-transparent transition-colors duration-300 hover:text-[#E3962B] bebas-neue tracking-[2px] hover:bg-transparent z-50 text-lg`}
+                  } focus:text-[#E3962B] focus:bg-transparent transition-colors duration-300 hover:text-[#E3962B] font-primary tracking-[2px] hover:bg-transparent z-50 text-lg`}
                 >
                   Join
                 </Link>
@@ -92,7 +92,7 @@ const Nav = () => {
                       path === "/cart"
                         ? "text-[#E3962B] font-bold scale-125"
                         : "text-white"
-                    } focus:text-[#E3962B] focus:bg-transparent text-2xl transition-colors duration-300 hover:text-[#E3962B] bebas-neue tracking-[2px] hover:bg-transparent z-50`}
+                    } focus:text-[#E3962B] focus:bg-transparent text-2xl transition-colors duration-300 hover:text-[#E3962B] font-primary tracking-[2px] hover:bg-transparent z-50`}
                   >
                     <RiShoppingBag4Line />
                   </Link>
@@ -104,7 +104,7 @@ const Nav = () => {
                       path === "/dashboard"
                         ? "text-[#E3962B] font-bold "
                         : "text-white"
-                    } focus:text-[#E3962B] focus:bg-transparent text-2xl transition-colors duration-300 hover:text-[#E3962B] bebas-neue tracking-[2px] hover:bg-transparent z-50`}
+                    } focus:text-[#E3962B] focus:bg-transparent text-2xl transition-colors duration-300 hover:text-[#E3962B] font-primary tracking-[2px] hover:bg-transparent z-50`}
                   >
                     <AiOutlineMenuUnfold />
                   </Link>
@@ -126,7 +126,7 @@ const Nav = () => {
                     path === "/card"
                       ? "text-[#E3962B] font-bold "
                       : "text-white"
-                  } focus:text-[#E3962B] focus:bg-transparent transition-colors duration-300 hover:text-[#E3962B] bebas-neue tracking-[2px] hover:bg-transparent z-50`}
+                  } focus:text-[#E3962B] focus:bg-transparent transition-colors duration-300 hover:text-[#E3962B] font-primary tracking-[2px] hover:bg-transparent z-50`}
                 >
                   <RiShoppingBag4Line />
                 </Link>

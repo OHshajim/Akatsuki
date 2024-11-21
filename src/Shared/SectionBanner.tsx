@@ -31,7 +31,6 @@ const SectionBanner = ({ title, subTitle }: SectionBannerProps) => {
           src="https://i.ibb.co.com/CQRdzPz/header-bg-copyright.jpg"
           alt="Cover2"
           className="w-full h-auto object-cover"
-          priority
         />
       </motion.div>
 
@@ -44,7 +43,7 @@ const SectionBanner = ({ title, subTitle }: SectionBannerProps) => {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
           >
             <motion.h3
-              className="text-sm md:text-xl lg:text-3xl xl:text-5xl text-white font-bold lg:my-5 bebas-neue"
+              className="text-xl lg:text-3xl xl:text-5xl text-white font-bold lg:my-5 font-primary"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1, ease: "easeOut" }}

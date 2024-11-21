@@ -66,35 +66,35 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({ item }) => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.4, ease: "easeInOut" }}
           >
-            <h2 className=" text-2xl bebas-neue font-medium text-gray-800 tracking-widest">
+            <h2 className=" text-2xl font-primary font-medium text-gray-800 tracking-widest">
               {item.title}
             </h2>
             <p className="font-medium tracking-widest mt-6">
-              <strong className="bebas-neue font-medium">Type :</strong>{" "}
+              <strong className="font-primary font-medium">Type :</strong>{" "}
               <span className="text-gray-500">Manga - Hard Copy</span>
             </p>
             {item.genres && (
               <p className="font-medium tracking-widest my-1">
-                <strong className="bebas-neue font-medium">Tags:</strong>{" "}
+                <strong className="font-primary font-medium">Tags:</strong>{" "}
                 <span className="text-gray-500">{item.genres.join(", ")}</span>
               </p>
             )}
             <p className="font-medium tracking-widest my-1">
-              <strong className="bebas-neue font-medium">
+              <strong className="font-primary font-medium">
                 Number of Page:
               </strong>{" "}
               <span className="text-gray-500">{item.pages}</span>
             </p>
             <p className="font-medium tracking-widest my-1">
-              <strong className="bebas-neue font-medium">Writer:</strong>{" "}
+              <strong className="font-primary font-medium">Writer:</strong>{" "}
               <span className="text-gray-500">{item.author}</span>
             </p>
             <p className="font-medium tracking-widest my-1">
-              <strong className="bebas-neue font-medium">Publisher:</strong>{" "}
+              <strong className="font-primary font-medium">Publisher:</strong>{" "}
               <span className="text-gray-500">{item.publisher}</span>
             </p>
             <p className="font-medium tracking-widest my-1">
-              <strong className="bebas-neue font-medium">Product ID:</strong>{" "}
+              <strong className="font-primary font-medium">Product ID:</strong>{" "}
               <span className="text-gray-500">{item.ISBN}</span>
             </p>
             <div className="flex justify-between items-center mt-6 mb-4">
@@ -104,7 +104,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({ item }) => {
               <Rating style={{ maxWidth: 110 }} value={item.rating} readOnly />
             </div>
             <motion.button
-              className="btn bg-[#6fc9cd] text-white hover:bg-[#5ba3a7]  flex items-center gap-2 px-6 py-2 rounded-lg shadow-lg bebas-neue font-medium text-lg"
+              className="btn bg-[#6fc9cd] text-white hover:bg-[#5ba3a7]  flex items-center gap-2 px-6 py-2 rounded-lg shadow-lg font-primary font-medium text-lg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               aria-label="Add to Cart"
