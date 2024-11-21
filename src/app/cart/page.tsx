@@ -3,9 +3,11 @@
 import { useState, useEffect } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import Link from "next/link";
-import Image from "next/image";
-import { GetCards, ProductData } from "@/Services/AllDataLoad/DataLoad";
+import { GetCards } from "@/Services/AllDataLoad/DataLoad";
 import { useSession } from "next-auth/react";
+import CartsDetails from "@/Components/Cart/CartsDetails";
+import SectionBanner from "@/Shared/SectionBanner";
+import { FaArrowRightLong } from "react-icons/fa6";
 
 interface CartItem {
   _id: string;
@@ -19,7 +21,7 @@ interface AddressForm {
   country: string;
   state: string;
   city: string;
-  zip: string;
+  zip: number;
 }
 
 const Cart = () => {
@@ -27,8 +29,14 @@ const Cart = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [subtotal, setSubtotal] = useState(0);
   const [isUpdated, setIsUpdated] = useState(false);
-  const [isAddressFormVisible, setIsAddressFormVisible] = useState(true);
-  const [address, setAddress] = useState<AddressForm | null>(null);
+  const [currentStep, setCurrentStep] = useState(1);
+  const [isAddressFormVisible, setIsAddressFormVisible] = useState(false);
+  const [address, setAddress] = useState<AddressForm>({
+    country: "Bangladesh",
+    state: "Dhaka",
+    city: "Narsingdi",
+    zip: 1600,
+  });
 
   const { register, handleSubmit, setValue } = useForm<AddressForm>();
 
@@ -86,14 +94,33 @@ const Cart = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Section Banner */}
-      <div className="bg-white py-10 shadow-sm">
-        <h1 className="text-3xl font-bold text-center">Cart</h1>
-        <p className="text-center text-gray-600">Home &gt; Cart</p>
+      <SectionBanner subTitle="Home &gt; Cart" title="Cart" />
+      <div className="text-center text-gray-600 my-10 flex justify-center">
+        {["Shopping Cart", "Payment & Delivery Options", "Order Received"].map(
+          (step, index) => (
+            <div key={index} className="flex items-center font-primary text-black text-lg">
+              <span
+                className={`px-3 py-2 m-2 text-white ${
+                  currentStep === index + 1 ? "bg-[#6fc9cd]" : "bg-black"
+                }`}
+              >
+                {index + 1}
+              </span>
+              {step}
+              {index < 2 && (
+                <FaArrowRightLong
+                  className={
+                    currentStep === index + 1 ? "text-[#6fc9cd] mx-4" : "text-black mx-4"
+                  }
+                />
+              )}
+            </div>
+          )
+        )}
       </div>
-
       {/* Cart Table */}
       <section className="container mx-auto px-4 py-10">
-        <div className="overflow-x-auto">
+        <div>
           <table className="w-full bg-white rounded-lg shadow-lg">
             <thead className="bg-gray-100">
               <tr>
@@ -104,53 +131,13 @@ const Cart = () => {
                 <th className="py-4 px-6 text-left">Remove</th>
               </tr>
             </thead>
-            <tbody>
-              {cartItems.map((item) => (
-                <tr key={item._id} className="border-t">
-                  <td className="flex items-center py-4 px-6">
-                    <Image
-                      src={item.imageUrl}
-                      alt={item.title}
-                      width={80}
-                      height={80}
-                      className="rounded-md"
-                    />
-                    <span className="ml-4">{item.title}</span>
-                  </td>
-                  <td className="py-4 px-6">${item.price.toFixed(2)}</td>
-                  <td className="py-4 px-6">
-                    <input
-                      type="number"
-                      min="1"
-                      defaultValue={1}
-                      value={item.quantity}
-                      onChange={(e) =>
-                        handleQuantityChange(item._id, parseInt(e.target.value))
-                      }
-                      className="w-16 border border-gray-300 rounded-md text-center"
-                    />
-                  </td>
-                  <td className="py-4 px-6">
-                    $
-                    {item.quantity
-                      ? (item.price * item.quantity).toFixed(2)
-                      : item.price}
-                  </td>
-                  <td className="py-4 px-6">
-                    <button
-                      onClick={() =>
-                        setCartItems(
-                          cartItems.filter((cart) => cart._id !== item._id)
-                        )
-                      }
-                      className="text-rose-500 hover:text-red-700"
-                    >
-                      &times;
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+            {cartItems.map((item) => (
+              <CartsDetails
+                item={item}
+                key={item._id}
+                handleQuantityChange={handleQuantityChange}
+              />
+            ))}
           </table>
         </div>
 
@@ -182,15 +169,15 @@ const Cart = () => {
         <div className="bg-white rounded-lg shadow-lg p-6">
           <div className="flex justify-between border-b pb-4">
             <span>Subtotal</span>
-            <span>${subtotal.toFixed(2)}</span>
+            <span>${subtotal}</span>
           </div>
           <div className="flex justify-between border-b py-4">
             <span>Shipping</span>
-            <span>Flat rate (to NY)</span>
+            <span>$10</span>
           </div>
           <div className="flex justify-between font-bold text-lg mt-4">
             <span>Total</span>
-            <span>${subtotal.toFixed(2)}</span>
+            <span>${subtotal + 10}</span>
           </div>
 
           {/* Address Form */}
@@ -227,16 +214,21 @@ const Cart = () => {
             </form>
           ) : (
             <div className="mt-6">
-              <p className="text-gray-700">
-                Address: {address?.city}, {address?.state}, {address?.country} -{" "}
-                {address?.zip}
-              </p>
-              <button
-                onClick={handleAddressEdit}
-                className="mt-2 text-blue-500 hover:underline"
-              >
-                Change Location
-              </button>
+              <div className="flex justify-between">
+                <p className="text-gray-700">Address:</p>
+                <div>
+                  <p className="text-gray-700">
+                    {address?.city}, {address?.state}, {address?.country} -{" "}
+                    {address?.zip}
+                  </p>
+                  <button
+                    onClick={handleAddressEdit}
+                    className="mt-2 text-blue-500 text-sm hover:underline text-end w-full"
+                  >
+                    Change Location?
+                  </button>
+                </div>
+              </div>
             </div>
           )}
         </div>
