@@ -61,7 +61,7 @@ const Login = () => {
           <h3 className="text-3xl font-semibold text-center text-zinc-300 mb-4">
             Welcome Back to
           </h3>
-          <h1 className="text-5xl text-white font-bold font-peralta uppercase text-center">
+          <h1 className="text-5xl text-white font-bold font-Secondary uppercase text-center">
             Akatsuki
           </h1>
         </div>

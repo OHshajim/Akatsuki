@@ -68,7 +68,7 @@ const Banner = () => {
             </h4>
             <h1 className="text-xl lg:text-4xl xl:text-9xl text-[#E3962B] lg:my-5">
               Welcome to
-              <span className="font-peralta xl:text-8xl"> AKATSUKI</span>
+              <span className="font-Secondary xl:text-8xl"> AKATSUKI</span>
             </h1>
             <p className="text-white lg:text-lg text-sm uppercase bebas-neue tracking-[2px]">
               Anime Culture

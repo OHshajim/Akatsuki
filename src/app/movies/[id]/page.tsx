@@ -2,6 +2,7 @@
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/thumbs";
+import "@smastrom/react-rating/style.css";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -16,6 +17,7 @@ import {
 import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
 import { useParams, useRouter } from "next/navigation";
+import { Rating } from "@smastrom/react-rating";
 
 interface Movie {
   id: string;
@@ -32,9 +34,7 @@ const Page = () => {
   const { data: session } = useSession();
   const email = session?.user?.email || null;
   const route = useRouter();
-
   const params = useParams();
-  console.log(params);
   const [movie, setMovie] = useState<Movie | null>(null);
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [isLiked, setLiked] = useState(false);
@@ -49,7 +49,7 @@ const Page = () => {
     if (params?.id) {
       dataLoad();
     }
-  }, [params?.id, session]);
+  }, [params?.id, session?.user]);
 
   const handleCheckSubscription = async () => {
     try {
@@ -89,13 +89,13 @@ const Page = () => {
         Swal.fire({
           title: "Sorry!!",
           text: res.message,
-          icon: "error",
+          icon: "info",
         });
       } else if (res.message === "unsubscribed") {
         Swal.fire({
           title: res.message,
           text: "Please Subscribe now",
-          icon: "error",
+          icon: "info",
         });
       }
     } catch (error) {
@@ -158,110 +158,128 @@ const Page = () => {
       });
     }
   };
+  if (!movie) {
+    return <p>Loading...</p>;
+  }
   return (
-    <div className="card lg:card-side p-10 bg-white text-black rounded-none gap-10 container mx-auto">
-      {!movie ? (
-        "loading..."
-      ) : (
-        <>
-          <figure className="flex flex-col lg:w-1/3 h-full">
-            <Swiper
-              loop={true}
-              spaceBetween={10}
-              modules={[FreeMode, Thumbs]}
-              thumbs={{ swiper: thumbsSwiper }}
-              className="mySwiper2"
-            >
-              {movie?.imageUrl.map((img) => (
-                <SwiperSlide key={img}>
-                  <Image
-                    width={1000}
-                    height={1000}
-                    src={img}
-                    alt="Album"
-                    className="w-full h-full"
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-            <Swiper
-              onSwiper={setThumbsSwiper}
-              loop={true}
-              spaceBetween={30}
-              slidesPerView={movie?.imageUrl?.length || 1}
-              freeMode={true}
-              watchSlidesProgress={true}
-              modules={[FreeMode, Thumbs]}
-              className="mySwiper"
-            >
-              {movie?.imageUrl?.map((img: string) => (
-                <SwiperSlide key={img}>
-                  <Image
-                    width={400}
-                    height={500}
-                    src={img}
-                    alt={movie.title}
-                    className="mt-5"
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </figure>
+    <div className="container mx-auto my-20">
+      <div className="card lg:card-side bg-white text-black rounded-none gap-10 ">
+        <figure className="flex flex-col lg:w-1/3 h-full">
+          <Swiper
+            loop={true}
+            spaceBetween={10}
+            modules={[FreeMode, Thumbs]}
+            thumbs={{ swiper: thumbsSwiper }}
+            className="mySwiper2"
+          >
+            {movie?.imageUrl.map((img) => (
+              <SwiperSlide key={img}>
+                <Image
+                  width={1000}
+                  height={1000}
+                  src={img}
+                  alt="Album"
+                  className="w-full h-full"
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+          <Swiper
+            onSwiper={setThumbsSwiper}
+            loop={true}
+            spaceBetween={30}
+            slidesPerView={movie?.imageUrl?.length || 1}
+            freeMode={true}
+            watchSlidesProgress={true}
+            modules={[FreeMode, Thumbs]}
+            className="mySwiper"
+          >
+            {movie?.imageUrl?.map((img: string) => (
+              <SwiperSlide key={img}>
+                <Image
+                  width={400}
+                  height={500}
+                  src={img}
+                  alt={movie.title}
+                  className="mt-5"
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </figure>
 
-          <div className="card-body p-0 justify-center  lg:w-1/2">
-            <div>
-              <h2 className="card-title mb-4">{movie.title}</h2>
-              <p className="tracking-widest my-8">{movie.description}</p>
-              <p className="mt-2 font-medium">
-                Type: <span className="text-zinc-500">Anime - Movie</span>
-              </p>
-              <p className="mt-2 font-medium">
-                Tags:{" "}
-                {movie?.genres?.map((tag) => (
-                  <span className="text-zinc-500" key={tag}>
-                    {tag},{" "}
-                  </span>
-                ))}
-              </p>
-              <p className="mt-2 font-medium">
-                Director:{" "}
-                <span className="text-zinc-500">{movie.director}</span>
-              </p>
-              <p className="mt-2 font-medium">
-                Duration:{" "}
-                <span className="text-zinc-500">{movie.duration} </span>
-              </p>
-              <p className="mt-2 font-medium">
-                Publisher:{" "}
-                <span className="text-zinc-500">{movie.publisher} </span>
-              </p>
-              <div className="card-actions justify-end">
-                <button
-                  onClick={handleCheckSubscription}
-                  className="btn bg-[#6fc9cd] text-white hover:bg-slate-400"
-                >
-                  Watch Now
-                </button>
-                {isLiked ? (
-                  <button
-                    onClick={handleWishlist}
-                    className="btn bg-[#6fc9cd] text-white hover:bg-slate-400"
-                  >
-                    <HiHeart />
-                  </button>
-                ) : (
-                  <button
-                    onClick={handleWishlist}
-                    className="btn bg-[#6fc9cd] text-white hover:bg-slate-400"
-                  >
-                    <BiHeart />
-                  </button>
-                )}
-              </div>
+        <div className="card-body p-0 lg:w-1/2">
+          <div>
+            <p className="font-medium my-2 tracking-wider font-primary">
+              HOME / Movies /{movie.title}
+            </p>
+            <h2 className=" card-title text-3xl font-bold font-primary tracking-[3.5px]">
+              {movie.title}
+            </h2>
+            <div className="flex justify-between ">
+              <p className="mb-4 font-medium">{movie.category}</p>
+              <Rating style={{ maxWidth: 110 }} value={movie.rating} readOnly />
             </div>
+
+            <p className="mt-2 font-medium">
+              Type: <span className="text-zinc-500">Anime - Movie</span>
+            </p>
+            <p className="mt-2 font-medium">
+              Tags :{" "}
+              {movie?.genres?.map((tag) => (
+                <span className="text-zinc-500" key={tag}>
+                  {tag},{" "}
+                </span>
+              ))}
+            </p>
+            <p className="mt-2 font-medium">
+              Director: <span className="text-zinc-500">{movie.director}</span>
+            </p>
+            <p className="mt-2 font-medium">
+              Publisher :{" "}
+              <span className="text-zinc-500">{movie.publisher}</span>
+            </p>
+            <p className="mt-2 font-medium">
+              Published Year :{" "}
+              <span className="text-zinc-500">{movie.yearPublished}</span>
+            </p>
+            <p className="mt-2 font-medium">
+              Language :
+              <span className="text-zinc-500">{movie.language}</span>
+            </p>
+            <p className="mt-2 font-medium">
+              Duration: <span className="text-zinc-500">{movie.duration} </span>
+            </p>
+            <p className="mt-2 font-medium">
+              Views :{" "}
+              <span className="text-zinc-500">{movie.totalViews/1000}k </span>
+            </p>
+
+            <div className="card-actions justify-end">
+              <button
+                onClick={handleCheckSubscription}
+                className="btn bg-[#6fc9cd] text-white hover:bg-slate-400 font-primary tracking-widest font-normal text-lg px-5"
+              >
+                Watch Now
+              </button>
+              <button
+                onClick={handleWishlist}
+                className="btn bg-[#6fc9cd] text-xl text-white hover:bg-slate-400"
+              >
+                {isLiked ? <HiHeart /> : <BiHeart />}
+              </button>
+            </div>
+            <p className="text-gray-700 tracking-widest my-5 max-h-fit">
+              <span className="text-black font-semibold text-xl font-primary tracking-[2.4px]">
+                Description
+              </span>
+              <br />
+              <br />
+              {movie?.description}
+            </p>
           </div>
-        </>
-      )}
+        </div>
+      </div>
     </div>
   );
 };

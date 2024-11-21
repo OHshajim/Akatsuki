@@ -17,7 +17,7 @@ const Footer = () => {
       <div className="bg-black py-5 text-zinc-300">
         <footer className="footer bg-black container mx-auto py-20 lg:px-10 px-5">
           <aside>
-            <h1 className="text-4xl font-bold text-white font-peralta z-50">
+            <h1 className="text-4xl font-bold text-white font-Secondary z-50">
               AKATSUKI
             </h1>
           </aside>
@@ -100,7 +100,7 @@ const Footer = () => {
           <hr />
           <aside className="pt-5 text-zinc-300">
             <p>
-              <span className="z-50 text-white font-bold font-peralta ">
+              <span className="z-50 text-white font-bold font-Secondary ">
               AKATSUKI
               </span>{" "}
               © {new Date().getFullYear()} - All right reserved.

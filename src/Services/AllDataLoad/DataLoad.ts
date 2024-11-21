@@ -9,7 +9,7 @@ export const AllBlogs = async () => {
     return [];
   }
 };
-export const BlogData = async (email, id: string) => {
+export const BlogData = async (email: string, id: string) => {
   try {
     if (!email) {
       const response = await axios.get(
@@ -26,7 +26,7 @@ export const BlogData = async (email, id: string) => {
     return null;
   }
 };
-export const LikeToggle = async (email, id) => {
+export const LikeToggle = async (email: string, id: string) => {
   try {
     const response = await axios.post(
       `http://localhost:3000/api/Blog/LikeToggle/${email}`,
@@ -48,7 +48,10 @@ export const AllMovies = async () => {
     return [];
   }
 };
-export const MovieData = async (email, id: string) => {
+export const MovieData = async (
+  email: string | null,
+  id: string | string[]
+) => {
   try {
     if (!email) {
       const response = await axios.get(
@@ -65,7 +68,7 @@ export const MovieData = async (email, id: string) => {
     return null;
   }
 };
-export const MovieSubscription = async (email) => {
+export const MovieSubscription = async (email: string) => {
   try {
     const response = await axios.get(
       `http://localhost:3000/api/Movies/CheckSubscription/${email}`
@@ -76,7 +79,7 @@ export const MovieSubscription = async (email) => {
     return null;
   }
 };
-export const WishlistToggle = async (email, id) => {
+export const WishlistToggle = async (email: string, id: string) => {
   try {
     const response = await axios.post(
       `http://localhost:3000/api/Movies/WishlistToggle/${email}`,
@@ -89,6 +92,54 @@ export const WishlistToggle = async (email, id) => {
   }
 };
 
+// get Cart
+export const GetCards = async (email: string) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:3000/api/Cart/GetCarts/${email}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+// Shop
+export const ProductData = async (
+  email: string | null,
+  id: string | string[]
+) => {
+  try {
+    if (!email) {
+      const response = await axios.get(
+        `http://localhost:3000/api/Shop/Book/${id}`
+      );
+      return response.data;
+    }
+    const response = await axios.get(
+      `http://localhost:3000/api/Shop/Book/${id}?email=${email}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+export const CartToggle = async (email: string, id: string) => {
+  try {
+    const response = await axios.post(
+      `http://localhost:3000/api/Cart/AddToCart/${email}`,
+      { ProductId: id }
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+// <!--Home Page--!>
 // Popular Movies
 export const PopularMovies = async () => {
   try {
@@ -99,18 +150,5 @@ export const PopularMovies = async () => {
   } catch (error) {
     console.error(error);
     return [];
-  }
-};
-
-// get Cart
-export const GetCards = async (email) => {
-  try {
-    const response = await axios.get(
-      `http://localhost:3000/api/Cart/GetCarts/${email}`
-    );
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    return null;
   }
 };

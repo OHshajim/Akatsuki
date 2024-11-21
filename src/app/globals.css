@@ -1,55 +1,54 @@
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Peralta&family=Roboto+Slab:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Peralta&family=Roboto:wght@500&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 * {
-  font-family: "Roboto Slab", serif;
-  letter-spacing: 1px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
 }
 
-.font-peralta {
+/* Utility Font Classes */
+.font-Secondary {
   font-family: "Peralta", serif;
   letter-spacing: 5px;
 }
-
-.bebas-neue {
+.font-primary {
   font-family: "Bebas Neue", sans-serif;
 }
 
-.rr--box {
-  --rr--fill-on-color: #ffd207 !important;
-  --rr--fill-off-color: #ffffff !important;
-  --rr--stroke-on-color: #ffb81e !important;
+
+.anime-header {
+  @apply font-primary tracking-widest;
 }
 
+/* Custom Variables */
+.rr--box {
+  --rr--fill-on-color: #ffd207;
+  --rr--fill-off-color: #ffffff;
+  --rr--stroke-on-color: #ffb81e;
+}
+
+/* Animations */
 @keyframes sakura-petals {
   0% {
     transform: translateY(-10px);
   }
-
   100% {
     transform: translateY(10px);
   }
 }
 
-.anime-header {
-  font-family: "Bebas Neue", sans-serif;
-  letter-spacing: 0.1em;
-}
-
+/* Swiper Styles */
 .swiper {
-  width: 100%;
-  height: 100%;
+  @apply w-full h-full;
 }
 
 .swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @apply flex justify-center items-center;
 }
 
 .swiper-slide-thumb-active img {
-  border: 5px solid #6fc9cd !important;
+  border: 5px solid #6fc9cd;
 }

@@ -50,7 +50,7 @@ const Nav = () => {
       <div className="navbar bg-[#000000f5] p-5 items-center ">
         {/* Brand and Logo */}
         <div className="flex-1 z-50">
-          <h1 className="text-3xl font-peralta text-white uppercase font-bold">
+          <h1 className="text-3xl font-Secondary text-white uppercase font-bold">
             Akatsuki
           </h1>
         </div>
