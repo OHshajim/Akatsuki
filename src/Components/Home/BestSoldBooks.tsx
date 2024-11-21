@@ -1,5 +1,5 @@
 "use client";
-import Card from "@/Shared/Card";
+import Card from "@/Shared/Cart";
 import SectionTitle from "@/Shared/SectionTitle";
 import { BsArrowRight } from "react-icons/bs";
 import Link from "next/link";

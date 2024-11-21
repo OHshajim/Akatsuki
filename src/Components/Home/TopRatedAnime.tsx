@@ -2,7 +2,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode } from "swiper/modules";
 import "swiper/css";
-import Card from "@/Shared/Card";
+import Card from "@/Shared/Cart";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import QuickViewModal from "@/Shared/QuickViewModal";

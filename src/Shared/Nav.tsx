@@ -87,9 +87,9 @@ const Nav = () => {
                 {" "}
                 <li>
                   <Link
-                    href={"/card"}
+                    href={"/cart"}
                     className={`${
-                      path === "/card"
+                      path === "/cart"
                         ? "text-[#E3962B] font-bold scale-125"
                         : "text-white"
                     } focus:text-[#E3962B] focus:bg-transparent text-2xl transition-colors duration-300 hover:text-[#E3962B] bebas-neue tracking-[2px] hover:bg-transparent z-50`}

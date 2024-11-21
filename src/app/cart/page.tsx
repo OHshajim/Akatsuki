@@ -1,7 +1,22 @@
+"use client";
+import { GetCards } from "@/Services/AllDataLoad/DataLoad";
 import SectionBanner from "@/Shared/SectionBanner";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
-const page = () => {
+const Card = () => {
+  const { data: session } = useSession();
+  const [carts, setCart] = useState([]);
+  const DataLoad = async () => {
+    if (session?.user?.email) {
+      const res = await GetCards(session.user.email);
+      setCart(res.data);
+    }
+  };
+  useEffect(() => {
+    DataLoad();
+  }, [session?.user?.email]);
   return (
     <div>
       <div className="bg-white">
@@ -94,4 +109,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Card;

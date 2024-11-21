@@ -31,6 +31,7 @@ const SectionBanner = ({ title, subTitle }: SectionBannerProps) => {
           src="https://i.ibb.co.com/CQRdzPz/header-bg-copyright.jpg"
           alt="Cover2"
           className="w-full h-auto object-cover"
+          priority
         />
       </motion.div>
 

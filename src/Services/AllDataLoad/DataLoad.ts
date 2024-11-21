@@ -101,3 +101,16 @@ export const PopularMovies = async () => {
     return [];
   }
 };
+
+// get Cart
+export const GetCards = async (email) => {
+  try {
+    const response = await axios.get(
+      `http://localhost:3000/api/Cart/GetCarts/${email}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};

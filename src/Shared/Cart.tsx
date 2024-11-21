@@ -56,7 +56,7 @@ const Card = ({ item, setViewItem }: CardProps) => {
             </button> */}
           <button className="btn bg-white w-1/2 border-none hover:bg-gray-100 text-black font-bold">
             <MdOutlineShoppingCart className="text-xl" />
-            Add to Card
+            Add to Cart
           </button>
         </div>
       </figure>

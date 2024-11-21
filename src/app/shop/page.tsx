@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Card from "@/Shared/Card";
+import Card from "@/Shared/Cart";
 import SectionBanner from "@/Shared/SectionBanner";
 import QuickViewModal from "@/Shared/QuickViewModal";
 
