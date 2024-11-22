@@ -38,7 +38,7 @@ const Cart = () => {
     zip: 1600,
   });
 
-  const { register, handleSubmit, setValue } = useForm<AddressForm>();
+  const { register, handleSubmit} = useForm<AddressForm>();
 
   // Mock Cart Data
   const DataLoad = async () => {

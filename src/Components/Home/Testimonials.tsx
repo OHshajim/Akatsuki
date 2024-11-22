@@ -15,6 +15,9 @@ const testimonials: Testimonial[] = [
   { name: "Monkey D. Luffy", text: "I found my One Piece collection here!" },
   { name: "Goku Son", text: "The power levels of this store are over 9000!" },
   { name: "Saitama", text: "I completed my manga quest with one punch!" },
+  { name: "Saitama", text: "I completed my manga quest with one punch!" },
+  { name: "Saitama", text: "I completed my manga quest with one punch!" },
+  { name: "Saitama", text: "I completed my manga quest with one punch!" },
 ];
 
 const Testimonials = () => {

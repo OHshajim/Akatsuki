@@ -135,7 +135,7 @@ const SingleBlog = ({ params }) => {
                   onClick={handleLike}
                   className="btn bg-[#6fc9cd] text-white hover:bg-slate-400 w-fit"
                 >
-                  {liked ? <HiHeart /> : <BiHeart />}
+                  {liked ? <HiHeart className="text-xl"/> : <BiHeart className="text-xl"/>}
                   {Blog?.likes}
                 </button>
               </div>

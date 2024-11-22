@@ -1,5 +1,4 @@
 "use client";
-
 import { CartToggle, ProductData } from "@/Services/AllDataLoad/DataLoad";
 import { Rating } from "@smastrom/react-rating";
 import { useSession } from "next-auth/react";
@@ -32,7 +31,7 @@ const Page = ({ params }: { params: { id: string } }) => {
 
   useEffect(() => {
     dataLoad();
-  }, [email]);
+  }, [email, session?.user]);
 
   // Handle cart functionality
   const handleCart = async () => {
@@ -119,7 +118,9 @@ const Page = ({ params }: { params: { id: string } }) => {
             HOME / SHOP /{book.title}
           </p>
 
-          <h2 className="card-title md:text-3xl sm:text-2x text-xl font-bold font-primary md:tracking-[3.5px] tracking-wider">{book.title}</h2>
+          <h2 className="card-title md:text-3xl sm:text-2x text-xl font-bold font-primary md:tracking-[3.5px] tracking-wider">
+            {book.title}
+          </h2>
           <p className="mb-4 font-medium">{book.category}</p>
           <div className="flex justify-between ">
             <p className="font-bold sm:text-xl">
@@ -142,7 +143,7 @@ const Page = ({ params }: { params: { id: string } }) => {
             </p>
             <p className=" font-medium text-slate-600">
               <span className="text-black font-primary tracking-wider">
-              Published Year :
+                Published Year :
               </span>{" "}
               {book.yearPublished}
             </p>

@@ -1,5 +1,5 @@
 "use client";
-import Card from "@/Shared/Cart";
+import Card from "@/Shared/Card";
 import SectionTitle from "@/Shared/SectionTitle";
 import { BsArrowRight } from "react-icons/bs";
 import Link from "next/link";
@@ -9,7 +9,7 @@ import QuickViewModal from "@/Shared/QuickViewModal";
 
 const BestSoldBooks = () => {
   const [books, setBook] = useState([]);
-  const [selectedBook, setSelectedBook] = useState({});
+  const [selectedBook, setSelectedBook] = useState(null);
   const dataLoad = async () => {
     const data = await axios.get(
       "http://localhost:3000/api/Shop/BestSellingBooks"
@@ -41,7 +41,12 @@ const BestSoldBooks = () => {
         </Link>
       </div>
       {/* Quick View Modal */}
-      {selectedBook && <QuickViewModal item={selectedBook} />}
+      {selectedBook && (
+        <QuickViewModal
+          item={selectedBook}
+          onClose={() => setSelectedBook(null)}
+        />
+      )}
     </div>
   );
 };

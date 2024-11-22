@@ -14,11 +14,15 @@
   font-family: "Peralta", serif;
   letter-spacing: 5px;
 }
+
 .font-primary {
   font-family: "Bebas Neue", sans-serif;
 }
+
 .btn {
   font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 3px;
+  font-weight: 500;
 }
 
 .anime-header {
@@ -37,6 +41,7 @@
   0% {
     transform: translateY(-10px);
   }
+
   100% {
     transform: translateY(10px);
   }

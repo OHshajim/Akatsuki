@@ -2,14 +2,14 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Autoplay } from "swiper/modules";
 import "swiper/css";
-import Card from "@/Shared/Cart";
+import Card from "@/Shared/Card";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import QuickViewModal from "@/Shared/QuickViewModal";
 
 const TopRatedAnime = () => {
   const [books, setBook] = useState([]);
-  const [selectedBook, setSelectedBook] = useState({});
+  const [selectedBook, setSelectedBook] = useState(null);
   const dataLoad = async () => {
     const data = await axios.get(
       "http://localhost:3000/api/Shop/TopRatedBooks"
@@ -27,13 +27,13 @@ const TopRatedAnime = () => {
         slidesPerView={1.5}
         spaceBetween={30}
         freeMode={true}
-        loop={true}
-        modules={[Autoplay, FreeMode]}
-        className="mySwiper"
+        loop
         autoplay={{
-          delay: 1200,
+          delay: 2000,
           disableOnInteraction: false,
         }}
+        modules={[Autoplay, FreeMode]}
+        className="mySwiper"
         breakpoints={{
           640: { slidesPerView: 2 },
           768: { slidesPerView: 3 },
@@ -47,7 +47,12 @@ const TopRatedAnime = () => {
         ))}
       </Swiper>
       {/* Quick View Modal */}
-      {selectedBook && <QuickViewModal item={selectedBook} />}
+      {selectedBook && (
+        <QuickViewModal
+          item={selectedBook}
+          onClose={() => setSelectedBook(null)}
+        />
+      )}
     </div>
   );
 };
