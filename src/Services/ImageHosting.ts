@@ -1,7 +1,6 @@
 import axios from "axios";
-const ImageHosting = async (imageFile: FormData) => {
-  const ImageHostingAPI = process.env.NEXT_PUBLIC_IMAGE_HOSTING_API;
-
+const ImageHosting = async (imageFile: unknown) => {
+  const ImageHostingAPI = process.env.NEXT_PUBLIC_IMAGE_HOSTING_API || "";
   try {
     const res = await axios.post(ImageHostingAPI, imageFile, {
       headers: { "content-type": "multipart/form-data" },

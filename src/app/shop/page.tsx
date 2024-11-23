@@ -1,46 +1,24 @@
-"use client";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import Card from "@/Shared/Card";
 import SectionBanner from "@/Shared/SectionBanner";
-import QuickViewModal from "@/Shared/QuickViewModal";
+import { AllBooksData } from "@/Services/AllDataLoad/DataLoad";
+import AllBooks from "@/Components/Shop/AllBooks";
+import Loading from "@/Components/Loader/Loading";
 
-const Page = () => {
-  const [books, setBooks] = useState([]);
-  const [selectedBook, setSelectedBook] = useState(null);
+export const metadata = {
+  title: "AKATSUKI | Shop",
+  description:
+    "We have a big collection of Manga's . Its a Big surprise for manga Fans.",
+};
 
-  const fetchBooks = async () => {
-    try {
-      const response = await axios.get("http://localhost:3000/api/Shop");
-      if (response.data.status) {
-        setBooks(response.data.data);
-      }
-    } catch (error) {
-      console.error("Failed to fetch books:", error);
-    }
-  };
+const Page = async () => {
+  const Books = await AllBooksData();
 
-  useEffect(() => {
-    fetchBooks();
-  }, []);
-  if (books.length < 1) {
-    return <p>Loading...</p>;
+  if (Books.length < 1) {
+    return <Loading />;
   }
   return (
     <div>
-      {/* Banner Section */}
       <SectionBanner subTitle="Home > Shop" title="SHOP" />
-
-      {/* Books Grid */}
-
-      <div className="container mx-auto py-20 grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-10 sm:px-0 px-5">
-        {books.map((book) => (
-          <Card key={book._id} item={book} setViewItem={setSelectedBook} />
-        ))}
-      </div>
-
-      {/* Quick View Modal */}
-      {selectedBook && <QuickViewModal item={selectedBook} onClose={() => setSelectedBook(null)}/>}
+      <AllBooks books={Books} />
     </div>
   );
 };

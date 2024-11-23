@@ -4,24 +4,27 @@ import SectionTitle from "@/Shared/SectionTitle";
 import { BsArrowRight } from "react-icons/bs";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import QuickViewModal from "@/Shared/QuickViewModal";
+import { BestSellingBooks } from "@/Services/AllDataLoad/DataLoad";
+import Loading from "../Loader/Loading";
+import { ShopData } from "@/Services/PropsValidations/DataType";
 
 const BestSoldBooks = () => {
-  const [books, setBook] = useState([]);
-  const [selectedBook, setSelectedBook] = useState(null);
+  const [books, setBook] = useState<ShopData[]>([]);
+  const [selectedBook, setSelectedBook] = useState<ShopData | null>(null);
   const dataLoad = async () => {
-    const data = await axios.get(
-      "http://localhost:3000/api/Shop/BestSellingBooks"
-    );
-    if (data.data.data) {
-      console.log(books);
-      setBook(data.data.data);
+    const data = await BestSellingBooks();
+    if (data.status === 200) {
+      setBook(data.data);
     }
   };
   useEffect(() => {
     dataLoad();
   }, []);
+
+  if (books.length < 1) {
+    return <Loading />;
+  }
   return (
     <div className="container mx-auto py-20 px-5">
       <SectionTitle

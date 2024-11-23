@@ -6,8 +6,8 @@ import AuthProvider from "@/Services/AuthProvider";
 
 export const metadata: Metadata = {
   title: "AKATSUKI",
-  description: "Be prepare for Manga",
-  icons: { icon: "https://ibb.co.com/pWf2fYM" },
+  description: "Be prepare for Manga and Anime Movies , Articles .",
+  icons: { icon: "https://i.ibb.co.com/sWm5kRP/AKATSUKI-Logo.jpg" },
 };
 export default function RootLayout({
   children,

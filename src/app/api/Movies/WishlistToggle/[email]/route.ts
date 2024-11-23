@@ -2,7 +2,10 @@ import { NextRequest } from "next/server";
 import { User } from "@/models/User";
 import dbConnect from "@/utils/dbConnect";
 
-export const POST = async (req: NextRequest, { params }) => {
+export const POST = async (
+  req: NextRequest,
+  { params }: { params: { email: string } }
+) => {
   try {
     await dbConnect();
     const { movieId } = await req.json();
@@ -37,4 +40,3 @@ export const POST = async (req: NextRequest, { params }) => {
     return Response.json({ message: "Internal Server Error" }, { status: 500 });
   }
 };
-

@@ -8,24 +8,11 @@ import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
 import { CartToggle } from "@/Services/AllDataLoad/DataLoad";
 import { useRouter } from "next/navigation";
-import React from "react";
-
-type Item = {
-  _id: string;
-  imageUrl: string;
-  title: string;
-  price: number;
-  rating: number;
-  genres?: string[]; // Optional property
-  publisher: string;
-  ISBN: string;
-};
-
-type setViewItem = (item: Item) => void | null;
+import { ShopData } from "@/Services/PropsValidations/DataType";
 
 type CardProps = {
-  item: Item;
-  setViewItem: setViewItem;
+  item: ShopData;
+  setViewItem: (item: ShopData) => void | null;
 };
 
 const Card: React.FC<CardProps> = ({ item, setViewItem }) => {
@@ -102,28 +89,27 @@ const Card: React.FC<CardProps> = ({ item, setViewItem }) => {
   };
   return (
     <div className="card rounded-none text-black">
-      <figure className=" relative group">
+      <figure className="relative group overflow-hidden">
         <Link href={`shop/${item._id}`} className="w-full">
           <Image
             width={1000}
             height={1400}
             src={item?.imageUrl}
             alt={item?.title}
-            className="w-full group "
+            className="w-full transition-transform duration-500 ease-in-out group-hover:scale-110"
           />
         </Link>
-        <div className="absolute bottom-0 w-full group-hover:flex hidden bg-white group-hover:duration-200 group-hover:delay-100">
+        <div className="absolute bottom-0 w-full flex hidden bg-white opacity-0 group-hover:opacity-100 group-hover:flex group-hover:translate-y-0 translate-y-10 transition-all duration-500 ease-in-out">
           <button
             onClick={handleClick}
-            className="btn bg-white w-1/2 border-none hover:bg-gray-100 text-black"
+            className="btn bg-white w-1/2 border-none hover:bg-gray-100 text-black transition-colors duration-300"
           >
             <AiTwotoneEye className="text-xl" />
             Quick View
           </button>
-
           <button
             onClick={handleCart}
-            className="btn bg-white w-1/2 border-none hover:bg-gray-100 text-black"
+            className="btn bg-white w-1/2 border-none hover:bg-gray-100 text-black transition-colors duration-300"
           >
             <MdOutlineShoppingCart className="text-xl" />
             Add to Cart
@@ -132,11 +118,11 @@ const Card: React.FC<CardProps> = ({ item, setViewItem }) => {
       </figure>
       <Link href={`shop/${item._id}`} className="w-full">
         <div className="card-body py-2 px-1">
-          <h2 className="card-title font-primary font-medium tracking-[2px]">
+          <h2 className="card-title font-primary font-medium tracking-[2px] transition-transform duration-500 ease-in-out group-hover:scale-105">
             {item.title}
           </h2>
           <div className="flex justify-between">
-            <h3 className=" text-zinc-00">{item.price} $</h3>
+            <h3 className="text-zinc-00">{item.price} $</h3>
             <Rating
               style={{ maxWidth: 110, color: "#fff" }}
               value={item.rating}

@@ -4,23 +4,29 @@ import { FreeMode, Autoplay } from "swiper/modules";
 import "swiper/css";
 import Card from "@/Shared/Card";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import QuickViewModal from "@/Shared/QuickViewModal";
+import { AllBTopRatedBooks } from "@/Services/AllDataLoad/DataLoad";
+import Loading from "../Loader/Loading";
+import { ShopData } from "@/Services/PropsValidations/DataType";
 
 const TopRatedAnime = () => {
-  const [books, setBook] = useState([]);
-  const [selectedBook, setSelectedBook] = useState(null);
-  const dataLoad = async () => {
-    const data = await axios.get(
-      "http://localhost:3000/api/Shop/TopRatedBooks"
-    );
-    if (data.data.data) {
-      setBook(data.data.data);
-    }
-  };
+  const [books, setBook] = useState<ShopData[]>([]);
+
+  const [selectedBook, setSelectedBook] = useState<ShopData | null>(null);
   useEffect(() => {
+    const dataLoad = async () => {
+      const data = await AllBTopRatedBooks();
+      if (data.status === 200) {
+        setBook(data.data);
+      }
+    };
+
     dataLoad();
   }, []);
+
+  if (books.length < 1 || !books) {
+    return <Loading />;
+  }
   return (
     <div className="sm:py-20 py-16 bg-zinc-200">
       <Swiper

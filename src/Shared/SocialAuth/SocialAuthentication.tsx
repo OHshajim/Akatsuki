@@ -1,11 +1,19 @@
+"use client";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 import "./style.css";
 import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 
 const SocialAuthentication = () => {
+  const searchParams = useSearchParams();
+
+  const path = searchParams.get("redirect");
   const handleSocialAuth = (provider: string) => {
-    const res = signIn(provider, { redirect: false });
-    console.log({ res });
+    const res = signIn(provider, {
+      redirect: true,
+      callbackUrl: path ? path : "/",
+    });
+    console.log(res);
   };
   return (
     <div className="flex justify-center mt-3">

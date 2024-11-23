@@ -10,6 +10,11 @@ import Testimonials from "@/Components/Home/Testimonials";
 import BestSoldBooks from "@/Components/Home/BestSoldBooks";
 import CategoryBooks from "@/Components/Home/CategoryBooks";
 
+export const metadata = {
+  title: "AKATSUKI | Home",
+  description: "Be prepare for Manga and Anime Movies , Articles .",
+};
+
 export default function Home() {
   return (
     <div>
@@ -17,7 +22,7 @@ export default function Home() {
       <TopRatedAnime />
       <CategoryBooks />
       <BestSoldBooks />
-      
+
       <WatchOnline />
       <PopularMovie />
       <Tickets />

@@ -1,6 +1,15 @@
+import { ShopData } from "@/Services/PropsValidations/DataType";
 import Image from "next/image";
 
-const CartsDetails = ({ item, handleQuantityChange }) => {
+const CartsDetails = ({
+  item,
+  handleQuantityChange,
+  setRemoveId,
+}: {
+  item: ShopData;
+  handleQuantityChange: (id: string, quantity: number) => void;
+  setRemoveId: (id: string) => void | null;
+}) => {
   return (
     <tbody>
       <tr key={item._id} className="border-t">
@@ -12,7 +21,16 @@ const CartsDetails = ({ item, handleQuantityChange }) => {
             height={80}
             className="rounded-md"
           />
-          <span className="ml-4">{item.title}</span>
+          <span className="ml-4"></span> <br />
+          <span className="ml-4"></span>
+          <div>
+            <h2 className="font-medium text-black font-primary text-lg">
+              {item.title}
+            </h2>
+            <p className="text-sm  text-gray-800 font-medium">
+              By {item.author}
+            </p>
+          </div>
         </td>
         <td className="py-4 px-6">${item.price.toFixed(2)}</td>
         <td className="py-4 px-6">
@@ -28,10 +46,16 @@ const CartsDetails = ({ item, handleQuantityChange }) => {
           />
         </td>
         <td className="py-4 px-6">
-          ${item.quantity ? (item.price * item.quantity).toFixed(2) : item.price}
+          $
+          {item.quantity ? (item.price * item.quantity).toFixed(2) : item.price}
         </td>
         <td className="py-4 px-6">
-          <button className="text-rose-500 hover:text-red-700">&times;</button>
+          <button
+            onClick={() => setRemoveId(item._id)}
+            className="text-rose-500 hover:text-red-700"
+          >
+            &times;
+          </button>
         </td>
       </tr>
     </tbody>

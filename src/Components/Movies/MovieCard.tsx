@@ -3,8 +3,9 @@ import { Rating } from "@smastrom/react-rating";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { MovieDataTypes } from "@/Services/PropsValidations/DataType";
 
-const MovieCard = ({ movie }: { movie: any }) => {
+const MovieCard = ({ movie }: { movie: MovieDataTypes }) => {
   return (
     <motion.div
       className="card rounded-none"
@@ -22,8 +23,8 @@ const MovieCard = ({ movie }: { movie: any }) => {
             <Image
               width={1000}
               height={1400}
-              src={movie?.imageUrl[0]}
-              alt={movie?.title}
+              src={movie.imageUrl[0]}
+              alt={movie.title}
               className="w-full transition-transform duration-300 ease-in-out" // Smooth transition for the image
             />
           </motion.div>

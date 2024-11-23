@@ -5,9 +5,11 @@ import "swiper/css";
 import { useEffect, useState } from "react";
 import MovieCard from "../Movies/MovieCard";
 import { PopularMovies } from "@/Services/AllDataLoad/DataLoad";
+import Loading from "../Loader/Loading";
+import { MovieDataTypes } from "@/Services/PropsValidations/DataType";
 
 const PopularMovie = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<MovieDataTypes[]>([]);
 
   const dataLoad = async () => {
     const data = await PopularMovies();
@@ -18,6 +20,10 @@ const PopularMovie = () => {
   useEffect(() => {
     dataLoad();
   }, []);
+  
+  if (movies.length < 1) {
+    return <Loading />;
+  }
   return (
     <div className="bg-[#000000f9]">
       <div className="container mx-auto py-20 text-white">
@@ -46,12 +52,11 @@ const PopularMovie = () => {
             1024: { slidesPerView: 4 },
           }}
         >
-          {movies &&
-            movies.map((popular) => (
-              <SwiperSlide key={popular._id}>
-                <MovieCard movie={popular} />
-              </SwiperSlide>
-            ))}
+          {movies.map((popular) => (
+            <SwiperSlide key={popular._id}>
+              <MovieCard movie={popular} />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
       <div className="flex overflow-hidden space-x-0 text-nowrap text-xl xl:text-2xl font-bold uppercase pb-5 text-[#E3962B]">

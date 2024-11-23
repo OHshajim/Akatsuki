@@ -37,9 +37,9 @@ const Page = () => {
     if (data.password !== data.confirmPassword) return;
     setLoading(true);
     const imageFile = { image: data.image[0] };
+
     try {
       const imageHostedFile = await ImageHosting(imageFile);
-      console.log(imageHostedFile);
       if (imageHostedFile.display_url) {
         const result = await axios.post(
           "http://localhost:3000/api/auth/SignUp",
@@ -59,7 +59,7 @@ const Page = () => {
           });
           if (signInResponse?.ok) {
             setLoading(false);
-            router.push("/");
+            return router.push("/");
           } else {
             alert("Error during automatic login");
           }
@@ -209,7 +209,7 @@ const Page = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className={`w-full bg-red-600 text-white py-3 rounded-lg shadow-md hover:bg-red-700 transition duration-300 ${
-                loading ? "cursor-wait" : ""
+                loading ? "cursor-wait btn-disabled" : ""
               }`}
               type="submit"
             >

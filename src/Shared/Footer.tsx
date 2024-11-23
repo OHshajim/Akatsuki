@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -16,7 +17,14 @@ const Footer = () => {
     path === "/dashboard" || (
       <div className="bg-black py-5 text-zinc-300">
         <footer className="footer bg-black container mx-auto py-20 lg:px-10 px-5">
-          <aside>
+          <aside className="flex justify-center items-center flex-col">
+            <Image
+              alt="Logo"
+              src="https://i.ibb.co.com/sWm5kRP/AKATSUKI-Logo.jpg"
+              width={500}
+              height={500}
+              className="max-w-52"
+            />
             <h1 className="text-4xl font-bold text-white font-Secondary z-50">
               AKATSUKI
             </h1>
@@ -101,7 +109,7 @@ const Footer = () => {
           <aside className="pt-5 text-zinc-300">
             <p>
               <span className="z-50 text-white font-bold font-Secondary ">
-              AKATSUKI
+                AKATSUKI
               </span>{" "}
               © {new Date().getFullYear()} - All right reserved.
             </p>

@@ -6,7 +6,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 
-export const authSession = {
+const handler = NextAuth({
   secret: process.env.JWT_SECRET,
   session: {
     strategy: "jwt",
@@ -19,31 +19,39 @@ export const authSession = {
         password: {},
       },
       async authorize(credentials) {
-        const { email, password } = credentials;
-        if (!email || !password) {
-          return null;
-        }
-        await dbConnect();
-        const currentUser = await User.findOne({ email });
+        try {
+          const { email, password } = credentials || {};
+          if (!email || !password) {
+            console.error("Email or password is missing");
+            return null;
+          }
+          await dbConnect();
+          const currentUser = await User.findOne({ email });
+          if (!currentUser || !currentUser.password) {
+            return null;
+          }
 
-        if (!currentUser || !currentUser.password) {
+          const passwordMatched = await bcrypt.compare(
+            password,
+            currentUser.password
+          );
+          if (!passwordMatched) {
+            return null;
+          }
+          return currentUser;
+        } catch (error) {
+          console.error("Error during credentials validation:", error);
           return null;
         }
-        console.log(currentUser);
-        const passwordMatched = bcrypt.compare(password, currentUser.password);
-        if (!passwordMatched) {
-          return null;
-        }
-        return currentUser;
       },
     }),
     GoogleProvider({
-      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
-      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET || "",
     }),
     FacebookProvider({
-      clientId: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID,
-      clientSecret: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_SECRET,
+      clientId: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID || "",
+      clientSecret: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_SECRET || "",
     }),
   ],
   pages: {
@@ -51,38 +59,50 @@ export const authSession = {
   },
   callbacks: {
     async signIn({ user, account }) {
-      if (account.provider === "google" || account.provider === "facebook") {
-        const { email, name, image } = user;
-        console.log(user, account);
+      if (account?.provider === "google" || account?.provider === "facebook") {
+        const { email, name, image } = user as {
+          email: string;
+          name: string;
+          image: string;
+        };
+
+        if (!email || !name) {
+          console.error("Missing essential user data from provider");
+          return false; // Prevent sign-in if critical data is missing
+        }
 
         try {
           await dbConnect();
-          const userExist = await User.findOne({ email });
-          if (!userExist) {
+
+          // Check if the user already exists in the database
+          const existingUser = await User.findOne({ email });
+
+          if (!existingUser) {
+            // Create a new user if they do not exist
             const newUser = new User({
               email,
               username: name,
-              imageURL: image,
+              imageURL: image || null, // Image might be optional
               WishList: [],
               CartList: [],
               Liked: [],
-              role: "Member",
+              role: "Member", // Default role
             });
+
             await newUser.save();
-            return user;
-          } else {
-            return user;
+            console.log("New user created:", newUser.email);
           }
+
+          return true;
         } catch (error) {
-          console.log(error);
+          console.error("Error during provider sign-in:", error);
+          return false; // Prevent sign-in on error
         }
-      } else {
-        return user;
       }
+
+      return true;
     },
   },
-};
-
-const handler = NextAuth(authSession);
+});
 
 export { handler as GET, handler as POST };

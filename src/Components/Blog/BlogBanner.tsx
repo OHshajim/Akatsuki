@@ -1,7 +1,8 @@
+import { BlogDataTypes } from "@/Services/PropsValidations/DataType";
 import Image from "next/image";
 import React from "react";
 
-const BlogBanner = ({ blog }) => {
+const BlogBanner = ({ blog }: { blog: BlogDataTypes }) => {
   return (
     <div>
       <div className="relative z-0">

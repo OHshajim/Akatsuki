@@ -1,8 +1,12 @@
 import { Movies } from "@/models/Movies";
 import { User } from "@/models/User";
 import dbConnect from "@/utils/dbConnect";
+import { NextRequest } from "next/server";
 
-export const GET = async (request: unknown, { params }) => {
+export const GET = async (
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) => {
   try {
     await dbConnect();
     const query = request?.nextUrl?.searchParams;

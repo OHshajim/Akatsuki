@@ -8,30 +8,31 @@ import { useEffect, useState } from "react";
 import { MdOutlineShoppingCart, MdShoppingCart } from "react-icons/md";
 import Swal from "sweetalert2";
 import "@smastrom/react-rating/style.css";
+import Loading from "@/Components/Loader/Loading";
+import { ShopData } from "@/Services/PropsValidations/DataType";
 
 const Page = ({ params }: { params: { id: string } }) => {
   const { data: session } = useSession();
   const email = session?.user?.email || null;
-  const [book, setBook] = useState<any>(null);
+  const [book, setBook] = useState<ShopData | null>(null);
   const [isAdded, setAdded] = useState(false);
   const router = useRouter();
 
-  // Load product data
-  const dataLoad = async () => {
-    try {
-      const data = await ProductData(email, params.id);
-      if (data.status === 200) {
-        setAdded(data.isAdded);
-        setBook(data.data);
-      }
-    } catch (error) {
-      console.error("Error loading product data:", error);
-    }
-  };
-
   useEffect(() => {
+    const dataLoad = async () => {
+      try {
+        const data = await ProductData(email, params.id);
+        if (data.status === 200) {
+          setAdded(data.isAdded);
+          setBook(data.data);
+        }
+      } catch (error) {
+        console.error("Error loading product data:", error);
+      }
+    };
+
     dataLoad();
-  }, [email, session?.user]);
+  }, [email, params.id, session?.user]);
 
   // Handle cart functionality
   const handleCart = async () => {
@@ -97,7 +98,7 @@ const Page = ({ params }: { params: { id: string } }) => {
   };
 
   if (!book) {
-    return <p className="text-center mt-10 text-lg">Loading product...</p>;
+    return <Loading />;
   }
 
   return (

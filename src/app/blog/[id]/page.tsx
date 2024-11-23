@@ -8,26 +8,27 @@ import { useSession } from "next-auth/react";
 import { BlogData, LikeToggle } from "@/Services/AllDataLoad/DataLoad";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
+import Loading from "@/Components/Loader/Loading";
+import { BlogDataTypes } from "@/Services/PropsValidations/DataType";
 
-const SingleBlog = ({ params }) => {
+const SingleBlog = ({ params }: { params: { id: string } }) => {
   const { data: session } = useSession();
   const email = session?.user?.email ? session.user.email : null;
   const route = useRouter();
-  const [Blog, setBlog] = useState(null);
+  const [Blog, setBlog] = useState<BlogDataTypes | null>(null);
   const [liked, setLiked] = useState(false);
 
-  const dataLoad = async () => {
-    const data = await BlogData(email, params.id);
-    setLiked(data.isLiked);
-    setBlog(data.data);
-  };
-
   useEffect(() => {
+    const dataLoad = async () => {
+      const data = await BlogData(email, params.id);
+      setLiked(data.isLiked);
+      setBlog(data.data);
+    };
     dataLoad();
-  }, [params, session]);
+  }, [email, params, session]);
 
   const handleLike = async () => {
-    if (!session?.user) {
+    if (!email) {
       Swal.fire({
         title: "Please Login !!!",
         text: "Are want to login Now?",
@@ -43,10 +44,10 @@ const SingleBlog = ({ params }) => {
       });
       return null;
     }
-    const res = await LikeToggle(session.user.email, params.id);
+    const res = await LikeToggle(email, params.id);
     if (res.status === 201) {
       setLiked(true);
-      Blog.likes = Blog.likes + 1;
+      if (Blog) Blog.likes += 1;
       Swal.fire({
         title: "Successfully Added",
         text: `${Blog?.title || "Successfully this Blog"} added 🥳🥳🥳!!!`,
@@ -63,7 +64,7 @@ const SingleBlog = ({ params }) => {
       });
     } else if (res.status === 200) {
       setLiked(false);
-      Blog.likes = Blog.likes - 1;
+      if (Blog) Blog.likes -= 1;
       Swal.fire({
         title: `Successfully Removed !!!`,
         text: `${Blog?.title || "Successfully this Blog"} was removed !!!`,
@@ -80,7 +81,7 @@ const SingleBlog = ({ params }) => {
   };
 
   if (!Blog) {
-    return <p> Loading</p>;
+    return <Loading />;
   }
   return (
     <div>
@@ -89,7 +90,7 @@ const SingleBlog = ({ params }) => {
         <div className="">
           <div>
             <h2 className="text-3xl font-semibold mb-4 font-primary tracking-[2.5px]">
-              {Blog.title}
+              {Blog?.title}
             </h2>
             <h3 className="tracking-widest lg:text-lg sm:text-base text-sm">
               {Blog?.intro}
@@ -98,13 +99,13 @@ const SingleBlog = ({ params }) => {
               {Blog?.explanation}
             </p>
             <div className="flex w-full gap-5 my-10">
-              {Blog?.images?.additionalImages.map((img) => (
+              {Blog?.images?.additionalImages?.map((img) => (
                 <Image
                   key={img}
                   width={1000}
                   height={700}
                   src={img}
-                  alt={Blog.title}
+                  alt={Blog?.title}
                   className="w-1/2"
                 />
               ))}
@@ -117,7 +118,7 @@ const SingleBlog = ({ params }) => {
             </p>
 
             <p className="flex flex-wrap font-medium gap-4 lg:text-lg sm:text-base text-sm">
-              {Blog?.genres?.map((tag) => (
+              {Blog.genres.map((tag) => (
                 <span
                   className="border-2 font-primary sm:px-3 sm:py-1 p-1 hover:text-[#6fc9cd] hover:border-[#6fc9cd] delay-75 duration-200"
                   key={tag}
@@ -135,7 +136,11 @@ const SingleBlog = ({ params }) => {
                   onClick={handleLike}
                   className="btn bg-[#6fc9cd] text-white hover:bg-slate-400 w-fit"
                 >
-                  {liked ? <HiHeart className="text-xl"/> : <BiHeart className="text-xl"/>}
+                  {liked ? (
+                    <HiHeart className="text-xl" />
+                  ) : (
+                    <BiHeart className="text-xl" />
+                  )}
                   {Blog?.likes}
                 </button>
               </div>

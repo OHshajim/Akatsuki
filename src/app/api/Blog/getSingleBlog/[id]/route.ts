@@ -1,12 +1,19 @@
 import { Blog } from "@/models/Blog";
 import { User } from "@/models/User";
 import dbConnect from "@/utils/dbConnect";
+import { NextRequest } from "next/server";
 
-export const GET = async (request: unknown, { params }) => {
+interface Params {
+  id: string;
+}
+
+export const GET = async (
+  request: NextRequest,
+  { params }: { params: Params }
+) => {
   try {
     await dbConnect();
-    const query = request?.nextUrl?.searchParams;
-    const email = query.get("email");
+    const email = request.nextUrl.searchParams.get("email");
 
     const item = await Blog.findOne({
       _id: params.id,
@@ -15,7 +22,6 @@ export const GET = async (request: unknown, { params }) => {
     if (email) {
       const user = await User.findOne({ email: email });
       if (user.Liked.length < 1 || !user.Liked.includes(params.id)) {
-        console.log("here");
 
         return Response.json({
           isLiked: false,

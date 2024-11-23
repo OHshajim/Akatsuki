@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
 const MoviesSchema = new Schema({
-  name: { type: String, required: true },
+  title: { type: String, required: true },
   category: { type: String, required: true },
   director: { type: String, required: true },
   duration: { type: String, required: true },

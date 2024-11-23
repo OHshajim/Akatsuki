@@ -18,38 +18,28 @@ import { useSession } from "next-auth/react";
 import Swal from "sweetalert2";
 import { useParams, useRouter } from "next/navigation";
 import { Rating } from "@smastrom/react-rating";
-
-interface Movie {
-  id: string;
-  title: string;
-  description: string;
-  genres: string[];
-  director: string;
-  duration: string;
-  publisher: string;
-  imageUrl: string[];
-}
+import Loading from "@/Components/Loader/Loading";
+import SwiperCore from "swiper";
+import { MovieDataTypes } from "@/Services/PropsValidations/DataType";
 
 const Page = () => {
   const { data: session } = useSession();
   const email = session?.user?.email || null;
   const route = useRouter();
   const params = useParams();
-  const [movie, setMovie] = useState<Movie | null>(null);
-  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const [movie, setMovie] = useState<MovieDataTypes | null>(null);
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
   const [isLiked, setLiked] = useState(false);
-
-  const dataLoad = async () => {
-    const data = await MovieData(email, params.id);
-    setLiked(data.isLiked);
-    setMovie(data.data);
-  };
-
   useEffect(() => {
+    const dataLoad = async () => {
+      const data = await MovieData(email, params.id);
+      setLiked(data.isLiked);
+      setMovie(data.data);
+    };
     if (params?.id) {
       dataLoad();
     }
-  }, [params?.id, session?.user]);
+  }, [email, params.id, session?.user]);
 
   const handleCheckSubscription = async () => {
     try {
@@ -69,7 +59,7 @@ const Page = () => {
         });
         return null;
       }
-      const res = await MovieSubscription(session.user.email);
+      const res = await MovieSubscription(email);
       if (res.isSubscribed === true) {
         Swal.fire({
           title: "This content will added soon",
@@ -125,7 +115,7 @@ const Page = () => {
       });
       return null;
     }
-    const res = await WishlistToggle(session.user.email, params.id);
+    const res = await WishlistToggle(email, params.id);
     if (res.status === 201) {
       setLiked(true);
       Swal.fire({
@@ -159,7 +149,7 @@ const Page = () => {
     }
   };
   if (!movie) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
   return (
     <div className="container mx-auto my-20 p-10 ">
@@ -244,15 +234,14 @@ const Page = () => {
               <span className="text-zinc-500">{movie.yearPublished}</span>
             </p>
             <p className="mt-2 font-medium sm:text-base text-sm">
-              Language :
-              <span className="text-zinc-500">{movie.language}</span>
+              Language :<span className="text-zinc-500">{movie.language}</span>
             </p>
             <p className="mt-2 font-medium sm:text-base text-sm">
               Duration: <span className="text-zinc-500">{movie.duration} </span>
             </p>
             <p className="mt-2 font-medium sm:text-base text-sm">
               Views :{" "}
-              <span className="text-zinc-500">{movie.totalViews/1000}k </span>
+              <span className="text-zinc-500">{movie.totalViews / 1000}k </span>
             </p>
 
             <div className="card-actions justify-end">

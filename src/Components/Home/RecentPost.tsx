@@ -3,19 +3,19 @@ import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import axios from "axios";
 import Link from "next/link";
+import { RecentBlogs } from "@/Services/AllDataLoad/DataLoad";
+import Loading from "../Loader/Loading";
+import { BlogDataTypes } from "@/Services/PropsValidations/DataType";
 
 const RecentPost = () => {
-  const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useState<BlogDataTypes[]>([]);
 
   const dataLoad = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:3000/api/Blog/RecentBlogs"
-      );
-      if (response.data.status) {
-        setBlogs(response.data.data);
+      const response = await RecentBlogs();
+      if (response.status) {
+        setBlogs(response.data);
       }
     } catch (error) {
       console.error("Error loading blogs:", error);
@@ -25,11 +25,12 @@ const RecentPost = () => {
   useEffect(() => {
     dataLoad();
   }, []);
+
   if (blogs.length < 1) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
   return (
-    <div className="">
+    <div>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

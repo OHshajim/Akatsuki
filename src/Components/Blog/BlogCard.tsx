@@ -2,23 +2,23 @@
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { BlogDataTypes } from "@/Services/PropsValidations/DataType";
 
-const BlogCard = ({ blog }) => {
+const BlogCard = ({ blog }: { blog: BlogDataTypes }) => {
   return (
     <motion.div
       className="card rounded-none"
       whileHover={{
-        scale: 1.02, // Slight scaling of the whole card
-        transition: { duration: 0.3, ease: "easeInOut" }, // Smooth transition
+        scale: 1.02,
+        transition: { duration: 0.3, ease: "easeInOut" },
       }}
     >
-      {/* Image Section with Zoom Effect on Hover */}
       <figure className="relative group">
         <motion.div
           className="w-full h-full"
           whileHover={{
-            scale: 1.1, // Zoom-in effect for the image on hover
-            transition: { duration: 0.4 }, // Smooth zoom-in effect
+            scale: 1.1,
+            transition: { duration: 0.4 },
           }}
         >
           <Image
@@ -36,7 +36,7 @@ const BlogCard = ({ blog }) => {
         <p className="font-medium text-gray-600 tracking-wide">Anime</p>
 
         {/* Title */}
-        <h2 className="card-title text-black font-semibold sm:text-lg tracking-normal">
+        <h2 className="card-title text-black font-primary sm:text-lg tracking-widest font-medium">
           {blog.title}
         </h2>
 

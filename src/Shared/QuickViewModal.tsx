@@ -7,27 +7,17 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import { CartToggle } from "@/Services/AllDataLoad/DataLoad";
 import React from "react";
+import { ShopData } from "@/Services/PropsValidations/DataType";
 
 type QuickViewModalProps = {
-  item: {
-    _id: string;
-    imageUrl: string;
-    title: string;
-    price: number;
-    rating: number;
-    pages: number;
-    genres: string[];
-    publisher: string;
-    ISBN: string;
-    author: string;
-  };
+  item: ShopData;
   onClose: () => void;
 };
 
 const QuickViewModal: React.FC<QuickViewModalProps> = ({ item, onClose }) => {
   const { data: session } = useSession();
   const email = session?.user?.email ?? null;
-    const router = useRouter();
+  const router = useRouter();
 
   // Handle cart functionality
   const handleCart = async () => {
@@ -51,7 +41,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({ item, onClose }) => {
     }
     try {
       modal?.close();
-      const res = await CartToggle(email as string , item._id);
+      const res = await CartToggle(email as string, item._id);
       if (res.status === 201) {
         Swal.fire({
           title: "Added to Cart",

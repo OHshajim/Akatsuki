@@ -1,8 +1,12 @@
 import { shop } from "@/models/Shop";
 import { User } from "@/models/User";
 import dbConnect from "@/utils/dbConnect";
+import { NextRequest } from "next/server";
 
-export const GET = async (request: unknown, { params }) => {
+export const GET = async (
+  request: NextRequest,
+  { params }: { params: { email: string } }
+) => {
   try {
     await dbConnect();
 
@@ -11,10 +15,10 @@ export const GET = async (request: unknown, { params }) => {
 
     // Check if user exists and has a CartList
     if (!user || !user.CartList || user.CartList.length === 0) {
-      return new Response(
-        JSON.stringify({ message: "Cart is empty or user not found!" }),
-        { status: 404 }
-      );
+      return Response.json({
+        message: "Cart is empty or user not found!",
+        status: 404,
+      });
     }
 
     // Fetch shop data for the IDs in the user's CartList

@@ -3,7 +3,14 @@ import { User } from "@/models/User";
 import dbConnect from "@/utils/dbConnect";
 import { Blog } from "@/models/Blog";
 
-export const POST = async (req: NextRequest, { params }) => {
+interface Params {
+  email: string;
+}
+
+export const POST = async (
+  req: NextRequest,
+  { params }: { params: Params }
+) => {
   try {
     await dbConnect();
     const { BlogId } = await req.json();

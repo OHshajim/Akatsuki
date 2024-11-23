@@ -9,7 +9,7 @@ export const AllBlogs = async () => {
     return [];
   }
 };
-export const BlogData = async (email: string, id: string) => {
+export const BlogData = async (email: string | null, id: string) => {
   try {
     if (!email) {
       const response = await axios.get(
@@ -26,7 +26,7 @@ export const BlogData = async (email: string, id: string) => {
     return null;
   }
 };
-export const LikeToggle = async (email: string, id: string) => {
+export const LikeToggle = async (email: string | null, id: string) => {
   try {
     const response = await axios.post(
       `http://localhost:3000/api/Blog/LikeToggle/${email}`,
@@ -68,7 +68,7 @@ export const MovieData = async (
     return null;
   }
 };
-export const MovieSubscription = async (email: string) => {
+export const MovieSubscription = async (email: string | null) => {
   try {
     const response = await axios.get(
       `http://localhost:3000/api/Movies/CheckSubscription/${email}`
@@ -79,7 +79,7 @@ export const MovieSubscription = async (email: string) => {
     return null;
   }
 };
-export const WishlistToggle = async (email: string, id: string) => {
+export const WishlistToggle = async (email: string | null, id: string| string[]) => {
   try {
     const response = await axios.post(
       `http://localhost:3000/api/Movies/WishlistToggle/${email}`,
@@ -93,10 +93,22 @@ export const WishlistToggle = async (email: string, id: string) => {
 };
 
 // get Cart
-export const GetCards = async (email: string) => {
+export const GetCarts = async (email: string) => {
   try {
     const response = await axios.get(
       `http://localhost:3000/api/Cart/GetCarts/${email}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+export const RemoveCart = async (email: string | null, id: string) => {
+  try {
+    console.log({ email, id });
+    const response = await axios.delete(
+      `http://localhost:3000/api/Cart/RemoveCart/${id}?email=${email}`
     );
     return response.data;
   } catch (error) {
@@ -126,7 +138,7 @@ export const ProductData = async (
     return null;
   }
 };
-export const CartToggle = async (email: string, id: string) => {
+export const CartToggle = async (email: string | null, id: string) => {
   try {
     const response = await axios.post(
       `http://localhost:3000/api/Cart/AddToCart/${email}`,
@@ -140,13 +152,71 @@ export const CartToggle = async (email: string, id: string) => {
 };
 
 // <!--Home Page--!>
-// Popular Movies
+// Books
+
+export const AllBooksData = async () => {
+  try {
+    const response = await axios.get("http://localhost:3000/api/Shop");
+    return response.data.data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+export const AllBTopRatedBooks = async () => {
+  try {
+    const response = await axios.get(
+      "http://localhost:3000/api/Shop/TopRatedBooks"
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+export const BestSellingBooks = async () => {
+  try {
+    const response = await axios.get(
+      "http://localhost:3000/api/Shop/BestSellingBooks"
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+// Movies
 export const PopularMovies = async () => {
   try {
     const response = await axios.get(
       "http://localhost:3000/api/Movies/PopularMovies"
     );
     return response.data.data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+// Blogs
+export const BestBlogs = async () => {
+  try {
+    const response = await axios.get(
+      "http://localhost:3000/api/Blog/BestBlogs"
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+export const RecentBlogs = async () => {
+  try {
+    const response = await axios.get(
+      "http://localhost:3000/api/Blog/RecentBlogs"
+    );
+    return response.data;
   } catch (error) {
     console.error(error);
     return [];
