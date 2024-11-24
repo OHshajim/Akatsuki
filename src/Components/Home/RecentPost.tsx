@@ -1,42 +1,19 @@
-"use client";
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { RecentBlogs } from "@/Services/AllDataLoad/DataLoad";
 import Loading from "../Loader/Loading";
 import { BlogDataTypes } from "@/Services/PropsValidations/DataType";
 
-const RecentPost = () => {
-  const [blogs, setBlogs] = useState<BlogDataTypes[]>([]);
-
-  const dataLoad = async () => {
-    try {
-      const response = await RecentBlogs();
-      if (response.status) {
-        setBlogs(response.data);
-      }
-    } catch (error) {
-      console.error("Error loading blogs:", error);
-    }
-  };
-
-  useEffect(() => {
-    dataLoad();
-  }, []);
+const RecentPost = async () => {
+  const blogs = await RecentBlogs();
 
   if (blogs.length < 1) {
     return <Loading />;
   }
   return (
     <div>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="relative z-50"
-      >
+      <div className="relative z-50">
         <Image
           width={3000}
           height={1000}
@@ -57,11 +34,7 @@ const RecentPost = () => {
               </div>
               <div className="flex w-full flex-col lg:flex-row justify-evenly lg:py-5 gap-10 lg:p-0 p-10">
                 <Link href={`/blog/${blogs?.[0]._id}`}>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="card rounded-none group "
-                  >
+                  <div className="card rounded-none group ">
                     <figure>
                       <Image
                         width={1000}
@@ -92,15 +65,12 @@ const RecentPost = () => {
                         </div>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 </Link>
                 <div className="flex flex-col gap-5 lg:w-1/2">
-                  {blogs.slice(1, 4).map((blog) => (
+                  {blogs.slice(1, 4).map((blog: BlogDataTypes) => (
                     <Link key={blog._id} href={`/blog/${blog._id}`}>
-                      <motion.div
-                        whileHover={{ scale: 1.03 }}
-                        className="flex flex-row my-2 card gap-5 rounded-none text-white group"
-                      >
+                      <div className="flex flex-row my-2 card gap-5 rounded-none text-white group">
                         <figure>
                           <Image
                             width={1000}
@@ -129,7 +99,7 @@ const RecentPost = () => {
                             </h3>
                           </div>
                         </div>
-                      </motion.div>
+                      </div>
                     </Link>
                   ))}
                 </div>
@@ -137,7 +107,7 @@ const RecentPost = () => {
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };

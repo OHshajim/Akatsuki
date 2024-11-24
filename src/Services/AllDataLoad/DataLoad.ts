@@ -171,7 +171,7 @@ export const AllBooksData = async () => {
 export const AllBTopRatedBooks = async () => {
   try {
     const response = await axios.get(
-      `${process.env.NEXT_API_ROUTE}/api/Shop/TopRatedBooks`
+      "https://akatsuki-gamma.vercel.app/api/Shop/TopRatedBooks"
     );
     return response.data;
   } catch (error) {
@@ -182,7 +182,7 @@ export const AllBTopRatedBooks = async () => {
 export const BestSellingBooks = async () => {
   try {
     const response = await axios.get(
-      `${process.env.NEXT_API_ROUTE}/api/Shop/BestSellingBooks`
+      `https://akatsuki-gamma.vercel.app/api/Shop/BestSellingBooks`
     );
     return response.data;
   } catch (error) {
@@ -195,7 +195,7 @@ export const BestSellingBooks = async () => {
 export const PopularMovies = async () => {
   try {
     const response = await axios.get(
-      `${process.env.NEXT_API_ROUTE}/api/Movies/PopularMovies`
+      `https://akatsuki-gamma.vercel.app/api/Movies/PopularMovies`
     );
     return response.data.data;
   } catch (error) {
@@ -208,7 +208,7 @@ export const PopularMovies = async () => {
 export const BestBlogs = async () => {
   try {
     const response = await axios.get(
-      `${process.env.NEXT_API_ROUTE}/api/Blog/BestBlogs`
+      `https://akatsuki-gamma.vercel.app/api/Blog/BestBlogs`
     );
     return response.data;
   } catch (error) {
@@ -221,7 +221,7 @@ export const RecentBlogs = async () => {
     const response = await axios.get(
       `${process.env.NEXT_API_ROUTE}/api/Blog/RecentBlogs`
     );
-    return response.data;
+    return response.data.data;
   } catch (error) {
     console.error(error);
     return [];
