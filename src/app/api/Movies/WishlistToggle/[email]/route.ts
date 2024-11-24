@@ -17,6 +17,7 @@ export const POST = async (
       );
       return NextResponse.json({
         message: "Movie added to WishList",
+        isLiked: true,
         status: 201,
       });
     }
@@ -28,18 +29,21 @@ export const POST = async (
       );
       return NextResponse.json({
         message: "Movie removed to WishList",
+        isLiked: false,
         status: 200,
       });
     }
     return NextResponse.json({
       status: 404,
       message: "Something gone wrong, try again !!!",
+      isLiked: false,
     });
   } catch (error) {
     console.error(error);
-    return NextResponse.json(
-      { message: "Internal Server Error" },
-      { status: 500 }
-    );
+    return NextResponse.json({
+      message: "Internal Server Error",
+      isLiked: false,
+      status: 500,
+    });
   }
 };

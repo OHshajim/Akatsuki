@@ -58,9 +58,10 @@ const Nav = () => {
           <Image
             alt="Logo"
             src="https://i.ibb.co.com/sWm5kRP/AKATSUKI-Logo.jpg"
-            width={500}
-            height={500}
+            width={600}
+            height={600}
             className="max-w-16"
+            priority
           />
           <h1 className="sm:text-3xl text-xl font-Secondary text-white uppercase font-bold">
             Akatsuki

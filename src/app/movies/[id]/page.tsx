@@ -1,4 +1,6 @@
 "use client";
+export const dynamic = "force-dynamic";
+
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/thumbs";
@@ -33,8 +35,8 @@ const Page = () => {
   useEffect(() => {
     const dataLoad = async () => {
       const data = await MovieData(email, params.id);
-      setLiked(data.isLiked);
-      setMovie(data.data);
+      setLiked(data?.isLiked);
+      setMovie(data?.data);
     };
     if (params?.id) {
       dataLoad();

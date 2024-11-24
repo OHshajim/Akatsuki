@@ -42,7 +42,7 @@ const Page = () => {
       const imageHostedFile = await ImageHosting(imageFile);
       if (imageHostedFile.display_url) {
         const result = await axios.post(
-          `${process.env.NEXT_API_ROUTE}/api/auth/SignUp`,
+          `${process.env.NEXT_PUBLIC_API_URL}/api/auth/SignUp`,
           {
             email: data.email,
             password: data.password,

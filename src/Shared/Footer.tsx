@@ -21,9 +21,10 @@ const Footer = () => {
             <Image
               alt="Logo"
               src="https://i.ibb.co.com/sWm5kRP/AKATSUKI-Logo.jpg"
-              width={500}
-              height={500}
+              width={800}
+              height={800}
               className="sm:max-w-52 max-w-40"
+              priority
             />
             <h1 className="sm:text-4xl text-3xl font-bold text-white font-Secondary z-50">
               AKATSUKI

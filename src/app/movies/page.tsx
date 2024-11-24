@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import SectionBanner from "@/Shared/SectionBanner";
 import MovieCard from "@/Components/Movies/MovieCard";
 import { AllMovies } from "@/Services/AllDataLoad/DataLoad";

@@ -25,7 +25,8 @@ const MovieCard = ({ movie }: { movie: MovieDataTypes }) => {
               height={1400}
               src={movie.imageUrl[0]}
               alt={movie.title}
-              className="w-full transition-transform duration-300 ease-in-out" // Smooth transition for the image
+              className="w-full transition-transform duration-300 ease-in-out" // Smooth transition for the image 
+              priority
             />
           </motion.div>
         </figure>

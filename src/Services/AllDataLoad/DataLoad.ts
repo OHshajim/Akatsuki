@@ -1,8 +1,9 @@
 import axios from "axios";
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export const AllBlogs = async () => {
   try {
-    const response = await axios.get(`${process.env.NEXT_API_ROUTE}/api/Blog`);
+    const response = await axios.get(`${apiUrl}/api/Blog`);
     return response.data.data;
   } catch (error) {
     console.error(error);
@@ -13,12 +14,12 @@ export const BlogData = async (email: string | null, id: string) => {
   try {
     if (!email) {
       const response = await axios.get(
-        `${process.env.NEXT_API_ROUTE}/api/Blog/getSingleBlog/${id}`
+        `${apiUrl}/api/Blog/getSingleBlog/${id}`
       );
       return response.data;
     }
     const response = await axios.get(
-      `${process.env.NEXT_API_ROUTE}/api/Blog/getSingleBlog/${id}?email=${email}`
+      `${apiUrl}/api/Blog/getSingleBlog/${id}?email=${email}`
     );
     return response.data;
   } catch (error) {
@@ -29,7 +30,7 @@ export const BlogData = async (email: string | null, id: string) => {
 export const LikeToggle = async (email: string | null, id: string) => {
   try {
     const response = await axios.post(
-      `${process.env.NEXT_API_ROUTE}/api/Blog/LikeToggle/${email}`,
+      `${apiUrl}/api/Blog/LikeToggle/${email}`,
       { BlogId: id }
     );
     return response.data;
@@ -40,10 +41,10 @@ export const LikeToggle = async (email: string | null, id: string) => {
 };
 // Movies
 export const AllMovies = async () => {
+  console.log(apiUrl);
+
   try {
-    const response = await axios.get(
-      `${process.env.NEXT_API_ROUTE}/api/Movies`
-    );
+    const response = await axios.get(`${apiUrl}/api/Movies`);
     return response.data.data;
   } catch (error) {
     console.error(error);
@@ -55,14 +56,14 @@ export const MovieData = async (
   id: string | string[]
 ) => {
   try {
+    console.log(apiUrl);
+
     if (!email) {
-      const response = await axios.get(
-        `${process.env.NEXT_API_ROUTE}/api/Movies/Movie/${id}`
-      );
+      const response = await axios.get(`${apiUrl}/api/Movies/Movie/${id}`);
       return response.data;
     }
     const response = await axios.get(
-      `${process.env.NEXT_API_ROUTE}/api/Movies/Movie/${id}?email=${email}`
+      `${apiUrl}/api/Movies/Movie/${id}?email=${email}`
     );
     return response.data;
   } catch (error) {
@@ -73,7 +74,7 @@ export const MovieData = async (
 export const MovieSubscription = async (email: string | null) => {
   try {
     const response = await axios.get(
-      `${process.env.NEXT_API_ROUTE}/api/Movies/CheckSubscription/${email}`
+      `${apiUrl}/api/Movies/CheckSubscription/${email}`
     );
     return response.data;
   } catch (error) {
@@ -87,7 +88,7 @@ export const WishlistToggle = async (
 ) => {
   try {
     const response = await axios.post(
-      `${process.env.NEXT_API_ROUTE}/api/Movies/WishlistToggle/${email}`,
+      `${apiUrl}/api/Movies/WishlistToggle/${email}`,
       { movieId: id }
     );
     return response.data;
@@ -100,9 +101,7 @@ export const WishlistToggle = async (
 // get Cart
 export const GetCarts = async (email: string) => {
   try {
-    const response = await axios.get(
-      `${process.env.NEXT_API_ROUTE}/api/Cart/GetCarts/${email}`
-    );
+    const response = await axios.get(`${apiUrl}/api/Cart/GetCarts/${email}`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -113,7 +112,7 @@ export const RemoveCart = async (email: string | null, id: string) => {
   try {
     console.log({ email, id });
     const response = await axios.delete(
-      `${process.env.NEXT_API_ROUTE}/api/Cart/RemoveCart/${id}?email=${email}`
+      `${apiUrl}/api/Cart/RemoveCart/${id}?email=${email}`
     );
     return response.data;
   } catch (error) {
@@ -129,13 +128,11 @@ export const ProductData = async (
 ) => {
   try {
     if (!email) {
-      const response = await axios.get(
-        `${process.env.NEXT_API_ROUTE}/api/Shop/Book/${id}`
-      );
+      const response = await axios.get(`${apiUrl}/api/Shop/Book/${id}`);
       return response.data;
     }
     const response = await axios.get(
-      `${process.env.NEXT_API_ROUTE}/api/Shop/Book/${id}?email=${email}`
+      `${apiUrl}/api/Shop/Book/${id}?email=${email}`
     );
     return response.data;
   } catch (error) {
@@ -145,10 +142,9 @@ export const ProductData = async (
 };
 export const CartToggle = async (email: string | null, id: string) => {
   try {
-    const response = await axios.post(
-      `${process.env.NEXT_API_ROUTE}/api/Cart/AddToCart/${email}`,
-      { ProductId: id }
-    );
+    const response = await axios.post(`${apiUrl}/api/Cart/AddToCart/${email}`, {
+      ProductId: id,
+    });
     return response.data;
   } catch (error) {
     console.error(error);
@@ -161,7 +157,7 @@ export const CartToggle = async (email: string | null, id: string) => {
 
 export const AllBooksData = async () => {
   try {
-    const response = await axios.get(`${process.env.NEXT_API_ROUTE}/api/Shop`);
+    const response = await axios.get(`${apiUrl}/api/Shop`);
     return response.data.data;
   } catch (error) {
     console.error(error);
@@ -218,9 +214,7 @@ export const BestBlogs = async () => {
 };
 export const RecentBlogs = async () => {
   try {
-    const response = await axios.get(
-      `${process.env.NEXT_API_ROUTE}/api/Blog/RecentBlogs`
-    );
+    const response = await axios.get(`${apiUrl}/api/Blog/RecentBlogs`);
     return response.data.data;
   } catch (error) {
     console.error(error);
