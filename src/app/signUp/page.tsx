@@ -42,7 +42,7 @@ const Page = () => {
       const imageHostedFile = await ImageHosting(imageFile);
       if (imageHostedFile.display_url) {
         const result = await axios.post(
-          "http://localhost:3000/api/auth/SignUp",
+          `${process.env.NEXT_API_ROUTE}/api/auth/SignUp`,
           {
             email: data.email,
             password: data.password,
@@ -89,7 +89,6 @@ const Page = () => {
         className="relative flex lg:flex-row flex-col px-5 justify-around w-full container mx-auto bg-transparent py-20 rounded-2xl z-50"
       >
         <div className="mb-5 lg:w-1/2">
-        
           <h3 className="sm:text-3xl font-semibold text-center text-zinc-300 mb-4">
             Welcome to
           </h3>
