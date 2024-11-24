@@ -23,9 +23,9 @@ const Footer = () => {
               src="https://i.ibb.co.com/sWm5kRP/AKATSUKI-Logo.jpg"
               width={500}
               height={500}
-              className="max-w-52"
+              className="sm:max-w-52 max-w-40"
             />
-            <h1 className="text-4xl font-bold text-white font-Secondary z-50">
+            <h1 className="sm:text-4xl text-3xl font-bold text-white font-Secondary z-50">
               AKATSUKI
             </h1>
           </aside>

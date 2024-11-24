@@ -23,7 +23,7 @@ const Blogs = async () => {
       <SectionBanner subTitle={"Home > Blog"} title={"Blog"} />
 
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-10 container mx-auto py-20 sm:px-0 px-5">
-        {data?.map((blog: { blog: BlogDataTypes }) => (
+        {data?.map((blog: BlogDataTypes) => (
           <Link key={blog._id} href={`/blog/${blog._id}`}>
             <BlogCard blog={blog} />
           </Link>

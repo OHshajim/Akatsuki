@@ -25,7 +25,7 @@ const Page = async () => {
         <SectionBanner subTitle={"Home > Movies"} title={"Movies"} />
         {
           <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 gap-10 sm:px-0 px-5 container mx-auto py-20">
-            {movies.map((movie) => (
+            {movies.map((movie: MovieDataTypes) => (
               <div key={movie?._id}>
                 <MovieCard movie={movie} />
               </div>

@@ -73,7 +73,7 @@ const Page = () => {
   };
 
   return (
-    <div className="flex justify-center bg-black relative overflow-hidden select-none">
+    <div className="flex justify-center  bg-black relative overflow-hidden select-none">
       {/* Background Image */}
       <Image
         width={4000}
@@ -86,17 +86,18 @@ const Page = () => {
         initial={{ opacity: 0, scale: 0.1 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: "easeInOut" }}
-        className="relative flex justify-around w-full container mx-auto bg-transparent py-20 rounded-2xl z-50"
+        className="relative flex lg:flex-row flex-col px-5 justify-around w-full container mx-auto bg-transparent py-20 rounded-2xl z-50"
       >
-        <div className="mb-5 w-1/2">
-          <h3 className="text-3xl font-semibold text-center text-zinc-300 mb-4">
+        <div className="mb-5 lg:w-1/2">
+        
+          <h3 className="sm:text-3xl font-semibold text-center text-zinc-300 mb-4">
             Welcome to
           </h3>
-          <h1 className="text-5xl text-white font-bold font-Secondary uppercase text-center">
+          <h1 className="sm:text-5xl text-2xl text-white font-bold font-Secondary uppercase text-center">
             Akatsuki
           </h1>
         </div>
-        <div className="w-4/12">
+        <div className="lg:w-4/12">
           <h3 className="text-3xl font-medium text-center text-zinc-300 mb-4">
             Please Sign Up
           </h3>

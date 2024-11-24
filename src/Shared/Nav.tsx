@@ -10,6 +10,7 @@ import {
   AiOutlineMenuUnfold,
 } from "react-icons/ai";
 import { RiShoppingBag4Line } from "react-icons/ri";
+import Image from "next/image";
 
 const Nav = () => {
   const path = usePathname();
@@ -49,12 +50,19 @@ const Nav = () => {
       <div className="navbar bg-[#000000f5] p-5 items-center">
         {/* Brand and Logo with animation */}
         <motion.div
-          className="flex-1 z-50"
+          className="flex-1 z-50 gap-4"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <h1 className="text-3xl font-Secondary text-white uppercase font-bold">
+          <Image
+            alt="Logo"
+            src="https://i.ibb.co.com/sWm5kRP/AKATSUKI-Logo.jpg"
+            width={500}
+            height={500}
+            className="max-w-16"
+          />
+          <h1 className="sm:text-3xl text-xl font-Secondary text-white uppercase font-bold">
             Akatsuki
           </h1>
         </motion.div>
@@ -124,7 +132,7 @@ const Nav = () => {
             className="lg:hidden absolute top-16 left-0 w-full bg-black transition-all duration-300 z-50"
             initial={{ opacity: 0, y: -100 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.1 , ease: "linear"}}
+            transition={{ duration: 0.1, ease: "linear" }}
           >
             <ul className="flex flex-col justify-center w-full items-center space-y-4 py-4">
               {navList}
@@ -153,7 +161,7 @@ const Nav = () => {
                           : "text-white"
                       } focus:text-[#E3962B] focus:bg-transparent transition-colors duration-300 hover:text-[#E3962B] font-primary tracking-[2px] hover:bg-transparent z-50 flex gap-2`}
                     >
-                      <RiShoppingBag4Line className="text-2xl"/> Cart
+                      <RiShoppingBag4Line className="text-2xl" /> Cart
                     </Link>
                   </li>
                   <li>
@@ -165,7 +173,7 @@ const Nav = () => {
                           : "text-white"
                       } focus:text-[#E3962B] focus:bg-transparent  transition-colors duration-300 hover:text-[#E3962B] font-primary tracking-[2px] hover:bg-transparent z-50 flex gap-2`}
                     >
-                      <AiOutlineMenuUnfold className="text-2xl"/> DashBoard
+                      <AiOutlineMenuUnfold className="text-2xl" /> DashBoard
                     </Link>
                   </li>
                 </>

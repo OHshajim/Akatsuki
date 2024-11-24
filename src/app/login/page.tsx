@@ -58,10 +58,10 @@ const Login = () => {
         className="relative flex lg:flex-row flex-col px-5 justify-around w-full container mx-auto bg-transparent py-20 rounded-2xl z-50"
       >
         <div className="mb-5 lg:w-1/2">
-          <h3 className="text-3xl font-semibold text-center text-zinc-300 mb-4">
+          <h3 className="sm:text-3xl font-semibold text-center text-zinc-300 mb-4">
             Welcome Back to
           </h3>
-          <h1 className="text-5xl text-white font-bold font-Secondary uppercase text-center">
+          <h1 className="sm:text-5xl text-3xl text-white font-bold font-Secondary uppercase text-center">
             Akatsuki
           </h1>
         </div>

@@ -99,7 +99,7 @@ const Card: React.FC<CardProps> = ({ item, setViewItem }) => {
             className="w-full transition-transform duration-500 ease-in-out group-hover:scale-110"
           />
         </Link>
-        <div className="absolute bottom-0 w-full flex hidden bg-white opacity-0 group-hover:opacity-100 group-hover:flex group-hover:translate-y-0 translate-y-10 transition-all duration-500 ease-in-out">
+        <div className="absolute bottom-0 w-full  hidden bg-white opacity-0 group-hover:opacity-100 group-hover:flex group-hover:translate-y-0 translate-y-10 transition-all duration-500 ease-in-out">
           <button
             onClick={handleClick}
             className="btn bg-white w-1/2 border-none hover:bg-gray-100 text-black transition-colors duration-300"
