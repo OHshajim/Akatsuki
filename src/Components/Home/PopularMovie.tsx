@@ -13,15 +13,15 @@ const PopularMovie = () => {
 
   const dataLoad = async () => {
     const data = await PopularMovies();
-    if (data.length > 0) {
+    if (data?.length > 0) {
       setMovies(data);
     }
   };
   useEffect(() => {
     dataLoad();
   }, []);
-  
-  if (movies.length < 1) {
+
+  if (!movies || movies?.length < 1) {
     return <Loading />;
   }
   return (

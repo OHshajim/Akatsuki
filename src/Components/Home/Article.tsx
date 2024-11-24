@@ -21,7 +21,7 @@ const Article = () => {
   useEffect(() => {
     dataLoad();
   }, []);
-  if (blogs.length < 1) {
+  if (blogs?.length < 1) {
     return <Loading />;
   }
   return (

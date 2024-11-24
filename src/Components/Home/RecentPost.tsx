@@ -8,7 +8,7 @@ import { BlogDataTypes } from "@/Services/PropsValidations/DataType";
 const RecentPost = async () => {
   const blogs = await RecentBlogs();
 
-  if (blogs.length < 1) {
+  if (!blogs || blogs?.length < 1) {
     return <Loading />;
   }
   return (

@@ -12,7 +12,7 @@ export const metadata = {
 const Page = async () => {
   const movies = await AllMovies();
 
-  if (!movies || movies.length < 1) {
+  if (!movies || movies?.length < 1) {
     return (
       <div className="text-center py-20">
         <Loading />

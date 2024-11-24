@@ -24,7 +24,7 @@ const TopRatedAnime = () => {
     dataLoad();
   }, []);
 
-  if (books.length < 1 || !books) {
+  if (books?.length < 1 || !books) {
     return <Loading />;
   }
   return (

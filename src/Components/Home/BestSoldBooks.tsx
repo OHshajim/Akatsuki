@@ -22,7 +22,7 @@ const BestSoldBooks = () => {
     dataLoad();
   }, []);
 
-  if (books.length < 1) {
+  if (books?.length < 1) {
     return <Loading />;
   }
   return (

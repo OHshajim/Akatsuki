@@ -11,7 +11,7 @@ export const metadata = {
 };
 const Blogs = async () => {
   const data = await AllBlogs();
-  if (!data || data.length === 0) {
+  if (!data || data?.length === 0) {
     return (
       <div className="text-center py-20">
         <Loading />
