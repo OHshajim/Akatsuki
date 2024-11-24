@@ -166,9 +166,7 @@ export const AllBooksData = async () => {
 };
 export const AllBTopRatedBooks = async () => {
   try {
-    const response = await axios.get(
-      "https://akatsuki-ivory.vercel.app/api/Shop/TopRatedBooks"
-    );
+    const response = await axios.get(`${apiUrl}}/api/Shop/TopRatedBooks`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -177,9 +175,7 @@ export const AllBTopRatedBooks = async () => {
 };
 export const BestSellingBooks = async () => {
   try {
-    const response = await axios.get(
-      `https://akatsuki-ivory.vercel.app/api/Shop/BestSellingBooks`
-    );
+    const response = await axios.get(`${apiUrl}/api/Shop/BestSellingBooks`);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -190,9 +186,7 @@ export const BestSellingBooks = async () => {
 // Movies
 export const PopularMovies = async () => {
   try {
-    const response = await axios.get(
-      `https://akatsuki-ivory.vercel.app/api/Movies/PopularMovies`
-    );
+    const response = await axios.get(`${apiUrl}/api/Movies/PopularMovies`);
     return response.data.data;
   } catch (error) {
     console.error(error);
@@ -203,9 +197,7 @@ export const PopularMovies = async () => {
 // Blogs
 export const BestBlogs = async () => {
   try {
-    const response = await axios.get(
-      `https://akatsuki-ivory.vercel.app/api/Blog/BestBlogs`
-    );
+    const response = await axios.get(`${apiUrl}/api/Blog/BestBlogs`);
     return response.data;
   } catch (error) {
     console.error(error);
