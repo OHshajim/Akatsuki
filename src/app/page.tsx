@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import Article from "@/Components/Home/Article";
 import Banner from "@/Components/Home/Banner";
 import PopularMovie from "@/Components/Home/PopularMovie";

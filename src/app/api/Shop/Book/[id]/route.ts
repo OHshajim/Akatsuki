@@ -1,7 +1,7 @@
 import { shop } from "@/models/Shop";
 import { User } from "@/models/User";
 import dbConnect from "@/utils/dbConnect";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (
   request: NextRequest,
@@ -20,7 +20,7 @@ export const GET = async (
       if (user.CartList.length < 1 || !user.CartList.includes(params.id)) {
         console.log("here");
 
-        return Response.json({
+        return NextResponse.json({
           isAdded: false,
           status: 200,
           data: item,
@@ -28,14 +28,14 @@ export const GET = async (
       }
       const isSubscribed = user.CartList.includes(params.id);
       if (isSubscribed) {
-        return Response.json({
+        return NextResponse.json({
           isAdded: true,
           status: 200,
           data: item,
         });
       }
     } else {
-      return Response.json({
+      return NextResponse.json({
         status: 200,
         isAdded: false,
         data: item,
@@ -43,7 +43,7 @@ export const GET = async (
     }
   } catch (error) {
     console.error(error);
-    return new Response(
+    return new NextResponse(
       JSON.stringify({ message: "Internal Server Error !!!" }),
       {
         status: 500,

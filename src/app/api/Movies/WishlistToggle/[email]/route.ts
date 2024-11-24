@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { User } from "@/models/User";
 import dbConnect from "@/utils/dbConnect";
 
@@ -15,7 +15,7 @@ export const POST = async (
         { email: params?.email },
         { $addToSet: { WishList: movieId } }
       );
-      return Response.json({
+      return NextResponse.json({
         message: "Movie added to WishList",
         status: 201,
       });
@@ -26,17 +26,20 @@ export const POST = async (
         { email: params?.email },
         { $pull: { WishList: movieId } }
       );
-      return Response.json({
+      return NextResponse.json({
         message: "Movie removed to WishList",
         status: 200,
       });
     }
-    return Response.json({
+    return NextResponse.json({
       status: 404,
       message: "Something gone wrong, try again !!!",
     });
   } catch (error) {
     console.error(error);
-    return Response.json({ message: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { message: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 };

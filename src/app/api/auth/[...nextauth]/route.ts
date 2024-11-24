@@ -90,7 +90,6 @@ const handler = NextAuth({
             });
 
             await newUser.save();
-            console.log("New user created:", newUser.email);
           }
 
           return true;

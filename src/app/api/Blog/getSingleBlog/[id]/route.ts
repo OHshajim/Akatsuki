@@ -1,7 +1,7 @@
 import { Blog } from "@/models/Blog";
 import { User } from "@/models/User";
 import dbConnect from "@/utils/dbConnect";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 interface Params {
   id: string;
@@ -23,7 +23,7 @@ export const GET = async (
       const user = await User.findOne({ email: email });
       if (user.Liked.length < 1 || !user.Liked.includes(params.id)) {
 
-        return Response.json({
+        return NextResponse.json({
           isLiked: false,
           status: 200,
           data: item,
@@ -31,14 +31,14 @@ export const GET = async (
       }
       const isSubscribed = user.Liked.includes(params.id);
       if (isSubscribed) {
-        return Response.json({
+        return NextResponse.json({
           isLiked: true,
           status: 200,
           data: item,
         });
       }
     } else {
-      return Response.json({
+      return NextResponse.json({
         status: 200,
         isLiked: false,
         data: item,
@@ -46,6 +46,6 @@ export const GET = async (
     }
   } catch (error) {
     console.error(error);
-    return Response.json({ message: "Internal Server Error !!!", status: 500 });
+    return NextResponse.json({ message: "Internal Server Error !!!", status: 500 });
   }
 };

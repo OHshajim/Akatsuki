@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server";
 import { shop } from "@/models/Shop";
 import dbConnect from "@/utils/dbConnect";
 
@@ -6,12 +7,12 @@ export const GET = async () => {
     await dbConnect();
     const item = await shop.find();
 
-    return Response.json({
+    return NextResponse.json({
       status: 200,
       data: item,
     });
   } catch (error) {
     console.log(error);
-    return Response.json({ message: "Internal Server Error !!!" });
+    return NextResponse.json({ message: "Internal Server Error !!!" });
   }
 };

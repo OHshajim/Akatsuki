@@ -1,6 +1,6 @@
 import { User } from "@/models/User";
 import dbConnect from "@/utils/dbConnect";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export const DELETE = async (
   request: NextRequest,
@@ -16,7 +16,7 @@ export const DELETE = async (
 
     // Validate inputs
     if (!params.id) {
-      return new Response(
+      return new NextResponse(
         JSON.stringify({ message: "Cart item ID is required!" }),
         { status: 400 }
       );
@@ -26,7 +26,7 @@ export const DELETE = async (
     const user = await User.findOne({ email: email });
 
     if (!user || !user.CartList) {
-      return new Response(
+      return new NextResponse(
         JSON.stringify({ message: "Cart is empty or user not found!" }),
         { status: 404 }
       );
@@ -37,13 +37,13 @@ export const DELETE = async (
     user.CartList.splice(itemIndex, 1);
     await user.save();
 
-    return Response.json({
+    return NextResponse.json({
       message: "Successfully removed cart item.",
       status: 200,
     });
   } catch (error) {
     console.error(error);
-    return new Response(JSON.stringify({ message: "Internal Server Error!" }), {
+    return new NextResponse(JSON.stringify({ message: "Internal Server Error!" }), {
       status: 500,
     });
   }

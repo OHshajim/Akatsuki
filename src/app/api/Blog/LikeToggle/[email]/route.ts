@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { User } from "@/models/User";
 import dbConnect from "@/utils/dbConnect";
 import { Blog } from "@/models/Blog";
@@ -26,7 +26,7 @@ export const POST = async (
         },
         { $inc: { likes: 1 } }
       );
-      return Response.json({
+      return NextResponse.json({
         message: "Blog added to Liked",
         status: 201,
       });
@@ -43,17 +43,20 @@ export const POST = async (
         },
         { $inc: { likes: -1 } }
       );
-      return Response.json({
+      return NextResponse.json({
         message: "Blog removed to Liked",
         status: 200,
       });
     }
-    return Response.json({
+    return NextResponse.json({
       status: 404,
       message: "Something gone wrong, try again !!!",
     });
   } catch (error) {
     console.error(error);
-    return Response.json({ message: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json(
+      { message: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 };

@@ -1,6 +1,6 @@
 import { User } from "@/models/User";
 import dbConnect from "@/utils/dbConnect";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (
   request: NextRequest,
@@ -19,7 +19,7 @@ export const GET = async (
         subscriptionEnd.getDate() >= now.getDate();
 
       if (isSubscriptionValid) {
-        return new Response(
+        return new NextResponse(
           JSON.stringify({
             status: 200,
             isSubscribed: true,
@@ -27,7 +27,7 @@ export const GET = async (
           })
         );
       } else {
-        return new Response(
+        return new NextResponse(
           JSON.stringify({
             status: 200,
             isSubscribed: false,
@@ -36,7 +36,7 @@ export const GET = async (
         );
       }
     } else {
-      return new Response(
+      return new NextResponse(
         JSON.stringify({
           //   status: 404,
           isSubscribed: false,
@@ -46,7 +46,7 @@ export const GET = async (
     }
   } catch (error) {
     console.error(error);
-    return new Response(
+    return new NextResponse(
       JSON.stringify({ message: "Internal Server Error !!!" }),
       {
         status: 500,

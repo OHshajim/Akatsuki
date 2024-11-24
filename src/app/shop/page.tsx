@@ -12,7 +12,7 @@ export const metadata = {
 const Page = async () => {
   const Books = await AllBooksData();
 
-  if (Books?.length < 1) {
+  if (!Books || Books?.length < 1) {
     return <Loading />;
   }
   return (
