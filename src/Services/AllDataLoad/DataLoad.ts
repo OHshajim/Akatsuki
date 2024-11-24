@@ -41,8 +41,6 @@ export const LikeToggle = async (email: string | null, id: string) => {
 };
 // Movies
 export const AllMovies = async () => {
-  console.log(apiUrl);
-
   try {
     const response = await axios.get(`${apiUrl}/api/Movies`);
     return response.data.data;
@@ -164,9 +162,9 @@ export const AllBooksData = async () => {
     return [];
   }
 };
-export const AllBTopRatedBooks = async () => {
+export const AllTopRatedBooks = async () => {
   try {
-    const response = await axios.get(`${apiUrl}}/api/Shop/TopRatedBooks`);
+    const response = await axios.get(`${apiUrl}/api/Shop/TopRatedBooks`);
     return response.data;
   } catch (error) {
     console.error(error);

@@ -5,9 +5,9 @@ import "swiper/css";
 import Card from "@/Shared/Card";
 import { useEffect, useState } from "react";
 import QuickViewModal from "@/Shared/QuickViewModal";
-import { AllBTopRatedBooks } from "@/Services/AllDataLoad/DataLoad";
 import Loading from "../Loader/Loading";
 import { ShopData } from "@/Services/PropsValidations/DataType";
+import { AllTopRatedBooks } from "@/Services/AllDataLoad/DataLoad";
 
 const TopRatedAnime = () => {
   const [books, setBook] = useState<ShopData[]>([]);
@@ -15,7 +15,7 @@ const TopRatedAnime = () => {
   const [selectedBook, setSelectedBook] = useState<ShopData | null>(null);
   useEffect(() => {
     const dataLoad = async () => {
-      const data = await AllBTopRatedBooks();
+      const data = await AllTopRatedBooks();
       if (data.status === 200) {
         setBook(data.data);
       }
