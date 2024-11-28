@@ -15,7 +15,7 @@
 
 2. **User Authentication & Dashboard:**
 
-   - Secure user authentication using **Google** and **Facebook** via **NextAuth**.
+   - Secure user authentication using  **email** , **Google** and **Facebook** via **NextAuth**.
    - Personalized dashboard to manage user details, view liked blogs, and pay for books added to the list.
 
 3. **Blogs & Subscription Packages:**
