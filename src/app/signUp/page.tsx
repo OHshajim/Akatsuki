@@ -86,7 +86,7 @@ const Page = () => {
         initial={{ opacity: 0, scale: 0.1 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: "easeInOut" }}
-        className="relative flex lg:flex-row flex-col px-5 justify-around w-full container mx-auto bg-transparent py-20 rounded-2xl z-50"
+        className="relative flex lg:flex-row flex-col px-5 justify-around w-full container mx-auto bg-transparent py-20 rounded-2xl z-10"
       >
         <div className="mb-5 lg:w-1/2">
           <h3 className="sm:text-3xl font-semibold text-center text-zinc-300 mb-4">
