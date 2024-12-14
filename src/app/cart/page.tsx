@@ -27,14 +27,14 @@ const Cart = () => {
   const [subtotal, setSubtotal] = useState(0);
   const [currentStep, setCurrentStep] = useState(1);
   const [isAddressFormVisible, setIsAddressFormVisible] = useState(false);
-  const [PaymentMethod, setPaymentMethod] = useState("");
+  const [PaymentMethod, setPaymentMethod] = useState("Cash on Delivery");
   const [address, setAddress] = useState<AddressForm>({
     country: "Bangladesh",
     state: "Dhaka",
     city: "Narsingdi",
     zip: 1600,
   });
-
+  const total = subtotal + 10;
   const { register, handleSubmit } = useForm<AddressForm>();
 
   useEffect(() => {
@@ -101,16 +101,24 @@ const Cart = () => {
   };
 
   const handleOrderReceived = () => {
-    if (PaymentMethod == "") return;
     const OrderData = {
       cartItems,
-      totalCost: subtotal + 10,
+      totalCost: total.toFixed(2),
       address,
       PaymentMethod,
     };
     console.log(OrderData);
-
-    // setCurrentStep(3);
+    if (PaymentMethod === "Cash on Delivery") {
+      setCurrentStep(3);
+    } else if (PaymentMethod === "PayPal") {
+      setCurrentStep(3);
+    } else if (PaymentMethod === "SSLCommerz") {
+      setCurrentStep(3);
+    } else if (PaymentMethod === "Stripe") {
+      setCurrentStep(3);
+    } else {
+      setCurrentStep(1);
+    }
   };
   // Confirm Order
   const handleConfirmOrder = () => {
@@ -382,7 +390,7 @@ const Cart = () => {
             </div>
             <div className="flex justify-between font-bold border-t text-lg  pt-4 mt-4">
               <span>Total</span>
-              <span>${subtotal + 10}</span>
+              <span>${total.toFixed(2)}</span>
             </div>
             <div className="flex justify-between pt-4">
               <span>Location</span>
@@ -393,7 +401,7 @@ const Cart = () => {
             </div>
           </div>
           {/* Payment Methods */}
-          <div className="bg-white rounded-lg shadow-lg p-6 w-full">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-full select-none">
             <h2 className="text-xl font-bold mb-4">Payment</h2>
             {["Cash on Delivery", "PayPal", "SSLCommerz", "Stripe"].map(
               (method) => (
@@ -403,6 +411,7 @@ const Cart = () => {
                     id={method}
                     name="payment"
                     value={method}
+                    checked={PaymentMethod === method}
                     onChange={() => setPaymentMethod(method)}
                     className="mr-2"
                   />
