@@ -27,6 +27,7 @@ const Cart = () => {
   const [subtotal, setSubtotal] = useState(0);
   const [currentStep, setCurrentStep] = useState(1);
   const [isAddressFormVisible, setIsAddressFormVisible] = useState(false);
+  const [PaymentMethod, setPaymentMethod] = useState("");
   const [address, setAddress] = useState<AddressForm>({
     country: "Bangladesh",
     state: "Dhaka",
@@ -100,7 +101,16 @@ const Cart = () => {
   };
 
   const handleOrderReceived = () => {
-    setCurrentStep(3);
+    if (PaymentMethod == "") return;
+    const OrderData = {
+      cartItems,
+      totalCost: subtotal + 10,
+      address,
+      PaymentMethod,
+    };
+    console.log(OrderData);
+
+    // setCurrentStep(3);
   };
   // Confirm Order
   const handleConfirmOrder = () => {
@@ -275,24 +285,32 @@ const Cart = () => {
                     <form onSubmit={handleSubmit(onSubmit)} className="mt-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <input
+                          type="text"
                           {...register("country", { required: true })}
                           placeholder="Country"
                           className="p-2 border rounded-md"
+                          defaultValue={"Bangladesh"}
                         />
                         <input
+                          type="text"
                           {...register("state", { required: true })}
                           placeholder="State"
                           className="p-2 border rounded-md"
+                          defaultValue={"Dhaka"}
                         />
                         <input
+                          type="text"
                           {...register("city", { required: true })}
                           placeholder="City"
                           className="p-2 border rounded-md"
+                          defaultValue={"Narsingdi"}
                         />
                         <input
+                          type="number"
                           {...register("zip", { required: true })}
                           placeholder="ZIP Code"
                           className="p-2 border rounded-md"
+                          defaultValue={1600}
                         />
                       </div>
                       <button
@@ -385,8 +403,7 @@ const Cart = () => {
                     id={method}
                     name="payment"
                     value={method}
-                    // checked={selectedPayment === method}
-                    // onChange={() => setSelectedPayment(method)}
+                    onChange={() => setPaymentMethod(method)}
                     className="mr-2"
                   />
                   <label htmlFor={method}>{method}</label>
