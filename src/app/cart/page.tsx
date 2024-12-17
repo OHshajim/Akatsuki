@@ -11,6 +11,9 @@ import Image from "next/image";
 import Swal from "sweetalert2";
 import Loading from "@/Components/Loader/Loading";
 import { ShopData } from "@/Services/PropsValidations/DataType";
+import Checkout from "@/Payments/Stripe/Checkout";
+import CashOnDelivery from "@/Payments/CashOnDelivery/CashOnDelivery";
+import { useRouter } from "next/navigation";
 
 interface AddressForm {
   country: string;
@@ -20,6 +23,7 @@ interface AddressForm {
 }
 
 const Cart = () => {
+  const router = useRouter();
   const { data: session } = useSession();
   const [cartItems, setCartItems] = useState<ShopData[]>([]);
   const [removedId, setRemoveId] = useState<string | null>(null);
@@ -91,45 +95,23 @@ const Cart = () => {
     setIsAddressFormVisible(false);
   };
 
-  // Show Address Form
-  const handleAddressEdit = () => {
-    setIsAddressFormVisible(true);
-  };
-  // Steps Navigation
-  const handleCheckout = () => {
-    setCurrentStep(2);
-  };
+  const productIds = cartItems?.map((item) => item._id);
+  const cost = parseFloat(total.toFixed(2));
 
-  const handleOrderReceived = () => {
-    const OrderData = {
-      cartItems,
-      totalCost: total.toFixed(2),
-      address,
-      PaymentMethod,
-    };
-    console.log(OrderData);
+  const OrderData = {
+    products: productIds,
+    totalCost: cost,
+    address,
+    email: session?.user?.email,
+    name: session?.user?.name,
+  };
+  const OrderPlacement = () => {
     if (PaymentMethod === "Cash on Delivery") {
-      setCurrentStep(3);
-    } else if (PaymentMethod === "PayPal") {
-      setCurrentStep(3);
-    } else if (PaymentMethod === "SSLCommerz") {
-      setCurrentStep(3);
-    } else if (PaymentMethod === "Stripe") {
-      setCurrentStep(3);
-    } else {
-      setCurrentStep(1);
+      CashOnDelivery({ order: OrderData });
+      return router.push("/shop");
     }
+    return setCurrentStep(3);
   };
-  // Confirm Order
-  const handleConfirmOrder = () => {
-    Swal.fire({
-      title: "Congratulations",
-      text: `Enjoy with your Books !!!`,
-      icon: "success",
-    });
-    setCurrentStep(1); // Reset to initial step
-  };
-
   if (loading) {
     return <Loading />;
   }
@@ -138,7 +120,7 @@ const Cart = () => {
       {/* Section Banner */}
       <SectionBanner subTitle="Home &gt; Cart" title="Cart" />
       <div className="text-center text-gray-600 my-10 flex justify-center">
-        {["Shopping Cart", "Payment & Delivery Options", "Order Received"].map(
+        {["Shopping Cart", "Order Details", "Payment && Confirmation"].map(
           (step, index) => (
             <div
               key={index}
@@ -338,7 +320,7 @@ const Cart = () => {
                             {address?.country} - {address?.zip}
                           </p>
                           <button
-                            onClick={handleAddressEdit}
+                            onClick={() => setIsAddressFormVisible(true)}
                             className="mt-2 text-[#6fc9cd] hover:text-[#2a9ca2] text-sm hover:underline text-end w-full"
                           >
                             Change Location?
@@ -351,7 +333,7 @@ const Cart = () => {
 
                 {/* Checkout Button */}
                 <button
-                  onClick={handleCheckout}
+                  onClick={() => setCurrentStep(2)}
                   className="btn  tracking-widest font-medium  mt-6 w-full px-6 py-3 bg-[#6fc9cd] hover:bg-[#2a9ca2] text-white  rounded-none"
                 >
                   Proceed to Checkout
@@ -359,7 +341,7 @@ const Cart = () => {
               </section>
             </div>
           ) : (
-            <div className="flex justify-center items-center flex-col">
+            <div className="flex justify-center items-center flex-col py-20">
               <h4 className=" text-2xl font-semibold">No Cart Available !!!</h4>
               <Link href="/shop">
                 <button className="btn px-6 py-2 border-none rounded-none bg-white text-black shadow-md  tracking-widest font-normal mt-4">
@@ -420,7 +402,7 @@ const Cart = () => {
               )
             )}
             <button
-              onClick={handleOrderReceived}
+              onClick={OrderPlacement}
               className="btn tracking-widest font-normal mt-6 w-full px-6 py-3 bg-[#6fc9cd] hover:bg-[#2a9ca2] text-white  rounded-none"
             >
               Place Order
@@ -430,16 +412,8 @@ const Cart = () => {
       )}
       {currentStep === 3 && (
         <section className="container mx-auto px-4 py-10">
-          {/* Order Details */}
           <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-            <h2 className="text-xl font-bold mb-4">Order Received</h2>
-            {/* ...Order details implementation (similar to order summary)... */}
-            <button
-              onClick={handleConfirmOrder}
-              className="btn tracking-widest font-normal mt-6 w-full px-6 py-3 bg-[#6fc9cd] hover:bg-[#2a9ca2] text-white  rounded-none"
-            >
-              Order Confirm
-            </button>
+            {PaymentMethod === "Stripe" && <Checkout order={OrderData} />}
           </div>
         </section>
       )}

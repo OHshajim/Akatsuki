@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@smastrom/react-rating": "^1.5.0",
+    "@stripe/react-stripe-js": "^3.1.1",
     "@stripe/stripe-js": "^5.3.0",
     "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
