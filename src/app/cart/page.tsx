@@ -14,6 +14,7 @@ import { ShopData } from "@/Services/PropsValidations/DataType";
 import Checkout from "@/Payments/Stripe/Checkout";
 import CashOnDelivery from "@/Payments/CashOnDelivery/CashOnDelivery";
 import { useRouter } from "next/navigation";
+import SSLPayment from "@/Payments/SSLCommerz/SSLPayment";
 
 interface AddressForm {
   country: string;
@@ -109,6 +110,11 @@ const Cart = () => {
     if (PaymentMethod === "Cash on Delivery") {
       CashOnDelivery({ order: OrderData });
       return router.push("/shop");
+    }
+    if (PaymentMethod === "SSLCommerz") {
+      SSLPayment(OrderData);
+      // return router.push("/shop");
+      return;
     }
     return setCurrentStep(3);
   };
