@@ -1,10 +1,11 @@
 import useAxios from "@/CustomHooks/useAxios";
 
-const SSLPayment = (order: unknown) => {
-  console.log(order);
+const SSLPayment = async (order: unknown) => {
   const Axios = useAxios();
-  const res = Axios.post("/api/payment/SSLCommerz", order);
-  console.log(res);
+  const res = await Axios.post("/api/payment/SSLCommerz", order);
+  if (res.status === 200) {
+    return res.data.paymentURL;
+  }
 };
 
 export default SSLPayment;

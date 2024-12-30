@@ -106,15 +106,14 @@ const Cart = () => {
     email: session?.user?.email,
     name: session?.user?.name,
   };
-  const OrderPlacement = () => {
+  const OrderPlacement = async () => {
     if (PaymentMethod === "Cash on Delivery") {
       CashOnDelivery({ order: OrderData });
       return router.push("/shop");
     }
     if (PaymentMethod === "SSLCommerz") {
-      SSLPayment(OrderData);
-      // return router.push("/shop");
-      return;
+      const res = await SSLPayment(OrderData);
+      return router.push(res);
     }
     return setCurrentStep(3);
   };
