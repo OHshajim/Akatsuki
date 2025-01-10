@@ -1,21 +1,35 @@
+import { Orders } from "@/models/Orders";
+import { User } from "@/models/User";
 import dbConnect from "@/utils/dbConnect";
 import axios from "axios";
+import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: NextRequest) => {
   try {
     await dbConnect();
     const { totalCost, name, email, address, products } = await req.json();
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      return new NextResponse(
+        JSON.stringify({
+          message: "Order is not Acceptable !!!",
+        }),
+        { status: 406 }
+      );
+    }
+
+    const transactionId = new mongoose.Types.ObjectId().toString();
     const sslData = {
       store_id: process.env.SSLCOMMERZ_STORE_ID,
       store_passwd: process.env.SSLCOMMERZ_STORE_PASS,
       total_amount: totalCost,
       currency: "USD",
-      tran_id: "REF123",
+      tran_id: transactionId,
       product_name: "Manga",
       product_profile: "physical-goods",
       product_category: "Book",
-      success_url: `${process.env.NEXT_PUBLIC_API_URL}/shop`,
+      success_url: `${process.env.NEXT_PUBLIC_API_URL}/api/payment/SSLCommerz/success/${email}`,
       fail_url: `${process.env.NEXT_PUBLIC_API_URL}/cart`,
       cancel_url: `${process.env.NEXT_PUBLIC_API_URL}/cart`,
       cus_name: name,
@@ -38,10 +52,25 @@ export const POST = async (req: NextRequest) => {
         "Content-Type": "application/x-www-form-urlencoded",
       },
     });
-    if (res.data.status === "SUCCESS") {
+    console.log(sslData);
+
+    const redirectURL = res.data.GatewayPageURL;
+    if (res.data.status === "SUCCESS" && redirectURL) {
+      const OrderedProductData = new Orders({
+        name,
+        email,
+        paymentMethod: "SSLCommerz",
+        totalCost,
+        date: new Date(),
+        products,
+        transactionID: transactionId,
+        address,
+        paymentStatus: "Pending",
+      });
+      await OrderedProductData.save();
       return new NextResponse(
         JSON.stringify({
-          paymentURL: res.data.GatewayPageURL,
+          paymentURL: redirectURL,
         }),
         { status: 200 }
       );

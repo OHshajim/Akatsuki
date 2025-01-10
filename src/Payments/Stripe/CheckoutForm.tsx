@@ -81,6 +81,7 @@ const CheckoutForm = ({
           transactionID: paymentIntent.id,
           date: new Date(),
           paymentMethod: "Stripe",
+          paymentStatus: "Successful",
         };
         const res = await Axios.post(
           "/api/payment/OrderConfirmation",

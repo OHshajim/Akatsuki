@@ -1,6 +1,15 @@
 import useAxios from "@/CustomHooks/useAxios";
 import Swal from "sweetalert2";
 
+const generateObjectId = () => {
+  return (
+    Math.floor(Date.now() / 1000).toString(16) +
+    "xxxxxxxxxxxxxxxx".replace(/x/g, () =>
+      Math.floor(Math.random() * 16).toString(16)
+    )
+  );
+};
+
 const CashOnDelivery = async ({
   order,
 }: {
@@ -12,6 +21,7 @@ const CashOnDelivery = async ({
     name: string | null | undefined;
   };
 }) => {
+  const transactionId = generateObjectId();
   const { address, products, totalCost, email, name } = order;
 
   const Axios = useAxios();
@@ -21,9 +31,10 @@ const CashOnDelivery = async ({
     totalCost,
     products,
     address,
-    transactionID: "Cash",
+    transactionID: transactionId,
     date: new Date(),
     paymentMethod: "Cash on Delivery",
+    paymentStatus: "pending",
   };
   await Axios.post("/api/payment/OrderConfirmation", paymentInfo);
   Swal.fire({

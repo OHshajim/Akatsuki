@@ -9,6 +9,7 @@ const OrderSchema = new Schema({
   products: { type: Array, required: true },
   transactionID: { type: String, required: true },
   address: { type: Object, required: true },
+  paymentStatus: { type: String, required: true },
 });
 
 export const Orders =
