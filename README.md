@@ -15,7 +15,7 @@
 
 2. **User Authentication & Dashboard:**
 
-   - Secure user authentication using  **email** , **Google** and **Facebook** via **NextAuth**.
+   - Secure user authentication using **email** , **Google** and **Facebook** via **NextAuth**.
    - Personalized dashboard to manage user details, view liked blogs, and pay for books added to the list.
 
 3. **Blogs & Subscription Packages:**
@@ -56,7 +56,7 @@
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/akatsuki.git
+   git clone https://github.com/OHshajim/Akatsuki.git
    cd akatsuki
    ```
 2. **Install dependencies**
@@ -74,6 +74,8 @@
    NEXT_PUBLIC_FACEBOOK_CLIENT_ID= "id"
    NEXT_PUBLIC_FACEBOOK_CLIENT_SECRET= "secret Key"
    NEXT_PUBLIC_API_URL= "Api URL"
+   SSLCOMMERZ_STORE_ID= "STORE ID"
+   SSLCOMMERZ_STORE_PASS= "STORE PASSWORD"
    ```
 
 4. **Run the development server**
