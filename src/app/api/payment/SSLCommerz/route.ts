@@ -52,8 +52,6 @@ export const POST = async (req: NextRequest) => {
         "Content-Type": "application/x-www-form-urlencoded",
       },
     });
-    console.log(sslData);
-
     const redirectURL = res.data.GatewayPageURL;
     if (res.data.status === "SUCCESS" && redirectURL) {
       const OrderedProductData = new Orders({
