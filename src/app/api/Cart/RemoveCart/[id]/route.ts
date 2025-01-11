@@ -7,14 +7,10 @@ export const DELETE = async (
   { params }: { params: { id: string } }
 ) => {
   try {
-    // Connect to the database
     await dbConnect();
-
-    // Extract the query parameters
     const query = request?.nextUrl?.searchParams;
     const email = query.get("email");
 
-    // Validate inputs
     if (!params.id) {
       return new NextResponse(
         JSON.stringify({ message: "Cart item ID is required!" }),
@@ -22,7 +18,6 @@ export const DELETE = async (
       );
     }
 
-    // Find the user by email
     const user = await User.findOne({ email: email });
 
     if (!user || !user.CartList) {
@@ -31,7 +26,6 @@ export const DELETE = async (
         { status: 404 }
       );
     }
-    // // Check if the item exists in the user's cart
     const itemIndex = user.CartList.indexOf(params.id);
 
     user.CartList.splice(itemIndex, 1);

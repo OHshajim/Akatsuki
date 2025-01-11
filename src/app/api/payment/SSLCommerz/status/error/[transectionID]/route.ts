@@ -5,14 +5,15 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (
   req: NextRequest,
-  { params }: { params: { email: string } }
+  { params }: { params: { transectionID: string } }
 ) => {
   try {
     await dbConnect();
-    console.log(params);
+    const query = req?.nextUrl?.searchParams;
+    const email = query.get("email");
 
-    const user = await User.findOne({ email: params.email });
-    const Order = await Orders.findOne({ email: params.email });
+    const user = await User.findOne({ email: email });
+    const Order = await Orders.findOne({ transactionID: params.transectionID });
 
     if (!user || !Order) {
       return new NextResponse(
@@ -22,13 +23,9 @@ export const POST = async (
         { status: 406 }
       );
     }
-    await User.updateOne({ email: params.email }, { $set: { CartList: [] } });
-    await Orders.updateOne(
-      { email: params.email },
-      { $set: { paymentStatus: "Successful" } }
-    );
+    await Orders.deleteOne({ transactionID: params.transectionID });
     return NextResponse.redirect(
-      "http://localhost:3000/shop/PaymentStatus/success",
+      `${process.env.NEXT_PUBLIC_API_URL}/shop/PaymentStatus/error`,
       302
     );
   } catch (error) {
