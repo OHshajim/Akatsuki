@@ -124,6 +124,7 @@ const Cart = () => {
     <div className="bg-gray-50 min-h-screen">
       {/* Section Banner */}
       <SectionBanner subTitle="Home &gt; Cart" title="Cart" />
+      {/* steps showing */}
       <div className="text-center text-gray-600 my-10 flex justify-center">
         {["Shopping Cart", "Order Details", "Payment && Confirmation"].map(
           (step, index) => (

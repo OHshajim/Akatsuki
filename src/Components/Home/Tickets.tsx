@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Tickets = () => {
   const packages = [
     {
@@ -42,9 +44,11 @@ const Tickets = () => {
                 ${pack.price}
               </h3>
               <p className="text-sm font-normal text-zinc-300">{pack.time}</p>
-              <button className="btn btn-outline rounded-none font-bold mt-10 border-white text-white group-hover:text-white group-hover:bg-[#6fc9cd] group-hover:scale-110 px-10 group-hover:border-none">
-                BUY NOW
-              </button>
+              <Link href={"/movies/subscriptions"}>
+                <button className="btn btn-outline rounded-none font-bold mt-10 border-white text-white group-hover:text-white group-hover:bg-[#6fc9cd] group-hover:scale-110 px-10 group-hover:border-none">
+                  BUY NOW
+                </button>
+              </Link>
             </div>
           </div>
         ))}
