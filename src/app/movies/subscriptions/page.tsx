@@ -1,10 +1,21 @@
 "use client";
+import Checkout from "@/Payments/Stripe/Checkout";
 import SectionBanner from "@/Shared/SectionBanner";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
+import { FaCcStripe, FaPaypal } from "react-icons/fa";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 const Page = () => {
+  const { data: session } = useSession();
+  const paymentIcons: Record<string, JSX.Element> = {
+    PayPal: <FaPaypal className="text-2xl" />,
+    Stripe: <FaCcStripe className="text-2xl" />,
+  };
+
   const [currentStep, setCurrentStep] = useState(1);
+  const [PaymentMethod, setPaymentMethod] = useState("PayPal");
+  const [order, setOrder] = useState({});
   const packages = [
     {
       id: 1,
@@ -26,9 +37,19 @@ const Page = () => {
     },
   ];
 
-  const handleSelect = (id: unknown) => {
+  const handleSelect = (id: number) => {
     console.log(id);
+    setOrder({
+      address: { time: packages[id-1].time },
+      products: [packages[id-1].type],
+      totalCost: packages[id-1].price,
+      email: session?.user?.email,
+      name: session?.user?.name,
+    });
     setCurrentStep(2);
+  };
+  const handlePayment = () => {
+    setCurrentStep(3);
   };
   return (
     <div>
@@ -37,7 +58,7 @@ const Page = () => {
         title="Subscriptions"
       />
       <div className="text-center text-gray-600 my-10 flex justify-center">
-        {["Select Package", "Payment && Confirmation"].map((step, index) => (
+        {["Select Package", "Payment", "Confirmation"].map((step, index) => (
           <div
             key={index}
             className="flex items-center font-primary text-black sm:text-lg text-sm"
@@ -50,7 +71,7 @@ const Page = () => {
               {index + 1}
             </span>
             {step}
-            {index < 1 && (
+            {index < 2 && (
               <FaArrowRightLong
                 className={
                   currentStep === index + 1
@@ -93,6 +114,43 @@ const Page = () => {
             ))}
           </div>
         </div>
+      )}
+      {currentStep === 2 && (
+        <div className="my-20 max-w-xl mx-auto">
+          <div className="bg-white rounded-lg shadow-lg p-6 w-full select-none">
+            <h2 className="text-xl font-bold mb-4">Payment</h2>
+            {["PayPal", "Stripe"].map((method) => (
+              <div key={method} className="flex items-center mb-4">
+                <input
+                  type="radio"
+                  id={method}
+                  name="payment"
+                  value={method}
+                  checked={PaymentMethod === method}
+                  onChange={() => setPaymentMethod(method)}
+                  className="mr-2"
+                />
+                <label className="flex items-center gap-2" htmlFor={method}>
+                  {paymentIcons[method]} {method}
+                </label>
+              </div>
+            ))}
+
+            <button
+              onClick={handlePayment}
+              className="btn tracking-widest font-normal mt-6 w-full px-6 py-3 bg-[#6fc9cd] hover:bg-[#2a9ca2] text-white  rounded-none"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      )}
+      {currentStep === 3 && (
+        <section className="container mx-auto px-4 py-10">
+          <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
+            {PaymentMethod === "Stripe" && <Checkout order={order} />}
+          </div>
+        </section>
       )}
     </div>
   );

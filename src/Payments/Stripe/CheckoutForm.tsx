@@ -72,6 +72,13 @@ const CheckoutForm = ({
     } else {
       console.log("paymentIntent : ", paymentIntent);
       if (paymentIntent.status === "succeeded") {
+        if (
+          order.products[0] === "Weekly package" ||
+          order.products[0] === "Vip Pass" ||
+          order.products[0] === "Monthly Package"
+        ) {
+          // Update the user
+        }
         const paymentInfo = {
           email,
           name,
