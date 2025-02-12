@@ -73,20 +73,17 @@ const handler = NextAuth({
 
         try {
           await dbConnect();
-
-          // Check if the user already exists in the database
           const existingUser = await User.findOne({ email });
-
           if (!existingUser) {
-            // Create a new user if they do not exist
             const newUser = new User({
               email,
               username: name,
-              imageURL: image || null, // Image might be optional
+              imageURL: image || null,
               WishList: [],
               CartList: [],
               Liked: [],
-              role: "Member", // Default role
+              role: "Member",
+              subscription: "null",
             });
 
             await newUser.save();
@@ -95,7 +92,7 @@ const handler = NextAuth({
           return true;
         } catch (error) {
           console.error("Error during provider sign-in:", error);
-          return false; // Prevent sign-in on error
+          return false;
         }
       }
 

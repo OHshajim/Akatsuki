@@ -26,6 +26,7 @@ export const POST = async (req: NextRequest) => {
       CartList: [],
       Liked: [],
       role: "Member",
+      subscription: "null",
     });
 
     await newUser.save();

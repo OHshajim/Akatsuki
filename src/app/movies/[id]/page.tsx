@@ -82,6 +82,7 @@ const Page = () => {
           icon: "info",
         });
       } else if (res.message === "unsubscribed") {
+        route.push("/movies/subscriptions");
         Swal.fire({
           title: res.message,
           text: "Please Subscribe now",
