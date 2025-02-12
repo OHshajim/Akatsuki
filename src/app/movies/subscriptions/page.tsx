@@ -15,7 +15,13 @@ const Page = () => {
 
   const [currentStep, setCurrentStep] = useState(1);
   const [PaymentMethod, setPaymentMethod] = useState("PayPal");
-  const [order, setOrder] = useState({});
+  const [order, setOrder] = useState({
+    address: { time: "null" },
+    products: ["null"],
+    totalCost: 0,
+    email: session?.user?.email,
+    name: session?.user?.name,
+  });
   const packages = [
     {
       id: 1,
@@ -40,9 +46,9 @@ const Page = () => {
   const handleSelect = (id: number) => {
     console.log(id);
     setOrder({
-      address: { time: packages[id-1].time },
-      products: [packages[id-1].type],
-      totalCost: packages[id-1].price,
+      address: { time: packages[id - 1].time },
+      products: [packages[id - 1].type],
+      totalCost: packages[id - 1].price,
       email: session?.user?.email,
       name: session?.user?.name,
     });
