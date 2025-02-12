@@ -4,7 +4,7 @@ const userSchema = new Schema({
   email: { type: String, required: true, unique: true },
   username: { type: String, required: true },
   password: { type: String, required: true },
-  subscription: { type: String },
+  subscription: { type: String, required: true },
   role: { type: String, required: true },
   imageURL: { type: String, required: true },
   WishList: { type: Array, required: true },

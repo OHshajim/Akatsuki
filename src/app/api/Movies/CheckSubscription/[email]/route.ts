@@ -9,7 +9,7 @@ export const GET = async (
   try {
     await dbConnect();
     const user = await User.findOne({ email: params?.email });
-    if (user.subscription !== "null") {
+    if (user.subscription) {
       const now = new Date();
       const subscriptionEnd = new Date(user.subscription);
       const isSubscriptionValid =

@@ -33,7 +33,7 @@ const Page = () => {
       id: 2,
       type: "Vip Pass",
       price: 499.99,
-      time: "Unlimited",
+      time: "Per/Year",
     },
     {
       id: 3,

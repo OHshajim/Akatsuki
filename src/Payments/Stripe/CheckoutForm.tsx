@@ -71,13 +71,29 @@ const CheckoutForm = ({
       console.log(confirmError);
     } else {
       console.log("paymentIntent : ", paymentIntent);
+
       if (paymentIntent.status === "succeeded") {
         if (
-          order.products[0] === "Weekly package" ||
-          order.products[0] === "Vip Pass" ||
-          order.products[0] === "Monthly Package"
+          products[0] === "Weekly package" ||
+          products[0] === "Vip Pass" ||
+          products[0] === "Monthly Package"
         ) {
-          // Update the user
+          const res = await Axios.post("/api/payment/Subscription", order);
+          console.log(res);
+          if (res.status === 201) {
+            Swal.fire({
+              title: "Subscription Activated 🎉",
+              text: "Your subscription is now active! Enjoy premium access.",
+              icon: "success",
+            });
+            router.push("/movies");
+            return console.log(order);
+          }
+          return Swal.fire({
+            title: "Error",
+            text: "Try again !!!",
+            icon: "error",
+          });
         }
         const paymentInfo = {
           email,
