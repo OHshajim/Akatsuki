@@ -86,8 +86,8 @@ const CheckoutForm = ({
               text: "Your subscription is now active! Enjoy premium access.",
               icon: "success",
             });
-            router.push("/movies");
-            return console.log(order);
+
+            return router.push("/movies");
           }
           return Swal.fire({
             title: "Error",

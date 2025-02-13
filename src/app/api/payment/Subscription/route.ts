@@ -14,7 +14,7 @@ export const POST = async (req: NextRequest) => {
         ? 7
         : order.address.time === "Per/Month"
         ? 30
-        : 365; // Default to yearly
+        : 365;
 
     const startDate = new Date();
     const endDate = new Date();

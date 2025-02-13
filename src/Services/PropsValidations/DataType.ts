@@ -49,3 +49,10 @@ export type BlogDataTypes = {
   description: string;
   endingParagraph: string;
 };
+export type OrderDataType= {
+  address: object;
+  products: string[];
+  totalCost: number;
+  email: string | null | undefined;
+  name: string | null | undefined;
+};

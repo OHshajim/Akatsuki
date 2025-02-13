@@ -1,4 +1,5 @@
 "use client";
+import PaypalPayment from "@/Payments/PayPal/PaypalPayment";
 import Checkout from "@/Payments/Stripe/Checkout";
 import SectionBanner from "@/Shared/SectionBanner";
 import { useSession } from "next-auth/react";
@@ -44,7 +45,6 @@ const Page = () => {
   ];
 
   const handleSelect = (id: number) => {
-    console.log(id);
     setOrder({
       address: { time: packages[id - 1].time },
       products: [packages[id - 1].type],
@@ -57,6 +57,7 @@ const Page = () => {
   const handlePayment = () => {
     setCurrentStep(3);
   };
+
   return (
     <div>
       <SectionBanner
@@ -154,7 +155,11 @@ const Page = () => {
       {currentStep === 3 && (
         <section className="container mx-auto px-4 py-10">
           <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-            {PaymentMethod === "Stripe" && <Checkout order={order} />}
+            {PaymentMethod === "Stripe" ? (
+              <Checkout order={order} />
+            ) : PaymentMethod === "PayPal" ? (
+              <PaypalPayment order={order} />
+            ) : null}
           </div>
         </section>
       )}

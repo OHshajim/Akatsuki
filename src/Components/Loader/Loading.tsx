@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Loading = () => {
   return (
-    <div className="flex justify-center items-center my-40">
+    <div className="flex justify-center items-center my-40 select-none">
       <Image
         src="https://i.ibb.co.com/PGnHvBQ/AKATSUKI-LOADER.gif"
         alt="Loading..."
