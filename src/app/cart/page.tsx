@@ -15,6 +15,7 @@ import Checkout from "@/Payments/Stripe/Checkout";
 import CashOnDelivery from "@/Payments/CashOnDelivery/CashOnDelivery";
 import { useRouter } from "next/navigation";
 import SSLPayment from "@/Payments/SSLCommerz/SSLPayment";
+import PaypalPayment from "@/Payments/PayPal/PaypalPayment";
 
 interface AddressForm {
   country: string;
@@ -419,7 +420,11 @@ const Cart = () => {
       {currentStep === 3 && (
         <section className="container mx-auto px-4 py-10">
           <div className="bg-white rounded-lg shadow-lg p-6 mb-6">
-            {PaymentMethod === "Stripe" && <Checkout order={OrderData} />}
+            {PaymentMethod === "Stripe" ? (
+              <Checkout order={OrderData} />
+            ) : PaymentMethod === "PayPal" ? (
+              <PaypalPayment />
+            ) : null}
           </div>
         </section>
       )}

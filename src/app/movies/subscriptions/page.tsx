@@ -158,7 +158,7 @@ const Page = () => {
             {PaymentMethod === "Stripe" ? (
               <Checkout order={order} />
             ) : PaymentMethod === "PayPal" ? (
-              <PaypalPayment order={order} />
+              <PaypalPayment />
             ) : null}
           </div>
         </section>
