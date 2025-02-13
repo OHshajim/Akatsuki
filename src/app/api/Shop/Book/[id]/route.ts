@@ -18,8 +18,6 @@ export const GET = async (
     if (email) {
       const user = await User.findOne({ email: email });
       if (user.CartList.length < 1 || !user.CartList.includes(params.id)) {
-        console.log("here");
-
         return NextResponse.json({
           isAdded: false,
           status: 200,

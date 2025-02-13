@@ -18,8 +18,6 @@ export const GET = async (
     if (email) {
       const user = await User.findOne({ email: email });
       if (user.WishList.length < 1 || !user.WishList.includes(params.id)) {
-        console.log("here");
-
         return NextResponse.json({
           isLiked: false,
           status: 200,

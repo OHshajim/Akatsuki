@@ -235,7 +235,7 @@ const Page = () => {
               <span className="text-zinc-500">{movie.yearPublished}</span>
             </p>
             <p className="mt-2 font-medium sm:text-base text-sm">
-              Language :<span className="text-zinc-500">{movie.language}</span>
+              Language : <span className="text-zinc-500">{movie.language}</span>
             </p>
             <p className="mt-2 font-medium sm:text-base text-sm">
               Duration: <span className="text-zinc-500">{movie.duration} </span>

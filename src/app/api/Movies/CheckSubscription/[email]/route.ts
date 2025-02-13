@@ -9,38 +9,32 @@ export const GET = async (
   try {
     await dbConnect();
     const user = await User.findOne({ email: params?.email });
-    if (user.subscription) {
-      const now = new Date();
-      const subscriptionEnd = new Date(user.subscription);
-      const isSubscriptionValid =
-        subscriptionEnd > now &&
-        subscriptionEnd.getFullYear() === now.getFullYear() &&
-        subscriptionEnd.getMonth() === now.getMonth() &&
-        subscriptionEnd.getDate() >= now.getDate();
+    if (user.Subscription == "null") {
+      return new NextResponse(
+        JSON.stringify({
+          isSubscribed: false,
+          message: "unsubscribed",
+        })
+      );
+    }
 
-      if (isSubscriptionValid) {
-        return new NextResponse(
-          JSON.stringify({
-            status: 200,
-            isSubscribed: true,
-            message: "subscribed",
-          })
-        );
-      } else {
-        return new NextResponse(
-          JSON.stringify({
-            status: 200,
-            isSubscribed: false,
-            message: "Subscription has expired.",
-          })
-        );
-      }
+    const now = new Date();
+    const subscriptionEnd = new Date(user.subscription);
+    const isSubscriptionValid = subscriptionEnd >= now;
+    if (isSubscriptionValid) {
+      return new NextResponse(
+        JSON.stringify({
+          status: 200,
+          isSubscribed: true,
+          message: "subscribed",
+        })
+      );
     } else {
       return new NextResponse(
         JSON.stringify({
-          //   status: 404,
+          status: 200,
           isSubscribed: false,
-          message: "unsubscribed",
+          message: "Subscription has expired.",
         })
       );
     }
