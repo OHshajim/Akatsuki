@@ -12,36 +12,36 @@ import {
 
 const DashboardNav = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const links = [
-    {
-      title: "Overview",
-    },
-    {
-      title: "Profile",
-    },
-    {
-      title: "Ordered Items",
-    },
-    {
-      title: "Subscription",
-    },
-    {
-      title: "Review",
-    },
-    // Admin
-    {
-      title: "Movies",
-    },
-    {
-      title: "Mangas",
-    },
-    {
-      title: "Users",
-    },
-    {
-      title: "Reviews",
-    },
-  ];
+  // const links = [
+  //   {
+  //     title: "Overview",
+  //   },
+  //   {
+  //     title: "Profile",
+  //   },
+  //   {
+  //     title: "Ordered Items",
+  //   },
+  //   {
+  //     title: "Subscription",
+  //   },
+  //   {
+  //     title: "Review",
+  //   },
+  //   // Admin
+  //   {
+  //     title: "Movies",
+  //   },
+  //   {
+  //     title: "Mangas",
+  //   },
+  //   {
+  //     title: "Users",
+  //   },
+  //   {
+  //     title: "Reviews",
+  //   },
+  // ];
   return (
     <div className="flex min-h-screen bg-gray-900 text-white w-full">
       {/* Mobile Menu Button */}
