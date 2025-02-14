@@ -1,14 +1,18 @@
 "use client";
 import PaypalPayment from "@/Payments/PayPal/PaypalPayment";
 import Checkout from "@/Payments/Stripe/Checkout";
+import { MovieSubscription } from "@/Services/AllDataLoad/DataLoad";
 import SectionBanner from "@/Shared/SectionBanner";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaCcStripe, FaPaypal } from "react-icons/fa";
 import { FaArrowRightLong } from "react-icons/fa6";
+import Swal from "sweetalert2";
 
 const Page = () => {
   const { data: session } = useSession();
+  const route = useRouter();
   const paymentIcons: Record<string, JSX.Element> = {
     PayPal: <FaPaypal className="text-2xl" />,
     Stripe: <FaCcStripe className="text-2xl" />,
@@ -44,7 +48,16 @@ const Page = () => {
     },
   ];
 
-  const handleSelect = (id: number) => {
+  const handleSelect = async (id: number) => {
+    const res = await MovieSubscription(session?.user?.email || "");
+    if (res.isSubscribed === true) {
+      Swal.fire({
+        title: "Already Subscribed !!!",
+        text: "Thank you for Subscription 🥳🥳🥳",
+        icon: "info",
+      });
+      return route.push("/movies");
+    }
     setOrder({
       address: { time: packages[id - 1].time },
       products: [packages[id - 1].type],
